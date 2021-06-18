@@ -7,7 +7,9 @@ import com.mygdx.game.Person;
 import com.mygdx.game.enemy.Enemy;
 
 import java.util.Random;
-
+/**
+ * Враг слайм желе
+ */
 public class Slime extends Enemy {
 
     Random random;

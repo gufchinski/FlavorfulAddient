@@ -2,6 +2,9 @@ package com.mygdx.game.item;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+/**
+ * Восстанавливает все жизни
+ */
 public class HealthUp extends Item {
     public HealthUp(float x, float y, Stage s) {
         super(x, y, s,0);

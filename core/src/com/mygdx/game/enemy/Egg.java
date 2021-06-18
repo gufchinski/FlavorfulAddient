@@ -7,6 +7,9 @@ import com.mygdx.game.Person;
 
 import java.util.Random;
 
+/**
+ * Враг живое яйцо
+ */
 public class Egg extends Enemy {
 
     Random random;

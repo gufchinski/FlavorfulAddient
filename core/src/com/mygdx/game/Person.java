@@ -3,6 +3,9 @@ package com.mygdx.game;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.engine.BaseActor;
 
+/**
+ * Главный персонаж
+ */
 public class Person extends BaseActor {
     public float hp = 10;
     public float maxHp=100;

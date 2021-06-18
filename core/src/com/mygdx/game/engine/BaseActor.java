@@ -24,6 +24,9 @@ import com.mygdx.game.screen.LevelScreen;
 
 import java.util.ArrayList;
 
+/**
+ * Класс отвечает за любой обЪект в игре: Анимация, физика, коллизия.
+ */
 public class BaseActor extends Group {
     public Effect effect=null;
     private Animation<TextureRegion> animation;
@@ -286,6 +289,10 @@ public class BaseActor extends Group {
         accelerateAtAngle(getRotation());
     }
 
+    /**
+     * Проводить физичиские вычисления со скоростью и ускорением
+     * @param dt
+     */
     public void applyPhysics(float dt) {
         // apply acceleration
         velocityVec.add(accelerationVec.x * dt, accelerationVec.y * dt);
@@ -357,6 +364,10 @@ public class BaseActor extends Group {
         return boundaryPolygon;
     }
 
+    /**
+     * Провера на коллизию полигонов
+     * @param other другой актер
+     */
     public boolean overlaps(BaseActor other) {
         Polygon poly1 = this.getBoundaryPolygon();
         Polygon poly2 = other.getBoundaryPolygon();
@@ -368,6 +379,10 @@ public class BaseActor extends Group {
         return Intersector.overlapConvexPolygons(poly1, poly2);
     }
 
+    /**
+     * заставляет обЪекты быть твердыми
+     * @param other
+     */
     public Vector2 preventOverlap(BaseActor other) {
         Polygon poly1 = this.getBoundaryPolygon();
         Polygon poly2 = other.getBoundaryPolygon();
@@ -419,17 +434,10 @@ public class BaseActor extends Group {
         setWorldBounds(ba.getWidth(), ba.getHeight());
     }
 
-    public void boundToWorld() {
-        if (getX() < 0)
-            setX(0);
-        if (getX() + getWidth() > worldBounds.width)
-            setX(worldBounds.width - getWidth());
-        if (getY() < 0)
-            setY(0);
-        if (getY() + getHeight() > worldBounds.height)
-            setY(worldBounds.height - getHeight());
-    }
 
+/**
+ * перемещение камеры за акктером
+ */
     public void alignCamera() {
         Camera cam = this.getStage().getCamera();
         Viewport v = this.getStage().getViewport();
@@ -442,7 +450,11 @@ public class BaseActor extends Group {
         cam.update();
     }
 
-
+    /**
+     * Отрисовка актеров
+     * @param batch
+     * @param parentAlpha
+     */
     public void draw(Batch batch, float parentAlpha) {
 
         super.draw(batch, parentAlpha);
@@ -461,6 +473,12 @@ public class BaseActor extends Group {
 
     }
 
+    /**
+     * Проверка входит ли полигон в задданый радиус
+     * @param distance дистанция до обЪекта
+     * @param other другой обЪект
+     * @return
+     */
     public boolean isWithinDistance(float distance, BaseActor other) {
         Polygon poly1 = this.getBoundaryPolygon();
         float scaleX = (this.getWidth() + 2 * distance) / this.getWidth();
@@ -484,6 +502,9 @@ public class BaseActor extends Group {
 
         setOrigin(getWidth() / 2, getHeight() / 2);
     }
+
+
+
     public void death(){}
 
 }

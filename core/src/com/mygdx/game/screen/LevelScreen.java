@@ -33,7 +33,9 @@ import java.util.Iterator;
 
 import static com.mygdx.game.engine.BaseGame.setActiveScreen;
 
-
+/**
+ *Экран уровня
+ */
 public class LevelScreen extends BaseScreen {
     private Person person;
     JoyStick joystick, weaponJoystick;
@@ -503,7 +505,9 @@ public class LevelScreen extends BaseScreen {
         }
 
     }
-
+/**
+ * использование предмета
+ */
     public void actUse() {
         dialogBox.setText(itemAct.nameItem);
         dialogBox.setSecondText(itemAct.descriptionItem);
@@ -524,6 +528,9 @@ public class LevelScreen extends BaseScreen {
         }
     }
 
+    /**
+     * обновления камер на всех слоях
+     */
     private void camUpdate() {
         Camera eps = backgrondStage.getCamera();
         eps.position.set(mainStage.getCamera().position.x, mainStage.getCamera().position.y, 0);

@@ -5,6 +5,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.engine.BaseActor;
 import com.mygdx.game.engine.JoyStick;
 
+/**
+ * Реализация выстрела и вращения оружия
+ */
 public class Weap extends BaseActor {
     JoyStick joystick;
     Vector2 vecJoy;
@@ -29,7 +32,9 @@ public class Weap extends BaseActor {
         rate = 0.1f;
         speed = 1000;
     }
-
+/**
+ * Выстрел из оружия
+ */
     public void shoot() {
          if(time >= rate) {
             Bullet bullet = new Bullet(0, 0, this.getStage(), textureBullet, dmg);

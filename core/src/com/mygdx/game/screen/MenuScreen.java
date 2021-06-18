@@ -18,7 +18,9 @@ import com.mygdx.game.engine.BaseActor;
 import com.mygdx.game.engine.BaseScreen;
 
 import static com.mygdx.game.engine.BaseGame.setActiveScreen;
-
+/**
+ * Экран меню
+ */
 public class MenuScreen extends BaseScreen {
     TextButton btnPlay;
 

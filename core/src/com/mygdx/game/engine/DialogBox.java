@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
-
+/**
+ *Создает диалоговые окна
+ */
 public class DialogBox extends BaseActor {
     private Label dialogLabel, dialogLabel2;
     private float padding = 16, secondpadding = 50;

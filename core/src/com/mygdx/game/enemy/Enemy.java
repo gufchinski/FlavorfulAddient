@@ -7,6 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.engine.BaseActor;
 import com.mygdx.game.Person;
 
+/**
+ * Абстрактный класс врагов
+ */
 public  abstract class Enemy extends BaseActor {
 
 
@@ -29,6 +32,10 @@ public  abstract class Enemy extends BaseActor {
 
     }
 
+    /**
+     * Обновление логики
+     * @param dt
+     */
     public void act(float dt)
     {
 
@@ -51,7 +58,14 @@ public  abstract class Enemy extends BaseActor {
         this.hp=hp;
     }
 
+    /**
+     * Поведение врагов
+     * @param dt
+     */
     public abstract void behavior(float dt);
+    /**
+     * Смерть врагов
+     */
    @Override
     public  void death()
     {

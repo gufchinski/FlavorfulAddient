@@ -8,6 +8,9 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 
+/**
+ * Кнопка для использование предметов
+ */
 public class ActionButton extends Image {
     public boolean isUse=false;
     public String nameAction;
@@ -22,10 +25,6 @@ public class ActionButton extends Image {
 
     }
 
-    public void setUse(boolean use, String nameClass ) {
-        isUse=use;
-        nameAction=nameClass;
-    }
 
     @Override
     public void act(float delta) {

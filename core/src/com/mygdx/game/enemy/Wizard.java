@@ -10,7 +10,9 @@ import java.util.Random;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
-
+/**
+ * Враг коробка с хлопьями
+ */
 public class Wizard extends Enemy {
 
     Random random;

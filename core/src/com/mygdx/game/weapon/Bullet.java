@@ -13,6 +13,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Пули от персонажа
+ */
 public class Bullet extends BaseActor
 {
 

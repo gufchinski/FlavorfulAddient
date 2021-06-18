@@ -6,6 +6,9 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.mygdx.game.effect.Effect;
 import com.mygdx.game.engine.BaseActor;
 
+/**
+ * Эффект отравления
+ */
 public class Poison extends Effect {
     BaseActor baseActor;
     int sitch = 0;

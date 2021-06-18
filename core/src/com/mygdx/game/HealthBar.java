@@ -18,6 +18,7 @@ import com.mygdx.game.engine.BaseScreen;
 public class HealthBar extends ProgressBar {
 
     /**
+     * Полоска жизни
      * @param width of the health bar
      * @param height of the health bar
      */

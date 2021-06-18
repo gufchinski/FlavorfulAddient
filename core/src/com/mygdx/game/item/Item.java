@@ -2,8 +2,10 @@ package com.mygdx.game.item;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.engine.BaseActor;
-
-public  class Item extends BaseActor {
+/**
+ * Предметы в игре
+ */
+public abstract class Item extends BaseActor {
     public boolean onFloor=true;
     public String textureName="";
     public int type=0;
@@ -14,8 +16,5 @@ public  class Item extends BaseActor {
         loadTexture("Item/toxicBullets.png");
         textureName="Item/toxicBullets.png";
     }
-    public  void  use()
-    {
-
-    }
+    public  abstract void  use();
 }

@@ -17,6 +17,10 @@ import java.util.Random;
 
 import static com.mygdx.game.engine.BaseGame.setActiveScreen;
 
+/**
+ * класс для генерации предметов
+ */
+
 public class Chest extends BaseActor {
     Item item;
     public Chest(float x, float y, Stage s,Room room) {
