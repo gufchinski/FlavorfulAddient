@@ -7,6 +7,10 @@ import com.mygdx.game.item.Item;
 
 import java.util.ArrayList;
 
+/**
+ * Хранит координты комнат на экране, тип комнаты, массивы со стенами, врагами, дверьми, предметами для комнат со столом, меняет текстуры миникомнат и проверяет нахождение актёра
+ */
+
 public class Room {
 
     public float x0, y0, x1, y1;
@@ -40,7 +44,6 @@ public class Room {
         return roomType;
     }
 
-
     public void setCoordinates(int y, int x, int roomCoordinates, int roomWidth, int roomHeight) {
         y0 = y * roomCoordinates;
         x0 = x * roomCoordinates;
@@ -64,6 +67,19 @@ public class Room {
         isDrawedUncleared = true;
     }
 
+    /**
+     * Первый раз создаёт миникомнату на миникарте, если игрок в этой комнате - то миникомната прорисовывается как открытая, иначе как закрытая
+     * @param y Координата комнаты по оси Y в двумерном массиве Map
+     * @param x Координата комнаты по оси X в двумерном массиве Map
+     * @param miniRoomSize Размер миникомнаты на миникарте в пикселях
+     * @param miniRoomDistance Дистанция между миникомнатами на миникарте в пикселях
+     * @param width Дистанция, которую надо отступить от нулевой координаты по оси X для прорисовки миникарты
+     * @param height Дистанция, которую надо отступить от нулевой координаты по оси Y для прорисовки миникарты
+     * @param ui Слой интерфейса, закреплённый на месте, для отрисовки миникарты
+     * @param mapSize Размер стороны двумерного массива Map (размер массива Map это mapSize * mapSize)
+     * @param miniRoomType Закрытый или открытый тип комнаты
+     */
+
     public void firstRoomCreate(int y, int x, int miniRoomSize, int miniRoomDistance, int width, int height, Stage ui, int mapSize, int miniRoomType) {
         miniRoom = new com.mygdx.game.engine.BaseActor(x * miniRoomDistance + width, (mapSize - y - 1) * miniRoomDistance + height, ui);
         if (miniRoomType == 1) {
@@ -78,15 +94,38 @@ public class Room {
         }
     }
 
+    /**
+     * Меняет текстуру данной миникамнаты на открытую
+     * @param y Координата комнаты по оси Y в двумерном массиве Map
+     * @param x Координата комнаты по оси X в двумерном массиве Map
+     * @param miniRoomSize Размер миникомнаты на миникарте в пикселях
+     */
+
     public void setOpenedRoom(int y, int x, int miniRoomSize) {
         miniRoom.loadTexture("map/openedRoom.png");
         miniRoom.setSize(miniRoomSize, miniRoomSize);
     }
 
+    /**
+     * Меняет текстуру миникомнаты на миникомнату, в которой находится персонаж
+     * @param y Координата комнаты по оси Y в двумерном массиве Map
+     * @param x Координата комнаты по оси X в двумерном массиве Map
+     * @param miniRoomSize Размер миникомнаты на миникарте в пикселях
+     */
+
     public void setInRoom(int y, int x, int miniRoomSize) {
         miniRoom.loadTexture("map/inMiniRoom.png");
         miniRoom.setSize(miniRoomSize, miniRoomSize);
     }
+
+    /**
+     * Проверяет, если актёр находится в комнате, используется если нельзя передать BaseActor как параметр
+     * @param y Координата комнаты по оси Y в двумерном массиве Map
+     * @param x Координата комнаты по оси X в двумерном массиве Map
+     * @param width Ширина комнаты
+     * @param height Высота комнаты
+     * @return Возвращает true, если актёр находится в комнате, иначе false
+     */
 
     public boolean roomCheck(float y, float x, float width, float height) {
         if (x >= x0 && x + width <= x1 && y >= y0 && y + height <= y1) {
@@ -95,6 +134,12 @@ public class Room {
             return false;
         }
     }
+
+    /**
+     * Проверяет, если актёр находится в комнате
+     * @param eps Координаты актёра в пикселях
+     * @return Возвращает true, если актёр находится в комнате, иначе false
+     */
 
     public boolean roomCheck(BaseActor eps) {
         if (eps.getX() >= x0 - 5 && eps.getX() + eps.getWidth() <= x1 + 5 && eps.getY() >= y0 - 5 && eps.getY() + eps.getHeight() <= y1 + 5) {
@@ -128,6 +173,11 @@ public class Room {
     public ArrayList<Item> getItemList() {
         return itemList;
     }
+
+    /**
+     * Меняет текстуру двери на открытую или закрытую
+     * @param isClose Если дверь закрыта, то значение параметра true, иначе false
+     */
 
     public void setDoorTexture(boolean isClose) {
         if (isClose) {

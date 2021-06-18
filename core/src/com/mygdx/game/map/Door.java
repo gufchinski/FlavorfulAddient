@@ -3,6 +3,10 @@ package com.mygdx.game.map;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.engine.BaseActor;
 
+/**
+ * Класс для установления типа дверей и коллизии для них
+ */
+
 public class Door extends BaseActor {
     float width, height;
     int doorType;
@@ -10,7 +14,7 @@ public class Door extends BaseActor {
         super(x, y, s);
         this.width = width;
         this.height = height;
-        this.doorType = doorType; // 1 - верхняя дверь, 2 - нижняя, 3 - левая, 4 - правая 5-нижная доп дверь
+        this.doorType = doorType; // 1 - верхняя дверь, 2 - нижняя, 3 - левая, 4 - правая, 5 - нижная доп. дверь
         setSize(width, height);
         setBoundaryRectangle();
     }

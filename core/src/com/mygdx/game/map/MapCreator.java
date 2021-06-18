@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Создаёт случайно сгенерированную карту, прорисовывает комнаты, стены, двери и проходы, миникарту
+ */
+
 public class MapCreator {
     Random random;
 
@@ -69,6 +73,10 @@ public class MapCreator {
 
     public ArrayList<Coordinates> potentialRoom = new ArrayList<>();
     public List<ArrayList<com.mygdx.game.map.Room>> Map = new ArrayList();
+
+    /**
+     * Генерирует двумерный массив в расположением и типом комнат
+     */
 
     public void roomsGenerator() {
         mapSize = 5;
@@ -130,6 +138,10 @@ public class MapCreator {
 
     }
 
+    /**
+     * Выбирает случайное количество комнат из диапазона, прорисовывает пол и проходы к другим комнатам
+     */
+
     public void mapGenerator() {
         roomCount = random.nextInt(4) + 5;
         roomsGenerator();
@@ -178,11 +190,17 @@ public class MapCreator {
         }
     }
 
+    /**
+     * Прорисовывает стены и двери
+     * @param y Координата комнаты по оси Y в двумерном массиве Map
+     * @param x Координата комнаты по оси X в двумерном массиве Map
+     */
+
     public void wallsAdder(int y, int x) {
 
         /// стены сверху/снизу
         if (y != 0 && Map.get(y - 1).get(x).getRoomType() != 0) {  /// если есть комната сверху
-            
+
             //левая половина верхней стены
             wall = new com.mygdx.game.map.Barrier(x * roomCoordinates, (mapSize - y - 1) * roomCoordinates + roomHeight, back, xCoordinate1, tdBarrierSize, "map/wallUp.png");
             vertices = new float[]{0, offsetPolygonTop, wall.getWidth(), offsetPolygonTop, wall.getWidth(), wall.getHeight(), 0, wall.getHeight()};
@@ -421,14 +439,16 @@ public class MapCreator {
                 Map.get(y + 1).get(x).setWalls(wall); //добавление этой стены для нижней комнаты
             }
         }
-        /*
-
-         персонакж определяется в другой комнате только тогда, когда полностью заходит за границы
-         Из-за смещённых полигонов необходимо добавить некоторые стены в другие комнаты, чтобы персонаж не проходил сквозь них прежде, чем поймёт, что он в другой комнате
-
-        */
+        // персонакж определяется в другой комнате только тогда, когда полностью заходит за границы
+        // Из-за смещённых полигонов необходимо добавить некоторые стены в другие комнаты, чтобы персонаж не проходил сквозь них прежде, чем поймёт, что он в другой комнате
     }
 
+    /**
+     * Прорисовывает миникарту на основе двумерного массива Map
+     * @param y Координата комнаты по оси Y в двумерном массиве Map
+     * @param x Координата комнаты по оси X в двумерном массиве Map
+     * @param miniRoomType Закрытый или открытый тип комнаты
+     */
 
     public void miniRoomsAdder(int y, int x, int miniRoomType) {
         if (miniRoomType == 1) {
@@ -469,7 +489,7 @@ public class MapCreator {
     public void firstAppear(Room room) {
 
 
-        if (room.roomType == 3) {
+        if (room.roomType == 2) {
             room.isFight = true;
             room.setDoorTexture(false);
             String pat="pattern-";
@@ -504,7 +524,7 @@ public class MapCreator {
             }
 
         }
-        if (room.roomType == 2) {
+        if (room.roomType == 3) {
             MapLayer layer = tiledMap.getLayers().get("chest");
             for (MapObject obj : layer.getObjects()) {
 
@@ -516,6 +536,10 @@ public class MapCreator {
             }
         }
     }
+
+    /**
+     * Хранит координаты комнат в двумерном массиве Map
+     */
 
     public class Coordinates {
         int y, x;
