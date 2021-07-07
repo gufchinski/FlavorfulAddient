@@ -32,7 +32,7 @@ public class BaseActor extends Group {
     private Animation<TextureRegion> animation;
     private float elapsedTime;
     private boolean animationPaused;
-    public String name = "";
+    public String  name = null;
     public int dmg;
     public int hp;
     private Vector2 velocityVec;
@@ -89,11 +89,11 @@ public class BaseActor extends Group {
 
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public static void setPerson(Person person) {
+        BaseActor.person = person;
     }
-    public void setScreen(LevelScreen screen) {
-        this.screen = screen;
+    public static void  setScreen(LevelScreen screen) {
+        BaseActor.screen = screen;
     }
 
     public static void setRoom(Room room) {

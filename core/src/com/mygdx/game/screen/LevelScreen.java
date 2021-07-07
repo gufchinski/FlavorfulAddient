@@ -88,9 +88,9 @@ public class LevelScreen extends BaseScreen {
         weapon = new Weap(0, 0, mainStage, weaponJoystick, wepJoy);
         person = new Person((map.mapSize / 2) * map.roomCoordinates + 100, (map.mapSize / 2) * map.roomCoordinates + 100, mainStage);
 
-        person.setPerson(person);
-        person.setRoom(map.Map.get(y).get(x));
-        person.setScreen(this);
+        BaseActor.setPerson(person);
+        BaseActor.setRoom(map.Map.get(y).get(x));
+        BaseActor.setScreen(this);
 
         person.hp = 100;
         map.setPerson(person);

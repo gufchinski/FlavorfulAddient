@@ -9,14 +9,14 @@ import com.mygdx.game.engine.BaseActor;
 
 public class Door extends BaseActor {
     float width, height;
-    int doorType;
-    public Door(float x, float y, Stage s,float width, float height, int doorType) {
+    Doortype doorType;
+
+    public Door(float x, float y, Stage s,float width, float height, Doortype doorType) {
         super(x, y, s);
         this.width = width;
         this.height = height;
-        this.doorType = doorType; // 1 - верхняя дверь, 2 - нижняя, 3 - левая, 4 - правая, 5 - нижная доп. дверь
-        setSize(width, height);
         setBoundaryRectangle();
+        this.doorType=doorType;
     }
     public void setPreventSize()
     {

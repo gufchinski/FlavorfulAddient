@@ -182,30 +182,45 @@ public class Room {
     public void setDoorTexture(boolean isClose) {
         if (isClose) {
             for (Door i : doorList) {
-                if (i.doorType == 1) {
-                    i.loadTexture("map/doorCloseUp.png");
-                } else if (i.doorType == 2) {
-                    i.loadTexture("map/doorCloseDown.png");
-                } else if (i.doorType == 3) {
-                    i.loadTexture("map/doorCloseLeft.png");
-                } else if (i.doorType == 4) {
-                    i.loadTexture("map/doorCloseRight.png");
-                } else if (i.doorType == 5) {
-                    i.setVisible(false);
+                switch (i.doorType) {
+                    case TOP:
+                        i.loadTexture("map/doorCloseUp.png");
+                        break;
+                    case LEFT:
+                        i.loadTexture("map/doorCloseLeft.png");
+                        break;
+                    case RIGHT:
+                        i.loadTexture("map/doorCloseRight.png");
+                        break;
+                    case BOTTOM:
+                        i.loadTexture("map/doorCloseDown.png");
+                        break;
+                    case SUPPORT:
+                        i.setVisible(false);
+                        break;
                 }
             }
+
         } else {
             for (Door i : doorList) {
-                if (i.doorType == 1) {
-                    i.loadTexture("map/doorUp.png");
-                } else if (i.doorType == 2) {
-                    i.loadTexture("map/doorDown.png");
-                } else if (i.doorType == 3 || i.doorType == 4) {
-                    i.loadTexture("map/doorLR.png");
-                } else if (i.doorType == 5)
-                    i.setVisible(true);
+                switch (i.doorType) {
+                    case TOP:
+                        i.loadTexture("map/doorUp.png");
+                        break;
+                    case LEFT:
+                    case RIGHT:
+                        i.loadTexture("map/doorLR.png");
+                        break;
+                    case BOTTOM:
+                        i.loadTexture("map/doorDown.png");
+                        break;
+                    case SUPPORT:
+                        i.setVisible(true);
+                        break;
+                }
             }
+
         }
-        //i.setPreventSize();
+
     }
 }
