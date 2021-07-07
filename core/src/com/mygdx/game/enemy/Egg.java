@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.Person;
+import com.mygdx.game.engine.Name;
 
 import java.util.Random;
 
@@ -32,7 +33,7 @@ public class Egg extends Enemy {
         textureDeath=new Texture("enemy/eggDeath.png");
         countDeath=7;
         dmg = 0;
-        name = "boom";
+        name=Name.BOOM;
     }
 
     public void act(float dt) {

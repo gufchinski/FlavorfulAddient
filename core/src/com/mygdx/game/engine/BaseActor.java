@@ -32,7 +32,7 @@ public class BaseActor extends Group {
     private Animation<TextureRegion> animation;
     private float elapsedTime;
     private boolean animationPaused;
-    public String  name = null;
+    public Name name;
     public int dmg;
     public int hp;
     private Vector2 velocityVec;
@@ -71,6 +71,7 @@ public class BaseActor extends Group {
         deceleration = 0;
 
         boundaryPolygon = null;
+        name=Name.DEFAULT;
     }
 
     public BaseActor(float x, float y) {

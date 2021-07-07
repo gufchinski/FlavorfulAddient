@@ -22,6 +22,7 @@ import com.mygdx.game.enemy.Enemy;
 import com.mygdx.game.engine.BaseActor;
 import com.mygdx.game.engine.DialogBox;
 import com.mygdx.game.engine.JoyStick;
+import com.mygdx.game.engine.Name;
 import com.mygdx.game.item.Item;
 import com.mygdx.game.map.MapCreator;
 import com.mygdx.game.Person;
@@ -362,7 +363,7 @@ public class LevelScreen extends BaseScreen {
                         enemyActor.death();
                         break met;
                     }
-                    if (!person.isImmortal && person.overlaps(enemyActor) && enemyActor.name != "boom") {
+                    if (!person.isImmortal && person.overlaps(enemyActor) && enemyActor.name==Name.BOOM) {
                         person.hp -= enemyActor.dmg;
                         person.isImmortal = true;
                         person.timeImmortal = 0;
