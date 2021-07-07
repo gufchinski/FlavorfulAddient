@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Room {
 
     public float x0, y0, x1, y1;
-    int roomType = 0;
+    RoomType roomType = RoomType.ABSENT;
 
     public boolean isDrawedCleared = false, isDrawedUncleared = false, isFight = false;
 
@@ -36,11 +36,11 @@ public class Room {
     }
 
 
-    public void setRoomType(int roomType) {
+    public void setRoomType(RoomType roomType) {
         this.roomType = roomType;
     }
 
-    public int getRoomType() {
+    public RoomType getRoomType() {
         return roomType;
     }
 
