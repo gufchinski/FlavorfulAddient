@@ -27,6 +27,7 @@ import com.mygdx.game.map.MapCreator;
 import com.mygdx.game.Person;
 import com.mygdx.game.map.Room;
 import com.mygdx.game.engine.BaseScreen;
+import com.mygdx.game.map.RoomType;
 import com.mygdx.game.weapon.Weap;
 
 import java.util.Iterator;
@@ -335,7 +336,7 @@ public class LevelScreen extends BaseScreen {
         }
 
 
-        if (room.getRoomType() == 2) {
+        if (room.getRoomType() == RoomType.ENEMY) {
             if (room.isFight) {
                 Iterator<Enemy> enemyIterator = room.getEnemyList().iterator();
                 met:
