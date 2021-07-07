@@ -344,7 +344,7 @@ public class MapCreator {
             wall.setBoundaryRectangle(vertices);
             Map.get(y).get(x).setWalls(wall);
 
-            if (y != 0 && Map.get(y - 1).get(x).roomType != 0) {
+            if (y != 0 && Map.get(y - 1).get(x).roomType != RoomType.ABSENT) {
                 Map.get(y - 1).get(x).setWalls(wall); //добавление этой части стены для верхней комнаты
             }
 
