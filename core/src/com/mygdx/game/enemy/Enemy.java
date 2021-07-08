@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.engine.BaseActor;
 import com.mygdx.game.Person;
+import com.mygdx.game.engine.BaseScreen;
 
 /**
  * Абстрактный класс врагов
@@ -50,14 +51,10 @@ public  abstract class Enemy extends BaseActor {
 
     }
 
-    public int getHp() {
+    public float getHp() {
         return hp;
     }
 
-    public void setHp(int hp)
-    {
-        this.hp=hp;
-    }
 
     /**
      * Поведение врагов
@@ -74,6 +71,14 @@ public  abstract class Enemy extends BaseActor {
         setScale(scale);
         room.enemyList.remove(this);
         death=true;
+    }
+   protected void setHp(float hp)
+    {
+        this.hp= hp*BaseScreen.complexity*1.2f;
+    }
+    protected void setDmg(float damage)
+    {
+        dmg= damage*BaseScreen.complexity*1.1f;
     }
 
 

@@ -20,12 +20,14 @@ import com.mygdx.game.HealthBar;
 import com.mygdx.game.effect.Poison;
 import com.mygdx.game.enemy.Enemy;
 import com.mygdx.game.engine.BaseActor;
+import com.mygdx.game.engine.BaseGame;
 import com.mygdx.game.engine.DialogBox;
 import com.mygdx.game.engine.JoyStick;
 import com.mygdx.game.engine.Name;
 import com.mygdx.game.item.Item;
 import com.mygdx.game.map.MapCreator;
 import com.mygdx.game.Person;
+import com.mygdx.game.map.Portal;
 import com.mygdx.game.map.Room;
 import com.mygdx.game.engine.BaseScreen;
 import com.mygdx.game.map.RoomType;
@@ -36,9 +38,10 @@ import java.util.Iterator;
 import static com.mygdx.game.engine.BaseGame.setActiveScreen;
 
 /**
- *Экран уровня
+ * Экран уровня
  */
 public class LevelScreen extends BaseScreen {
+
     private Person person;
     JoyStick joystick, weaponJoystick;
     Vector2 joy, wepJoy;
@@ -53,13 +56,16 @@ public class LevelScreen extends BaseScreen {
     Image itemIcon;
     ActionButton actBtn;
     int typeAct = 0;
-    Item itemAct, itemActive = null;
+    Item itemAct, itemActive;
     BaseActor deadTextureScreen, deadTexturePlay, deadTextureExit;
     public Effect bulletEffect;
     Music music;
     DialogBox dialogBox;
+    Portal portal = null;
+
 
     public void initialize() {
+        itemActive=null;
         //добавления джостиков
         weaponJoystick = new JoyStick(10, "ui/joy_background.png", "ui/joy_Knob.png", 50, 50, 200, 200);
         joystick = new JoyStick(10, "ui/joy_background.png", "ui/joy_Knob.png", 50, 50, 200, 200);
@@ -108,7 +114,7 @@ public class LevelScreen extends BaseScreen {
         yCoordinate.setPosition(50, 50);
         xS = Integer.toString(x);
         yS = Integer.toString(y);
-        // xCoordinate.setText(xS);
+        //xCoordinate.setText(map.getRoomCount());
         // yCoordinate.setText(yS);
 
         healthBar = new HealthBar(500, 35);
@@ -233,6 +239,8 @@ public class LevelScreen extends BaseScreen {
         deadTable.add(deadTextureExit).expandX();
         deadTable.bottom().padBottom(100);
 
+        if (isSave)
+            loadSave();
     }
 
     public void update(float dt) {
@@ -354,8 +362,8 @@ public class LevelScreen extends BaseScreen {
                         if (enemyActor.overlaps(bulletActor)) {
                             if (bulletEffect != null)
                                 enemyActor.setEffect(bulletEffect);
-                            if(!enemyActor.isImmortal)
-                            enemyActor.hp -= bulletActor.dmg;
+                            if (!enemyActor.isImmortal)
+                                enemyActor.hp -= bulletActor.dmg;
                             bulletActor.remove();
 
                         }
@@ -364,7 +372,7 @@ public class LevelScreen extends BaseScreen {
                         enemyActor.death();
                         break met;
                     }
-                    if (!person.isImmortal && person.overlaps(enemyActor) && enemyActor.name!=Name.BOOM) {
+                    if (!person.isImmortal && person.overlaps(enemyActor) && enemyActor.name != Name.BOOM) {
                         person.hp -= enemyActor.dmg;
                         person.isImmortal = true;
                         person.timeImmortal = 0;
@@ -423,6 +431,11 @@ public class LevelScreen extends BaseScreen {
 
                 if (room.getEnemyList().isEmpty()) {
                     room.isFight = false;
+                    map.roomsLeft--;
+                    if (map.roomsLeft == 0) {
+                        portal = new Portal(room.x0 + map.roomWidth / 2, room.y0 + map.roomHeight / 2, backgrondStage);
+                        portal.moveBy(-portal.getWidth() / 2, -portal.getHeight() / 2);
+                    }
                     room.setDoorTexture(true);
                 }
 
@@ -476,7 +489,16 @@ public class LevelScreen extends BaseScreen {
         if (weaponJoystick.isTouch())
             weapon.shoot();
         healthBar.setValue(person.hp);
-
+        if (portal != null) {
+            boolean boolportal = person.isWithinDistance(3, portal);
+            actBtn.isUse = boolportal;
+            if (boolportal) {
+                typeAct = 2;
+                actBtn.setDrawable(actBtn.textUse);
+            } else {
+                actBtn.setDrawable(actBtn.textnotUse);
+            }
+        }
         for (Item item : room.getItemList()) {
             boolean boolitem = person.isWithinDistance(3, room.chest);
 
@@ -489,33 +511,35 @@ public class LevelScreen extends BaseScreen {
                 actBtn.setDrawable(actBtn.textnotUse);
             }
         }
-        if (person.hp <= 0) {
-            deadTextureScreen.setVisible(true);
-            deadTextureExit.setVisible(true);
-            deadTexturePlay.setVisible(true);
-            gameOver = true;
-            im.addProcessor(deadStage);
-            im.removeProcessor(uiStage);
-            im.removeProcessor(mainStage);
-        }
+
+//        if (person.hp <= 0) {
+//            deadTextureScreen.setVisible(true);
+//            deadTextureExit.setVisible(true);
+//            deadTexturePlay.setVisible(true);
+//            gameOver = true;
+//            im.addProcessor(deadStage);
+//            im.removeProcessor(uiStage);
+//            im.removeProcessor(mainStage);
+//        }
         if (dialogBox.isVisible()) {
-            dialogtime+=dt;
-            if(dialogtime>=3)
-            {
-                dialogtime=0;
+            dialogtime += dt;
+            if (dialogtime >= 3) {
+                dialogtime = 0;
                 dialogBox.setVisible(false);
             }
         }
 
     }
-/**
- * использование предмета
- */
+
+    /**
+     * использование предмета
+     */
     public void actUse() {
-        dialogBox.setText(itemAct.nameItem);
-        dialogBox.setSecondText(itemAct.descriptionItem);
+
         switch (typeAct) {
             case 0:
+                dialogBox.setText(itemAct.nameItem);
+                dialogBox.setSecondText(itemAct.descriptionItem);
                 itemIcon.setDrawable(new SpriteDrawable(new Sprite(new Texture(itemAct.textureName))));
                 itemActive = itemAct;
                 itemActive.setVisible(false);
@@ -523,12 +547,35 @@ public class LevelScreen extends BaseScreen {
                 room.itemList.remove(itemAct);
                 break;
             case 1:
+                dialogBox.setText(itemAct.nameItem);
+                dialogBox.setSecondText(itemAct.descriptionItem);
                 itemAct.use();
                 itemAct.remove();
                 room.itemList.remove(itemAct);
                 break;
+            case 2:
+                BaseScreen.complexity += 0.1f;
+                save();
+                setActiveScreen(new LevelScreen());
+                break;
 
         }
+    }
+
+    public void loadSave() {
+        person.hp = personHp;
+        weapon.dmg = damg;
+        person.setMaxSpeed(personSpeed);
+        person.setSpeed(personSpeed);
+        bulletEffect = bulletEff;
+        itemActive = items;
+        if(itemActive!=null)
+            itemIcon.setDrawable(draw);
+    }
+
+    public void save() {
+        isSave = true;
+        setSetting(person.hp, weapon.dmg, person.getSpeed(), bulletEffect, itemActive,itemIcon.getDrawable());
     }
 
     /**

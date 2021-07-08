@@ -26,7 +26,7 @@ public class Wizard extends Enemy {
 
     public Wizard(float x, float y, Stage s, Person personage) {
         super(x, y, s, personage);
-        hp = 500;
+        setHp(500f);
 
         setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
         setSpeed(speed);
@@ -43,7 +43,7 @@ public class Wizard extends Enemy {
         countDeath=7;
         loadAnimationFromSheet(glavnoe, 1, 12, 0.1f, true);
         setBoundaryRectangle();
-        dmg=0;
+        setDmg(0);
     }
 
     public void act(float dt) {

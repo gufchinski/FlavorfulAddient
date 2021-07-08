@@ -21,7 +21,7 @@ public class Bullet extends BaseActor
 
    int type;
 
-    public Bullet(float x, float y, Stage s,String textureBullet,int damage)
+    public Bullet(float x, float y, Stage s, String textureBullet, float damage)
     {
         super(x,y,s);
 

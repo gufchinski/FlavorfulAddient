@@ -10,8 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.mygdx.game.effect.Effect;
+import com.mygdx.game.item.Item;
 
 /**
  * рассширает класс экрана
@@ -25,30 +28,33 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     protected Stage epsStage;
     protected Table uiTable;
     protected Stage deadStage;
-
-
+    public static float personHp, damg, personSpeed;
+    public static Item items;
+    public static Effect bulletEff;
+    public static Drawable draw;
+    public static float complexity = 1f;
     public BitmapFont bf;
     public static LabelStyle lb;
     public InputMultiplexer im;
-    public boolean gameOver=false;
-    public BaseScreen()
-    {
+    public boolean gameOver = false;
+    public static boolean isSave = false;
 
-        bf=new BitmapFont( Gdx.files.internal("font/cooper.fnt") );
+    public BaseScreen() {
+
+        bf = new BitmapFont(Gdx.files.internal("font/cooper.fnt"));
         lb = new LabelStyle();
         lb.font = bf;
-        epsStage=new Stage(new StretchViewport(1920,1080));
-        frontStage=new Stage(new ExtendViewport(1920,1080));
-        backgrondStage = new Stage(new ExtendViewport(1920,1080));
-        mainStage = new Stage(new ExtendViewport(1920,1080));
-        uiStage = new Stage(new ExtendViewport(1920,1080));
-        loadStage=new Stage(new ExtendViewport(1920,1080));
-        deadStage=new Stage(new ExtendViewport(1920,1080));
+        epsStage = new Stage(new StretchViewport(1920, 1080));
+        frontStage = new Stage(new ExtendViewport(1920, 1080));
+        backgrondStage = new Stage(new ExtendViewport(1920, 1080));
+        mainStage = new Stage(new ExtendViewport(1920, 1080));
+        uiStage = new Stage(new ExtendViewport(1920, 1080));
+        loadStage = new Stage(new ExtendViewport(1920, 1080));
+        deadStage = new Stage(new ExtendViewport(1920, 1080));
 
         uiTable = new Table();
         uiTable.setFillParent(true);
         uiStage.addActor(uiTable);
-
 
 
         im = new InputMultiplexer();
@@ -64,12 +70,11 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     // (1) process input (discrete handled by listener; continuous in update)
     // (2) update game logic
     // (3) render the graphics
-    public void render(float dt)
-    {
+    public void render(float dt) {
         // act methods
         epsStage.act(dt);
         uiStage.act(dt);
-        if(!gameOver) {
+        if (!gameOver) {
             update(dt);
             backgrondStage.act(dt);
             mainStage.act(dt);
@@ -79,18 +84,16 @@ public abstract class BaseScreen implements Screen, InputProcessor {
 
             // defined by user
 
-        }
-        else
-        {
+        } else {
             deadStage.act(dt);
         }
         // clear the screen
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // draw the graphics
         epsStage.draw();
-        if(!gameOver) {
+        if (!gameOver) {
             backgrondStage.draw();
             mainStage.draw();
             frontStage.draw();
@@ -105,13 +108,16 @@ public abstract class BaseScreen implements Screen, InputProcessor {
 
     }
 
-    public void pause()   {  }
+    public void pause() {
+    }
 
-    public void resume()  {  }
+    public void resume() {
+    }
 
-    public void dispose() {  }
+    public void dispose() {
+    }
 
-    public void show()    {
+    public void show() {
 
         im.addProcessor(this);
         im.addProcessor(uiStage);
@@ -119,13 +125,22 @@ public abstract class BaseScreen implements Screen, InputProcessor {
 
     }
 
-    public void hide()   {
+    public void hide() {
 
         im.removeProcessor(this);
         im.removeProcessor(uiStage);
         im.removeProcessor(mainStage);
         im.removeProcessor(deadStage);
 
+    }
+
+    public void setSetting(float personHp, float dmg, float personSpeed, Effect bulletEffect, Item items, Drawable draw) {
+        this.personHp = personHp;
+        this.damg = dmg;
+        this.personSpeed = personSpeed;
+        this.bulletEff = bulletEffect;
+        this.items = items;
+        this.draw = draw;
     }
 
 

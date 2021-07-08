@@ -33,8 +33,8 @@ public class BaseActor extends Group {
     private float elapsedTime;
     private boolean animationPaused;
     public Name name;
-    public int dmg;
-    public int hp;
+    public float dmg;
+    public float hp;
     private Vector2 velocityVec;
     private Vector2 accelerationVec;
     private float acceleration;

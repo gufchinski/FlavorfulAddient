@@ -1,6 +1,5 @@
 package com.mygdx.game.map;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
@@ -11,7 +10,6 @@ import com.mygdx.game.Person;
 import com.mygdx.game.enemy.Slime;
 import com.mygdx.game.enemy.Egg;
 import com.mygdx.game.enemy.Wizard;
-import com.mygdx.game.engine.BaseActor;
 import com.mygdx.game.engine.RepeatActor;
 
 import java.util.ArrayList;
@@ -31,7 +29,7 @@ public class MapCreator {
 
     float[] vertices = new float[4];
 
-    public int mapSize, roomCount;
+    public int mapSize, roomCount, roomsLeft;
     public int roomCoordinates = 3456, roomWidth = 2048, roomHeight = 2048;
     public int miniRoomDistance = 70, miniRoomSize = 45;
     public int tdBarrierSize = 256, lrBarrierSize = 64;
@@ -70,6 +68,10 @@ public class MapCreator {
         this.person = person;
     }
 
+    public int getRoomsLeft() {
+        return roomsLeft;
+    }
+
 
     public ArrayList<Coordinates> potentialRoom = new ArrayList<>();
     public List<ArrayList<com.mygdx.game.map.Room>> Map = new ArrayList();
@@ -105,7 +107,7 @@ public class MapCreator {
         int addNumber, y, x;
 
         //Генерация обычных комнат
-        for (int i = 1; i < roomCount; i++) {
+        for (int i = 1; i <= roomCount; i++) {
 
             addNumber = random.nextInt(potentialRoom.size());
             y = potentialRoom.get(addNumber).y;
@@ -143,7 +145,9 @@ public class MapCreator {
      */
 
     public void mapGenerator() {
-        roomCount = random.nextInt(4) + 5;
+        //roomCount = random.nextInt(4) + 5;
+        roomCount = 1;
+        roomsLeft = roomCount;
         roomsGenerator();
 
         for (int y = 0; y < mapSize; y++) {
@@ -162,14 +166,14 @@ public class MapCreator {
                         Map.get(y).get(x).setWalls(wall);
                         Map.get(y - 1).get(x).setWalls(wall);
 
-                        wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + xCoordinate2, (mapSize - y - 1) * roomCoordinates + roomHeight + tdBarrierSize,  front, lrBarrierSize, roomCoordinates - roomHeight - tdBarrierSize - lrBarrierSize, "map/wallSide.png");  ///создание правой стены прохода
+                        wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + xCoordinate2, (mapSize - y - 1) * roomCoordinates + roomHeight + tdBarrierSize, front, lrBarrierSize, roomCoordinates - roomHeight - tdBarrierSize - lrBarrierSize, "map/wallSide.png");  ///создание правой стены прохода
                         vertices = new float[]{0, 0, wall.getWidth(), 0, wall.getWidth(), wall.getHeight() - (offsetPolygonBot - lrBarrierSize), 0, wall.getHeight() - (offsetPolygonBot - lrBarrierSize)};
                         wall.setBoundaryRectangle(vertices);
                         Map.get(y).get(x).setWalls(wall);
                         Map.get(y - 1).get(x).setWalls(wall);
                     }
 
-                    if (x != (mapSize - 1) && Map.get(y).get(x + 1).getRoomType() !=RoomType.ABSENT) {  ///проход для комнаты справа
+                    if (x != (mapSize - 1) && Map.get(y).get(x + 1).getRoomType() != RoomType.ABSENT) {  ///проход для комнаты справа
                         pass = new RepeatActor(x * roomCoordinates + roomWidth, (mapSize - y - 1) * roomCoordinates + yCoordinate1, back, roomCoordinates - roomWidth - lrBarrierSize, passSize, "map/floor.png");  ///создание прохода
 
                         wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + roomWidth + lrBarrierSize, (mapSize - y - 1) * roomCoordinates + yCoordinate1 - tdBarrierSize, front, roomCoordinates - roomWidth - lrBarrierSize * 2, tdBarrierSize, "map/wallDown.png");  ///создание нижней стены прохода
@@ -192,6 +196,7 @@ public class MapCreator {
 
     /**
      * Прорисовывает стены и двери
+     *
      * @param y Координата комнаты по оси Y в двумерном массиве Map
      * @param x Координата комнаты по оси X в двумерном массиве Map
      */
@@ -273,7 +278,7 @@ public class MapCreator {
             Map.get(y + 1).get(x).setWalls(wall); //добавление этого угла для нижней комнаты
 
             //правая половины нижней стены
-            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + xCoordinate2, (mapSize - y - 1) * roomCoordinates - tdBarrierSize,front, xCoordinate1, tdBarrierSize, "map/wallDown.png");
+            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + xCoordinate2, (mapSize - y - 1) * roomCoordinates - tdBarrierSize, front, xCoordinate1, tdBarrierSize, "map/wallDown.png");
             vertices = new float[]{0, 0, wall.getWidth(), 0, wall.getWidth(), wall.getHeight() - offsetPolygonBot, 0, wall.getHeight() - offsetPolygonBot};
             wall.setBoundaryRectangle(vertices);
             Map.get(y).get(x).setWalls(wall);
@@ -381,13 +386,13 @@ public class MapCreator {
         }
 
 
-        if (x != (mapSize - 1) && Map.get(y).get(x + 1).getRoomType() !=RoomType.ABSENT) {  /// если есть комната справа
+        if (x != (mapSize - 1) && Map.get(y).get(x + 1).getRoomType() != RoomType.ABSENT) {  /// если есть комната справа
             //нижняя половина правой стены
             wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + roomWidth, (mapSize - y - 1) * roomCoordinates, front, lrBarrierSize, yCoordinate1, "map/wallSide.png");
             vertices = new float[]{0, 0, wall.getWidth() + lrBarrierSize, 0, wall.getWidth() + lrBarrierSize, wall.getHeight() - offsetPolygonBot, 0, wall.getHeight() - offsetPolygonBot};
             wall.setBoundaryRectangle(vertices);
             Map.get(y).get(x).setWalls(wall);
-            if ((y + 1) != mapSize && Map.get(y + 1).get(x).roomType !=RoomType.ABSENT) {
+            if ((y + 1) != mapSize && Map.get(y + 1).get(x).roomType != RoomType.ABSENT) {
                 Map.get(y + 1).get(x).setWalls(wall); //добавление этой части стены для нижней комнаты
             }
 
@@ -404,7 +409,7 @@ public class MapCreator {
             vertices = new float[]{0, 0, wall.getWidth() + lrBarrierSize, 0, wall.getWidth() + lrBarrierSize, wall.getHeight(), 0, wall.getHeight()};
             wall.setBoundaryRectangle(vertices);
             Map.get(y).get(x).setWalls(wall);
-            if ((y - 1) != -1 && Map.get(y - 1).get(x).roomType !=RoomType.ABSENT) {
+            if ((y - 1) != -1 && Map.get(y - 1).get(x).roomType != RoomType.ABSENT) {
                 Map.get(y - 1).get(x).setWalls(wall); //добавление этой части стены для верхней комнаты
             }
 
@@ -444,8 +449,9 @@ public class MapCreator {
 
     /**
      * Прорисовывает миникарту на основе двумерного массива Map
-     * @param y Координата комнаты по оси Y в двумерном массиве Map
-     * @param x Координата комнаты по оси X в двумерном массиве Map
+     *
+     * @param y            Координата комнаты по оси Y в двумерном массиве Map
+     * @param x            Координата комнаты по оси X в двумерном массиве Map
      * @param miniRoomType Закрытый или открытый тип комнаты
      */
 
@@ -464,7 +470,7 @@ public class MapCreator {
                 miniPass.setSize(miniRoomSize / 3, miniRoomDistance - miniRoomSize);
                 miniRoomsAdder(y - 1, x, 1);
             }
-            if (y != (mapSize - 1) && Map.get(y + 1).get(x).getRoomType() !=RoomType.ABSENT && !Map.get(y + 1).get(x).getIsDrawedCleared()) {  /// нижний проход
+            if (y != (mapSize - 1) && Map.get(y + 1).get(x).getRoomType() != RoomType.ABSENT && !Map.get(y + 1).get(x).getIsDrawedCleared()) {  /// нижний проход
                 miniPass = new com.mygdx.game.engine.BaseActor(x * miniRoomDistance + miniRoomSize / 3 + width, (mapSize - y - 1) * miniRoomDistance + miniRoomSize - miniRoomDistance + height, ui);
                 miniPass.loadTexture("map/openedRoom.png");
                 miniPass.setSize(miniRoomSize / 3, miniRoomDistance - miniRoomSize);
@@ -487,6 +493,7 @@ public class MapCreator {
 
     /**
      * срабатывает при первом заходе в комнату
+     *
      * @param room комната в которую ззаходит
      */
 
@@ -496,8 +503,8 @@ public class MapCreator {
         if (room.roomType == RoomType.ENEMY) {
             room.isFight = true;
             room.setDoorTexture(false);
-            String pat="pattern-";
-            pat+=String.valueOf(random.nextInt(9)+1);
+            String pat = "pattern-";
+            pat += String.valueOf(random.nextInt(9) + 1);
             MapLayer layer = tiledMap.getLayers().get(pat);
             for (MapObject obj : layer.getObjects()) {
 
@@ -528,7 +535,7 @@ public class MapCreator {
             }
 
         }
-        if (room.roomType == RoomType.CHEST){
+        if (room.roomType == RoomType.CHEST) {
             MapLayer layer = tiledMap.getLayers().get("chest");
             for (MapObject obj : layer.getObjects()) {
 

@@ -18,7 +18,7 @@ public class Slime extends Enemy {
     float k;
     public Slime(float x, float y, Stage s, Person personage) {
         super(x, y, s,personage);
-        hp=500;
+        setHp(600f);
         setOrigin(getX() + getWidth()/2,getY()+getHeight()/2);
         setSpeed(500);
         setMaxSpeed(500);
@@ -30,7 +30,7 @@ public class Slime extends Enemy {
 
         textureDeath=new Texture("enemy/slimeDeath.png");
         countDeath=6;
-        dmg=15;
+        setDmg(15f);
 
 
     }

@@ -19,7 +19,7 @@ public class Egg extends Enemy {
 
     public Egg(float x, float y, Stage s, Person personage) {
         super(x, y, s, personage);
-        hp = 500;
+       setHp(400f);
         random = new Random();
         setSpeed(500);
         setMaxSpeed(500);
@@ -32,7 +32,7 @@ public class Egg extends Enemy {
         polygon=getBoundaryPolygon();
         textureDeath=new Texture("enemy/eggDeath.png");
         countDeath=7;
-        dmg = 0;
+        setDmg(0);
         name=Name.BOOM;
     }
 
