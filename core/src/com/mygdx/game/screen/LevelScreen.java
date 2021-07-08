@@ -62,10 +62,13 @@ public class LevelScreen extends BaseScreen {
     Music music;
     DialogBox dialogBox;
     Portal portal = null;
+    public boolean isReload;
+    public  float timeReload, timeReloadSup;
 
 
     public void initialize() {
-        itemActive=null;
+        itemActive = null;
+        isReload = false;
         //добавления джостиков
         weaponJoystick = new JoyStick(10, "ui/joy_background.png", "ui/joy_Knob.png", 50, 50, 200, 200);
         joystick = new JoyStick(10, "ui/joy_background.png", "ui/joy_Knob.png", 50, 50, 200, 200);
@@ -119,7 +122,8 @@ public class LevelScreen extends BaseScreen {
 
         healthBar = new HealthBar(500, 35);
         healthBar.setWidth(1000);
-        healthBar.setValue(100);
+        healthBar.setValue(person.maxHp);
+
 
         uiStage.addActor(healthBar);
 
@@ -128,6 +132,9 @@ public class LevelScreen extends BaseScreen {
 
         BaseActor healthIcon = new BaseActor(0, 0, uiStage);
         healthIcon.loadTexture("ui/heart.png");
+
+        timeReload = 10;
+        timeReloadSup = 0;
 
         uiTable.pad(20);
 
@@ -169,11 +176,14 @@ public class LevelScreen extends BaseScreen {
                     actBtn.isUse = false;
                     actBtn.setDrawable(actBtn.textnotUse);
                     dialogBox.setVisible(true);
-                } else if (itemActive != null) {
+                } else if (itemActive != null && itemActive.type != 3) {
                     itemActive.use();
                     itemIcon.setDrawable(new SpriteDrawable(new Sprite(new Texture("ui/pystota.png"))));
                     itemActive = null;
 
+                } else if (itemActive != null && itemActive.type == 3 && !isReload) {
+                    itemActive.use();
+                    isReload = true;
                 }
                 return true;
             }
@@ -385,11 +395,15 @@ public class LevelScreen extends BaseScreen {
                     for (BaseActor wallActor : room.getWalls()) {
                         enemyActor.preventOverlap(wallActor);
                     }
+                    for (BaseActor shieldActor:BaseActor.getList(mainStage,"item.ActiveShield"))
+                    {
+                        enemyActor.preventOverlap(shieldActor);
+                    }
 
 
                 }
 
-                for (BaseActor bulletActor : BaseActor.getList(backgrondStage, "weapon.EnemyBullet")) {
+                for (BaseActor bulletActor : BaseActor.getList(frontStage, "weapon.EnemyBullet")) {
                     if (person.overlaps(bulletActor)) {
 
                         if (!person.isImmortal) {
@@ -403,6 +417,10 @@ public class LevelScreen extends BaseScreen {
                     }
                     for (BaseActor wallActor : room.getWalls()) {
                         bulletActor.preventOverlap(wallActor);
+                    }
+                    for (BaseActor shieldActor:BaseActor.getList(mainStage,"item.ActiveShield"))
+                    {
+                        bulletActor.preventOverlap(shieldActor);
                     }
                 }
                 if (person.timeImmortal >= 1)
@@ -443,6 +461,8 @@ public class LevelScreen extends BaseScreen {
         }
 
         for (BaseActor wallActor : room.getWalls()) {
+
+
             person.preventOverlap(wallActor);
             for (BaseActor bulletActor : BaseActor.getList(mainStage, "weapon.Bullet")) {
                 if (wallActor.overlaps(bulletActor)) {
@@ -489,6 +509,7 @@ public class LevelScreen extends BaseScreen {
         if (weaponJoystick.isTouch())
             weapon.shoot();
         healthBar.setValue(person.hp);
+        healthBar.setRange(healthBar.getMinValue(), person.maxHp);
         if (portal != null) {
             boolean boolportal = person.isWithinDistance(3, portal);
             actBtn.isUse = boolportal;
@@ -528,6 +549,13 @@ public class LevelScreen extends BaseScreen {
                 dialogBox.setVisible(false);
             }
         }
+        if (isReload) {
+            timeReloadSup += dt;
+        }
+        if (timeReloadSup >= timeReload&&isReload) {
+            isReload = false;
+            timeReloadSup = 0;
+        }
 
     }
 
@@ -538,6 +566,7 @@ public class LevelScreen extends BaseScreen {
 
         switch (typeAct) {
             case 0:
+            case 3:
                 dialogBox.setText(itemAct.nameItem);
                 dialogBox.setSecondText(itemAct.descriptionItem);
                 itemIcon.setDrawable(new SpriteDrawable(new Sprite(new Texture(itemAct.textureName))));
@@ -558,7 +587,6 @@ public class LevelScreen extends BaseScreen {
                 save();
                 setActiveScreen(new LevelScreen());
                 break;
-
         }
     }
 
@@ -569,13 +597,14 @@ public class LevelScreen extends BaseScreen {
         person.setSpeed(personSpeed);
         bulletEffect = bulletEff;
         itemActive = items;
-        if(itemActive!=null)
+        person.maxHp = maxHP;
+        if (itemActive != null)
             itemIcon.setDrawable(draw);
     }
 
     public void save() {
         isSave = true;
-        setSetting(person.hp, weapon.dmg, person.getSpeed(), bulletEffect, itemActive,itemIcon.getDrawable());
+        setSetting(person.hp, weapon.dmg, person.getSpeed(), bulletEffect, itemActive, itemIcon.getDrawable(), person.maxHp);
     }
 
     /**

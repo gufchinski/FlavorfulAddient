@@ -20,15 +20,15 @@ import com.mygdx.game.item.Item;
  * рассширает класс экрана
  */
 public abstract class BaseScreen implements Screen, InputProcessor {
-    protected Stage mainStage;
+    public static  Stage mainStage;
     protected Stage uiStage;
     protected Stage loadStage;
     protected Stage backgrondStage;
-    protected Stage frontStage;
+    public static Stage frontStage;
     protected Stage epsStage;
     protected Table uiTable;
     protected Stage deadStage;
-    public static float personHp, damg, personSpeed;
+    public static float personHp, damg, personSpeed,maxHP;
     public static Item items;
     public static Effect bulletEff;
     public static Drawable draw;
@@ -134,13 +134,14 @@ public abstract class BaseScreen implements Screen, InputProcessor {
 
     }
 
-    public void setSetting(float personHp, float dmg, float personSpeed, Effect bulletEffect, Item items, Drawable draw) {
+    public void setSetting(float personHp, float dmg, float personSpeed, Effect bulletEffect, Item items, Drawable draw,float maxHP) {
         this.personHp = personHp;
         this.damg = dmg;
         this.personSpeed = personSpeed;
         this.bulletEff = bulletEffect;
         this.items = items;
         this.draw = draw;
+        this.maxHP=maxHP;
     }
 
 

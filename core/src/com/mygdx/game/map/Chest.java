@@ -1,21 +1,15 @@
 package com.mygdx.game.map;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.mygdx.game.engine.BaseActor;
-import com.mygdx.game.item.HealthUp;
+import com.mygdx.game.item.Cyberimplant;
+import com.mygdx.game.item.Pill;
 import com.mygdx.game.item.Item;
+import com.mygdx.game.item.EnergyDrink;
 import com.mygdx.game.item.PoisonBullet;
-import com.mygdx.game.screen.LevelScreen;
+import com.mygdx.game.item.Shield;
 
-import java.util.ArrayList;
 import java.util.Random;
-
-import static com.mygdx.game.engine.BaseGame.setActiveScreen;
 
 /**
  * класс для генерации предметов
@@ -32,18 +26,29 @@ public class Chest extends BaseActor {
         float[] vertices = {0, 194, 298, 194, 298, 240, 0,240};
         setBoundaryRectangle(vertices);
         room.walls.add(this);
-        switch (rand.nextInt(2)) {
+        switch (rand.nextInt(1)+4) {
             case 0:
-                 item=new HealthUp(getX(),getY(),s);
+                 item=new Pill(getX(),getY(),s);
                 break;
             case 1:
                 item=new PoisonBullet(getX(),getY(),s);
                 break;
+            case 2:
+                item=new EnergyDrink(getX(),getY(),s);
+                break;
+            case 3:
+                item=new Cyberimplant(getX(),getY(),s);
+                break;
+            case 4:
+                item=new Shield(getX(),getY(),s);
+                break;
+
 
         }
 
         item.centerAtActor(this);
         item.moveBy(-55,5);
+        item.move();
         room.itemList.add(item);
 
     }

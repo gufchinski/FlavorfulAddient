@@ -34,7 +34,6 @@ public class HealthBar extends ProgressBar {
 
         setAnimateDuration(0.0f);
         setValue(1f);
-
         setAnimateDuration(0.25f);
 
     }
@@ -49,4 +48,6 @@ public class HealthBar extends ProgressBar {
 
         return drawable;
     }
+
+
 }
