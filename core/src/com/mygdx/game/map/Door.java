@@ -16,6 +16,7 @@ public class Door extends BaseActor {
         this.width = width;
         this.height = height;
         setBoundaryRectangle();
+        setSize(width, height);
         this.doorType=doorType;
     }
     public void setPreventSize()

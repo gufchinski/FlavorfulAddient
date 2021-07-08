@@ -126,7 +126,7 @@ public class MapCreator {
         addNumber = random.nextInt(potentialRoom.size());
         y = potentialRoom.get(addNumber).y;
         x = potentialRoom.get(addNumber).x;
-        Map.get(y).get(x).setRoomType(RoomType.ENEMY);
+        Map.get(y).get(x).setRoomType(RoomType.CHEST);
         Map.get(y).get(x).setCoordinates(mapSize - y - 1, x, roomCoordinates, roomWidth, roomHeight);
 
         //Генерация комнаты с боссом

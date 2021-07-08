@@ -363,7 +363,7 @@ public class LevelScreen extends BaseScreen {
                         enemyActor.death();
                         break met;
                     }
-                    if (!person.isImmortal && person.overlaps(enemyActor) && enemyActor.name==Name.BOOM) {
+                    if (!person.isImmortal && person.overlaps(enemyActor) && enemyActor.name!=Name.BOOM) {
                         person.hp -= enemyActor.dmg;
                         person.isImmortal = true;
                         person.timeImmortal = 0;
