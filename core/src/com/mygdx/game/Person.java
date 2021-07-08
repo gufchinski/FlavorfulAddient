@@ -9,7 +9,6 @@ import com.mygdx.game.engine.BaseActor;
 public class Person extends BaseActor {
     public float hp = 10;
     public float maxHp=100;
-    public boolean isImmortal=false;
     public float timeImmortal=0;
 
     public Person(float x, float y, Stage s) {

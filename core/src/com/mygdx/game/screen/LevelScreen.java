@@ -354,6 +354,7 @@ public class LevelScreen extends BaseScreen {
                         if (enemyActor.overlaps(bulletActor)) {
                             if (bulletEffect != null)
                                 enemyActor.setEffect(bulletEffect);
+                            if(!enemyActor.isImmortal)
                             enemyActor.hp -= bulletActor.dmg;
                             bulletActor.remove();
 

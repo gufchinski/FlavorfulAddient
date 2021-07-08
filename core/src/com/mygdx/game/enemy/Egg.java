@@ -54,18 +54,16 @@ public class Egg extends Enemy {
             isRight = false;
         }
         if (isWithinDistance(10, person) && !boom) {
-
+            person.hp-= 25f;
+            person.isImmortal = true;
+            person.timeImmortal = 0;
+            isImmortal=true;
             loadAnimationFromSheet("enemy/eggExplodet.png", 1, 14, 0.05f, false);
             setScale(scale);
             setBoundaryRectangle(polygon);
             boom = true;
         }
         if (boom && isAnimationFinished()) {
-            if(isWithinDistance(100, person)&&!person.isImmortal) {
-                person.hp-= 25f;
-                person.isImmortal = true;
-                person.timeImmortal = 0;
-            }
             room.enemyList.remove(this);
             remove();
         }

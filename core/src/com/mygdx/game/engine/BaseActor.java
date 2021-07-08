@@ -41,7 +41,7 @@ public class BaseActor extends Group {
     private float maxSpeed;
     private float deceleration;
     private float timerEffect=0f,timerEffect2=0f;
-
+    public boolean isImmortal=false;
 
     public static Person person;
     public static Room room;
