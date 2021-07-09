@@ -33,6 +33,7 @@ public class Donut extends Enemy {
         textureDeath=new Texture("enemy/donutDeath.png");
         countDeath=9;
         setDmg(0f);
+        scale=1.2f;
         setScale(1.2f);
 
     }

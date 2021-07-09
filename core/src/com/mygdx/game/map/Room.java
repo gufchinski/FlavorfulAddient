@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Room {
 
     public float x0, y0, x1, y1;
+    public boolean poten;
     RoomType roomType = RoomType.ABSENT;
 
     public boolean isDrawedCleared = false, isDrawedUncleared = false, isFight = false;
@@ -33,6 +34,7 @@ public class Room {
         walls = new ArrayList<>();
         doorList = new ArrayList<>();
         itemList = new ArrayList<>();
+        poten=true;
     }
 
 

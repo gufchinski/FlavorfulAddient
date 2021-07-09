@@ -9,8 +9,8 @@ public class DonutJam extends BaseActor {
     public DonutJam(float x, float y, Stage s) {
         super(x, y, BaseScreen.backBackgrondStage);
 
-        loadTexture("enemy/DonutJam.png");
-        setScale(2);
+        loadTexture("enemy/donutJam.png");
+        //setScale(2);
         moveBy(-getWidth()/2,0);
         addAction( Actions.delay(2) );
         addAction( Actions.after( Actions.fadeOut(1.5f) ) );
