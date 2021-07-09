@@ -17,8 +17,8 @@ public class Egg extends Enemy {
     boolean boom = false;
     Polygon polygon;
 
-    public Egg(float x, float y, Stage s, Person personage) {
-        super(x, y, s, personage);
+    public Egg(float x, float y, Stage s) {
+        super(x, y, s);
        setHp(400f);
         random = new Random();
         setSpeed(500);
@@ -46,9 +46,9 @@ public class Egg extends Enemy {
     @Override
     public void behavior(float dt) {
 
-        setMotionAngle((float) Math.toDegrees(Math.atan2((pers.getY() + pers.getHeight() / 2) - (getY() + getHeight() / 2), (pers.getX() + pers.getWidth() / 2) - (getX() + getWidth() / 2))));
+        setMotionAngle((float) Math.toDegrees(Math.atan2((person.getY() + person.getHeight() / 2) - (getY() + getHeight() / 2), (person.getX() + person.getWidth() / 2) - (getX() + getWidth() / 2))));
 
-        if (pers.getX() < getX())
+        if (person.getX() < getX())
             isRight = true;
         else {
             isRight = false;

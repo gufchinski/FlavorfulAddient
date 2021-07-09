@@ -24,8 +24,8 @@ public class Wizard extends Enemy {
     Texture glavnoe, izchezn, poiavleny,ye,bl,red;
     float bulletSpeed=900;
 
-    public Wizard(float x, float y, Stage s, Person personage) {
-        super(x, y, s, personage);
+    public Wizard(float x, float y, Stage s) {
+        super(x, y, s);
         setHp(500f);
 
         setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
@@ -63,8 +63,8 @@ public class Wizard extends Enemy {
         if (boom && isAnimationFinished()) {
             boom = false;
             float rand = random.nextInt(360);
-            x = pers.getX() + pers.getWidth() / 2 - getWidth() / 2 + rastm * (float) cos(rand);
-            y = pers.getY() + pers.getHeight() / 2 - getHeight() / 2 + rastm * (float) sin(rand);
+            x = person.getX() + person.getWidth() / 2 - getWidth() / 2 + rastm * (float) cos(rand);
+            y = person.getY() + person.getHeight() / 2 - getHeight() / 2 + rastm * (float) sin(rand);
             if (room.roomCheck(y, x,getWidth(),getHeight())) {
                 setPosition(x, y);
             }
@@ -78,7 +78,7 @@ public class Wizard extends Enemy {
             time = 0;
             boom1=false;
         }
-        if (pers.getX() < getX())
+        if (person.getX() < getX())
             isRight = false;
         else {
             isRight =true ;

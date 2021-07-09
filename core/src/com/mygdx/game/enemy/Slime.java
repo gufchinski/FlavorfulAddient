@@ -16,8 +16,8 @@ public class Slime extends Enemy {
     float time =0;
     float time1 =0;
     float k;
-    public Slime(float x, float y, Stage s, Person personage) {
-        super(x, y, s,personage);
+    public Slime(float x, float y, Stage s) {
+        super(x, y, s);
         setHp(600f);
         setOrigin(getX() + getWidth()/2,getY()+getHeight()/2);
         setSpeed(500);
@@ -48,7 +48,7 @@ public class Slime extends Enemy {
        
     if (time >= 1.5f) {
         if(person.isWithinDistance(Gdx.graphics.getHeight()/2,this))
-            rast =(float) ((float)random.nextInt(10)+Math.toDegrees(Math.atan2((pers.getY() + pers.getHeight() / 2) - (getY()+getHeight()/2), (pers.getX() + pers.getWidth() / 2) -( getX()+getWidth()/2))));
+            rast =(float) ((float)random.nextInt(10)+Math.toDegrees(Math.atan2((person.getY() + person.getHeight() / 2) - (getY()+getHeight()/2), (person.getX() + person.getWidth() / 2) -( getX()+getWidth()/2))));
         else
             rast=random.nextInt(360);
         setMotionAngle(rast);

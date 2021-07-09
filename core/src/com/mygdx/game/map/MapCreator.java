@@ -7,9 +7,11 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.Person;
+import com.mygdx.game.enemy.Donut;
 import com.mygdx.game.enemy.Slime;
 import com.mygdx.game.enemy.Egg;
 import com.mygdx.game.enemy.Wizard;
+import com.mygdx.game.engine.BaseScreen;
 import com.mygdx.game.engine.RepeatActor;
 
 import java.util.ArrayList;
@@ -75,6 +77,7 @@ public class MapCreator {
 
     public ArrayList<Coordinates> potentialRoom = new ArrayList<>();
     public List<ArrayList<com.mygdx.game.map.Room>> Map = new ArrayList();
+   //    public List<ArrayList<com.mygdx.game.map.Room>> MapbOSS = new ArrayList();
 
     /**
      * Генерирует двумерный массив в расположением и типом комнат
@@ -154,7 +157,7 @@ public class MapCreator {
             for (int x = 0; x < mapSize; x++) {
                 if (Map.get(y).get(x).getRoomType() != RoomType.ABSENT) {
 
-                    room = new RepeatActor(x * roomCoordinates, (mapSize - y - 1) * roomCoordinates, back, roomWidth, roomHeight, "map/floor.png");
+                    room = new RepeatActor(x * roomCoordinates, (mapSize - y - 1) * roomCoordinates, BaseScreen.backBackgrondStage, roomWidth, roomHeight, "map/floor.png");
 
                     /// создание проходов
                     if (y != 0 && Map.get(y - 1).get(x).getRoomType() != RoomType.ABSENT) {  ///проход для комнаты сверху
@@ -512,15 +515,15 @@ public class MapCreator {
 
                 if (props.containsKey("name") && props.get("name").equals("enemy")) {
                     if (props.get("enemy").equals("slime")) {
-                        Slime eps = new Slime(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back, person);
+                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
                         room.enemyList.add(eps);
                     }
                     if (props.get("enemy").equals("wizard")) {
-                        Wizard eps = new Wizard(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back, person);
+                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
                         room.enemyList.add(eps);
                     }
                     if (props.get("enemy").equals("egg")) {
-                        Egg eps = new Egg(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back, person);
+                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
                         room.enemyList.add(eps);
                     }
 

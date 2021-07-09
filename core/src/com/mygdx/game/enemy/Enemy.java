@@ -14,7 +14,6 @@ import com.mygdx.game.engine.BaseScreen;
 public  abstract class Enemy extends BaseActor {
 
 
-    public Person pers;
     public   Vector2 pos;
     public Texture textureDeath;
     public int countDeath;
@@ -23,9 +22,9 @@ public  abstract class Enemy extends BaseActor {
     float scale=1f,timerEffect=0,timerEffect2=0;
 
 
-    public Enemy(float x, float y, Stage s,Person personage) {
+    public Enemy(float x, float y, Stage s) {
         super(x, y, s);
-        pers = personage;
+
 
         setBoundaryRectangle();
         hp = 500;

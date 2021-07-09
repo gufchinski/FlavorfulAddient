@@ -3,6 +3,7 @@ package com.mygdx.game.engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -24,6 +25,7 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     protected Stage uiStage;
     protected Stage loadStage;
     protected Stage backgrondStage;
+    public static Stage backBackgrondStage;
     public static Stage frontStage;
     protected Stage epsStage;
     protected Table uiTable;
@@ -40,12 +42,14 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     public static boolean isSave = false;
 
     public BaseScreen() {
+        Preferences prefs = Gdx.app.getPreferences("Preferences");
 
         bf = new BitmapFont(Gdx.files.internal("font/cooper.fnt"));
         lb = new LabelStyle();
         lb.font = bf;
         epsStage = new Stage(new StretchViewport(1920, 1080));
         frontStage = new Stage(new ExtendViewport(1920, 1080));
+        backBackgrondStage = new Stage(new ExtendViewport(1920, 1080));
         backgrondStage = new Stage(new ExtendViewport(1920, 1080));
         mainStage = new Stage(new ExtendViewport(1920, 1080));
         uiStage = new Stage(new ExtendViewport(1920, 1080));
@@ -76,6 +80,7 @@ public abstract class BaseScreen implements Screen, InputProcessor {
         uiStage.act(dt);
         if (!gameOver) {
             update(dt);
+            backBackgrondStage.act(dt);
             backgrondStage.act(dt);
             mainStage.act(dt);
             frontStage.act();
@@ -94,6 +99,7 @@ public abstract class BaseScreen implements Screen, InputProcessor {
         // draw the graphics
         epsStage.draw();
         if (!gameOver) {
+            backBackgrondStage.draw();
             backgrondStage.draw();
             mainStage.draw();
             frontStage.draw();

@@ -446,7 +446,21 @@ public class LevelScreen extends BaseScreen {
                     }
 
                 }
+                for (BaseActor jamActor : BaseActor.getList(backBackgrondStage, "enemy.DonutJam"))
+                {
+                    if (person.overlaps(jamActor)) {
 
+                        if (!person.isImmortal) {
+                            person.hp -= jamActor.dmg;
+                            person.isImmortal = true;
+                            person.timeImmortal = 0;
+
+
+                        }
+
+                    }
+
+                }
 
                 if (room.getEnemyList().isEmpty()) {
                     room.isFight = false;
@@ -617,6 +631,9 @@ public class LevelScreen extends BaseScreen {
         eps.position.set(mainStage.getCamera().position.x, mainStage.getCamera().position.y, 0);
         eps.update();
         eps = frontStage.getCamera();
+        eps.position.set(mainStage.getCamera().position.x, mainStage.getCamera().position.y, 0);
+        eps.update();
+        eps = backBackgrondStage.getCamera();
         eps.position.set(mainStage.getCamera().position.x, mainStage.getCamera().position.y, 0);
         eps.update();
     }
