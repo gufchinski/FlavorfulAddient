@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="8" height="8" tilewidth="256" tileheight="256" infinite="0" nextlayerid="13" nextobjectid="112">
+ <tileset firstgid="1" name="enemy/allenemy.png" tilewidth="192" tileheight="192" tilecount="9" columns="3">
+  <image source="enemy/allenemy.png" width="576" height="576"/>
+ </tileset>
+ <objectgroup id="2" name="pattern-1">
+  <object id="40" gid="3" x="932" y="1124" width="192" height="192">
+   <properties>
+    <property name="enemy" value="pizza"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="12" name="chest" visible="0">
+   <object id="109" x="944" y="956" width="156" height="140" visible="0">
+    <properties>
+     <property name="name" value="chest"/>
+    </properties>
+   </object>
+  </objectgroup>
+</map>

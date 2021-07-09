@@ -22,7 +22,7 @@ import com.mygdx.game.item.Item;
  */
 public abstract class BaseScreen implements Screen, InputProcessor {
     public static  Stage mainStage;
-    protected Stage uiStage;
+    public static Stage uiStage;
     protected Stage loadStage;
     protected Stage backgrondStage;
     public static Stage backBackgrondStage;
@@ -37,6 +37,7 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     public static float complexity = 1f;
     public BitmapFont bf;
     public static LabelStyle lb;
+    public static LabelStyle bosslb;
     public InputMultiplexer im;
     public boolean gameOver = false;
     public static boolean isSave = false;
@@ -46,6 +47,9 @@ public abstract class BaseScreen implements Screen, InputProcessor {
 
         bf = new BitmapFont(Gdx.files.internal("font/cooper.fnt"));
         lb = new LabelStyle();
+        bosslb=new LabelStyle();
+        BitmapFont bf1=new BitmapFont(Gdx.files.internal("font/boos.fnt"));
+        bosslb.font=bf1;
         lb.font = bf;
         epsStage = new Stage(new StretchViewport(1920, 1080));
         frontStage = new Stage(new ExtendViewport(1920, 1080));

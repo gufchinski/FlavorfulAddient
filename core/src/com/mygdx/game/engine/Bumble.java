@@ -10,6 +10,7 @@ public class Bumble extends BaseGame {
 			addItemPool();
 			setActiveScreen( new MenuScreen());
 		}
+
 		private  void addItemPool()
 		{
 			for(ItemList i:ItemList.values())

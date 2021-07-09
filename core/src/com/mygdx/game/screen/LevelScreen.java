@@ -89,7 +89,7 @@ public class LevelScreen extends BaseScreen {
         music.play();
 
         //генерация карты
-        map = new MapCreator(mainStage, uiStage, backgrondStage, frontStage, "mapgen.tmx");
+        map = new MapCreator(mainStage, uiStage, backgrondStage, frontStage, "mapgentest.tmx");
         map.mapGenerator();
         y = map.mapSize / 2;
         x = map.mapSize / 2;
@@ -365,7 +365,7 @@ public class LevelScreen extends BaseScreen {
                     Iterator<Enemy> enemyIterator1 = room.getEnemyList().iterator();
                     while (enemyIterator1.hasNext()) {
                         BaseActor enemyActor1 = enemyIterator1.next();
-                        if (enemyActor != enemyActor1)
+                        if (enemyActor != enemyActor1&&enemyActor.name!=Name.BOSS)
                             enemyActor.preventOverlap(enemyActor1);
                     }
 
@@ -388,7 +388,7 @@ public class LevelScreen extends BaseScreen {
                         person.isImmortal = true;
                         person.timeImmortal = 0;
                     }
-                    if (joystick.isTouch())
+                    if (joystick.isTouch()&&enemyActor.name!=Name.BOSS)
                         enemyActor.preventOverlap(person);
 
                     person.preventOverlap(enemyActor);

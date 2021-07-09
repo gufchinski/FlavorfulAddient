@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.Person;
 import com.mygdx.game.enemy.Donut;
+import com.mygdx.game.enemy.Pizza;
 import com.mygdx.game.enemy.Slime;
 import com.mygdx.game.enemy.Egg;
 import com.mygdx.game.enemy.Wizard;
@@ -548,23 +549,28 @@ public class MapCreator {
             room.isFight = true;
             room.setDoorTexture(false);
             String pat = "pattern-";
-            pat += String.valueOf(random.nextInt(9) + 1);
+            //pat += String.valueOf(random.nextInt(9) + 1);
+            pat += String.valueOf(1);
             MapLayer layer = tiledMap.getLayers().get(pat);
             for (MapObject obj : layer.getObjects()) {
 
                 MapProperties props = obj.getProperties();
 
                 if (props.containsKey("name") && props.get("name").equals("enemy")) {
-                    if (props.get("enemy").equals("slime")) {
-                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
-                        room.enemyList.add(eps);
-                    }
-                    if (props.get("enemy").equals("wizard")) {
-                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
-                        room.enemyList.add(eps);
-                    }
-                    if (props.get("enemy").equals("egg")) {
-                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
+//                    if (props.get("enemy").equals("slime")) {
+//                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
+//                        room.enemyList.add(eps);
+//                    }
+//                    if (props.get("enemy").equals("wizard")) {
+//                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
+//                        room.enemyList.add(eps);
+//                    }
+//                    if (props.get("enemy").equals("egg")) {
+//                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
+//                        room.enemyList.add(eps);
+//                    }
+                    if (props.get("enemy").equals("pizza")) {
+                        Pizza eps = new Pizza(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
                         room.enemyList.add(eps);
                     }
 
