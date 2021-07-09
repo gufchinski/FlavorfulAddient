@@ -28,7 +28,7 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     protected Stage epsStage;
     protected Table uiTable;
     protected Stage deadStage;
-    public static float personHp, damg, personSpeed,maxHP;
+    public static float personHp, damg, personSpeed,maxHP,rat;
     public static Item items;
     public static Effect bulletEff;
     public static Drawable draw;
@@ -134,7 +134,7 @@ public abstract class BaseScreen implements Screen, InputProcessor {
 
     }
 
-    public void setSetting(float personHp, float dmg, float personSpeed, Effect bulletEffect, Item items, Drawable draw,float maxHP) {
+    public void setSetting(float personHp, float dmg, float personSpeed, Effect bulletEffect, Item items, Drawable draw,float maxHP,float rat) {
         this.personHp = personHp;
         this.damg = dmg;
         this.personSpeed = personSpeed;
@@ -142,6 +142,7 @@ public abstract class BaseScreen implements Screen, InputProcessor {
         this.items = items;
         this.draw = draw;
         this.maxHP=maxHP;
+        this.rat=rat;
     }
 
 

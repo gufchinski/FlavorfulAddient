@@ -29,7 +29,7 @@ public class Weap extends BaseActor {
         vecJoy = weapJoy;
 
         dmg = 100f;
-        rate = 0.1f;
+        rate = 0.5f;
         speed = 1000;
     }
 /**

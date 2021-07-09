@@ -3,6 +3,10 @@ package com.mygdx.game.engine;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.mygdx.game.item.ItemList;
+import com.mygdx.game.map.MapCreator;
+
+import java.util.ArrayList;
 
 
 /**
@@ -17,6 +21,7 @@ public abstract class BaseGame extends Game
     private static BaseGame game;
     public static Label.LabelStyle labelStyle;
     public static TextButton.TextButtonStyle textButtonStyle;
+    public static ArrayList<ItemList> itemPool = new ArrayList<>();
 
     /**
      *  Called when game is initialized; stores global reference to game object.

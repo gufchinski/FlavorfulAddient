@@ -100,6 +100,7 @@ public class LevelScreen extends BaseScreen {
         person = new Person((map.mapSize / 2) * map.roomCoordinates + 100, (map.mapSize / 2) * map.roomCoordinates + 100, mainStage);
 
         BaseActor.setPerson(person);
+        BaseActor.weap=weapon;
         BaseActor.setRoom(map.Map.get(y).get(x));
         BaseActor.setScreen(this);
 
@@ -600,11 +601,12 @@ public class LevelScreen extends BaseScreen {
         person.maxHp = maxHP;
         if (itemActive != null)
             itemIcon.setDrawable(draw);
+        weapon.rate=rat;
     }
 
     public void save() {
         isSave = true;
-        setSetting(person.hp, weapon.dmg, person.getSpeed(), bulletEffect, itemActive, itemIcon.getDrawable(), person.maxHp);
+        setSetting(person.hp, weapon.dmg, person.getSpeed(), bulletEffect, itemActive, itemIcon.getDrawable(), person.maxHp, weapon.rate);
     }
 
     /**

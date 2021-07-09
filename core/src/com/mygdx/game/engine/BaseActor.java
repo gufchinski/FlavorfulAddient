@@ -21,6 +21,7 @@ import com.mygdx.game.effect.Effect;
 import com.mygdx.game.Person;
 import com.mygdx.game.map.Room;
 import com.mygdx.game.screen.LevelScreen;
+import com.mygdx.game.weapon.Weap;
 
 import java.util.ArrayList;
 
@@ -44,6 +45,7 @@ public class BaseActor extends Group {
     public boolean isImmortal=false;
 
     public static Person person;
+    public static Weap weap;
     public static Room room;
 
     public boolean isRight = true;
