@@ -23,11 +23,11 @@ public class Peperonka extends Enemy {
         setMaxSpeed(500);
         setDeceleration(0);
 
-        loadAnimationFromSheet("enemy/peperonkaSpawn.png", 1, 10, 0.1f, false);
+        loadAnimationFromSheet("enemy/pizza/peperonkaSpawn.png", 1, 10, 0.1f, false);
         setOrigin(getWidth() / 2, getHeight() / 2);
         setBoundaryRectangle();
         polygon = getBoundaryPolygon();
-        textureDeath = new Texture("enemy/peperonkaDeath.png");
+        textureDeath = new Texture("enemy/pizza/peperonkaDeath.png");
         countDeath = 5;
         setDmg(10);
         scale = 1.5f;
@@ -46,7 +46,7 @@ public class Peperonka extends Enemy {
 
         if(!pov&&isAnimationFinished())
         {
-            loadAnimationFromSheet("enemy/peperonkaRun.png", 1, 4, 0.05f, true);
+            loadAnimationFromSheet("enemy/pizza/peperonkaRun.png", 1, 4, 0.05f, true);
             setScale(1.5f);
             pov=true;
         }

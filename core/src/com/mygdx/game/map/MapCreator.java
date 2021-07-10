@@ -101,10 +101,15 @@ public class MapCreator {
         Map.get(mapSize / 2).get(mapSize / 2).setRoomType(RoomType.START);
         Map.get(mapSize / 2).get(mapSize / 2).setCoordinates(mapSize / 2, mapSize / 2, roomCoordinates, roomWidth, roomHeight);
 
+
         potentialRoom.add(new Coordinates(mapSize / 2 - 1, mapSize / 2, 0));
+        Map.get(mapSize / 2 - 1).get(mapSize / 2).poten = false;
         potentialRoom.add(new Coordinates(mapSize / 2 + 1, mapSize / 2, 0));
+        Map.get(mapSize / 2 + 1).get(mapSize / 2).poten = false;
         potentialRoom.add(new Coordinates(mapSize / 2, mapSize / 2 - 1, 0));
+        Map.get(mapSize / 2).get(mapSize / 2 - 1).poten = false;
         potentialRoom.add(new Coordinates(mapSize / 2, mapSize / 2 + 1, 0));
+        Map.get(mapSize / 2).get(mapSize / 2 + 1).poten = false;
 
         int addNumber, y, x;
 
@@ -116,60 +121,55 @@ public class MapCreator {
             x = potentialRoom.get(addNumber).x;
             Map.get(y).get(x).setRoomType(RoomType.ENEMY);
             Map.get(y).get(x).setCoordinates(mapSize - y - 1, x, roomCoordinates, roomWidth, roomHeight);
-            if (y != 0 && Map.get(y - 1).get(x).getRoomType() == RoomType.ABSENT ) {
-                if( Map.get(y - 1).get(x).poten) {
+            if (y != 0 && Map.get(y - 1).get(x).getRoomType() == RoomType.ABSENT) {
+                if (Map.get(y - 1).get(x).poten) {
                     potentialRoom.add(new Coordinates(y - 1, x, potentialRoom.get(addNumber).count + 1));
                     Map.get(y - 1).get(x).poten = false;
-                }
-                else {
+                } else {
 
-                    setPotentialRoomCount(y-1,x,potentialRoom.get(addNumber).count + 1);
+                    setPotentialRoomCount(y - 1, x, potentialRoom.get(addNumber).count + 1);
                 }
             }
-            if (y != (mapSize - 1) && Map.get(y + 1).get(x).getRoomType() == RoomType.ABSENT ) {
-                if(Map.get(y + 1).get(x).poten)
-                {
+            if (y != (mapSize - 1) && Map.get(y + 1).get(x).getRoomType() == RoomType.ABSENT) {
+                if (Map.get(y + 1).get(x).poten) {
                     potentialRoom.add(new Coordinates(y + 1, x, potentialRoom.get(addNumber).count + 1));
                     Map.get(y + 1).get(x).poten = false;
-                }
-                else
-                {
-                    setPotentialRoomCount(y+1,x,potentialRoom.get(addNumber).count + 1);
+                } else {
+                    setPotentialRoomCount(y + 1, x, potentialRoom.get(addNumber).count + 1);
                 }
             }
-            if (x != 0 && Map.get(y).get(x - 1).getRoomType() == RoomType.ABSENT ) {
-                if(Map.get(y).get(x - 1).poten) {
+            if (x != 0 && Map.get(y).get(x - 1).getRoomType() == RoomType.ABSENT) {
+                if (Map.get(y).get(x - 1).poten) {
                     potentialRoom.add(new Coordinates(y, x - 1, potentialRoom.get(addNumber).count + 1));
                     Map.get(y).get(x - 1).poten = false;
+                } else {
+                    setPotentialRoomCount(y, x - 1, potentialRoom.get(addNumber).count + 1);
                 }
-                else
-                {
-                    setPotentialRoomCount(y,x-1,potentialRoom.get(addNumber).count + 1);
-                }
-                }
-            if (x != (mapSize - 1) && Map.get(y).get(x + 1).getRoomType() == RoomType.ABSENT  ) {
-                if(Map.get(y).get(x + 1).poten) {
+            }
+            if (x != (mapSize - 1) && Map.get(y).get(x + 1).getRoomType() == RoomType.ABSENT) {
+                if (Map.get(y).get(x + 1).poten) {
                     potentialRoom.add(new Coordinates(y, x + 1, potentialRoom.get(addNumber).count + 1));
                     Map.get(y).get(x + 1).poten = false;
-                }
-                else
-                {
-                    setPotentialRoomCount(y,x+1,potentialRoom.get(addNumber).count + 1);
+                } else {
+                    setPotentialRoomCount(y, x + 1, potentialRoom.get(addNumber).count + 1);
                 }
             }
             potentialRoom.remove(addNumber);
         }
+        //Генерация комнаты с боссом
         Collections.sort(potentialRoom, Coordinates.countComparator);
         y = potentialRoom.get(0).y;
         x = potentialRoom.get(0).x;
         Map.get(y).get(x).setRoomType(RoomType.BOSS);
         Map.get(y).get(x).setCoordinates(mapSize - y - 1, x, roomCoordinates, roomWidth, roomHeight);
+        potentialRoom.remove(0);
         //Генерация комнаты с сундуком
         addNumber = random.nextInt(potentialRoom.size());
         y = potentialRoom.get(addNumber).y;
         x = potentialRoom.get(addNumber).x;
         Map.get(y).get(x).setRoomType(RoomType.CHEST);
         Map.get(y).get(x).setCoordinates(mapSize - y - 1, x, roomCoordinates, roomWidth, roomHeight);
+        potentialRoom.remove(addNumber);
 
         //Генерация комнаты с боссом
        /* addNumber = random.nextInt(potentialRoom.size());
@@ -540,7 +540,7 @@ public class MapCreator {
     public void firstAppear(Room room) {
 
 
-        if (room.roomType == RoomType.ENEMY) {
+        if (room.roomType == RoomType.BOSS) {
             room.isFight = true;
             room.setDoorTexture(false);
             String pat = "pattern-";
@@ -592,13 +592,12 @@ public class MapCreator {
             }
         }
     }
-    private  void setPotentialRoomCount(int y,int x,int count)
-    {
-        for(Coordinates co:potentialRoom)
-        {
-            if(co.y==y&&co.x==x) {
-                if(co.count>count)
-                co.count = count;
+
+    private void setPotentialRoomCount(int y, int x, int count) {
+        for (Coordinates co : potentialRoom) {
+            if (co.y == y && co.x == x) {
+                if (co.count > count)
+                    co.count = count;
                 break;
             }
         }

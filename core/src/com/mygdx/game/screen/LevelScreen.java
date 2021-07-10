@@ -356,7 +356,7 @@ public class LevelScreen extends BaseScreen {
         }
 
 
-        if (room.getRoomType() == RoomType.ENEMY) {
+        if (room.getRoomType() == RoomType.ENEMY||room.getRoomType() == RoomType.BOSS) {
             if (room.isFight) {
                 Iterator<Enemy> enemyIterator = room.getEnemyList().iterator();
                 met:
