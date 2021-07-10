@@ -39,7 +39,6 @@ public class Pizza extends Enemy {
         loadAnimationFromSheet("enemy/pizza/pizzaRun.png", 1, 7, 0.10f, true);
 
         setBoundaryRectangle();
-        textureStay = new Texture("enemy/pizza/donutIdle.png");
         textureDeath = new Texture("enemy/pizza/pizzaDeath.png");
         countDeath = 26;
         setDmg(10f);
