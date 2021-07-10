@@ -8,9 +8,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.mygdx.game.HealthBar;
 import com.mygdx.game.engine.BaseScreen;
 import com.mygdx.game.engine.Name;
+import com.mygdx.game.weapon.BossBullet;
+import com.mygdx.game.weapon.EnemyBullet;
 
 import java.util.Random;
 
+import static com.mygdx.game.engine.BaseScreen.frontStage;
 import static com.mygdx.game.engine.BaseScreen.uiStage;
 
 public class Pizza extends Enemy {
@@ -20,13 +23,19 @@ public class Pizza extends Enemy {
     boolean stoy = false, stay1 = false;
     float time = 0;
     float pipertime = 0, pipertime1 = 15;
+    float tomatotime = 0, tomatotime1 = 2;
+    float secondtomatotime = 0, secondtomatotime1 = 5;
+    int tomatocount = 0, tomatocount1 = 5;
     float time1 = 0.15f;
+    float tomatotimedelay = 0, tomatimedelay1 = 0.1f, tomatotimeattack = 0.5f;
     float k;
     Texture textureStay;
     HealthBar pizzaHB;
     Table pizzaTable;
     boolean deadTorch = false;
-
+    Texture tomato;
+    float rast;
+    boolean rigg;
 
     public Pizza(float x, float y, Stage s) {
         super(x, y, s);
@@ -57,6 +66,7 @@ public class Pizza extends Enemy {
         pizzaTable.add(pizzaHB).size(800, 60);
         pizzaTable.top().padTop(100f);
         name = Name.BOSS;
+        tomato = new Texture("enemy/pizza/tomato.png");
 
     }
 
@@ -75,43 +85,76 @@ public class Pizza extends Enemy {
     public void behavior(float dt) {
         time += dt;
         pipertime += dt;
-        float rast;
+        tomatotime += dt;
+        secondtomatotime+=dt;
+
+
+        rast = (float) ((float) random.nextInt(10) + Math.toDegrees(Math.atan2((person.getY() + person.getHeight() / 2) - (getY() + getHeight() / 2), (person.getX() + person.getWidth() / 2) - (getX() + getWidth() / 2))));
         if (person.isWithinDistance(Gdx.graphics.getHeight() / 3, this)) {
 
-            rast = (float) ((float) random.nextInt(10) + Math.toDegrees(Math.atan2((person.getY() + person.getHeight() / 2) - (getY() + getHeight() / 2), (person.getX() + person.getWidth() / 2) - (getX() + getWidth() / 2))));
+
             setMotionAngle(rast - 180);
         } else {
             stoy = true;
 
         }
         if (getMotionAngle() > 90 && getMotionAngle() <= 270) {
-            isRight = false;
-        } else
             isRight = true;
-        if (pipertime >= pipertime1) {
-            spawn = true;
-            loadAnimationFromSheet("enemy/pizza/pizzaSpawnAttack.png", 1, 13, 0.10f, false);
-            setScale(0.9f);
-            if(isRight)
-                moveBy(-48,0);
-            else
-                moveBy(-48,0);
+        } else
+            isRight = false;
+        //томат аттака 1
+//        if(tomatotime>=tomatotime1)
+//        {
+//            tomatotimedelay+=dt;
+//            if(tomatocount==0)
+//                rigg=isRight;
+//
+//        }
+//        if(tomatotimedelay>=tomatimedelay1)
+//        {
+//            firsttomatoAttck(rigg);
+//            tomatocount++;
+//            tomatotimedelay=0;
+//        }
+//        if(tomatocount==tomatocount1)
+//        {
+//            tomatocount=0;
+//            tomatotime=0;
+//
+//        }
 
+        //Спавн пиперони
+//        if (pipertime >= pipertime1) {
+//            spawn = true;
+//            loadAnimationFromSheet("enemy/pizza/pizzaSpawnAttack.png", 1, 13, 0.10f, false);
+//            setScale(0.9f);
+//            if (isRight)
+//                moveBy(-48, 0);
+//            else
+//                moveBy(-48, 0);
+//
+//
+//            pipertime = 0;
+//
+//        }
+//        if (spawn && isAnimationFinished()) {
+//            spawn = false;
+//            loadAnimationFromSheet("enemy/pizza/pizzaRun.png", 1, 7, 0.10f, true);
+//            setScale(0.9f);
+//            if (isRight)
+//                moveBy(48, 0);
+//            else
+//                moveBy(48, 0);
+//            addPiper();
+//        }
 
-
-            pipertime = 0;
-
+        //томат аттака 2
+        if(secondtomatotime>=secondtomatotime1)
+        {
+            secondTomatoAttck();
+            secondtomatotime=0;
         }
-        if (spawn && isAnimationFinished()) {
-            spawn = false;
-            loadAnimationFromSheet("enemy/pizza/pizzaRun.png", 1, 7, 0.10f, true);
-            setScale(0.9f);
-            if(isRight)
-                moveBy(48,0);
-            else
-                moveBy(48,0);
-            addPiper();
-        }
+
 
 
     }
@@ -126,8 +169,96 @@ public class Pizza extends Enemy {
 
     }
 
-    private void tomatoAttack()
-    {
+    private void tomatoAttack() {
+        //firsttomatoAttck();
+    }
+
+    private void firstTomatoAttck(boolean rig) {
+        EnemyBullet bullet = new EnemyBullet(0, 0, frontStage);
+        bullet.loadAnimationFromSheet(tomato, 1, 1, 0.1f, false);
+        bullet.centerAtActor(this);
+        if (rig)
+            bullet.moveBy(250, 0);
+        else
+            bullet.moveBy(-250, 0);
+        bullet.setSpeed(1500);
+        bullet.setMotionAngle(rast);
+    }
+
+    private void secondTomatoAttck() {
+        EnemyBullet bullet = new BossBullet(0, 0, frontStage);
+        bullet.loadAnimationFromSheet(tomato, 1, 1, 0.1f, false);
+        bullet.centerAtActor(this);
+        bullet.moveBy(250, 220);
+        bullet.setSpeed(900);
+        bullet.setMotionAngle(0);
+        bullet = new BossBullet(0, 0, frontStage);
+        bullet.loadAnimationFromSheet(tomato, 1, 1, 0.1f, false);
+        bullet.centerAtActor(this);
+        bullet.moveBy(-250, 220);
+        bullet.setSpeed(900);
+        bullet.setMotionAngle(180);
+
+
+        bullet = new BossBullet(0, 0, frontStage);
+        bullet.loadAnimationFromSheet(tomato, 1, 1, 0.1f, false);
+        bullet.centerAtActor(this);
+        bullet.moveBy(250, 110);
+        bullet.setSpeed(900);
+        bullet.setMotionAngle(0);
+
+        bullet = new BossBullet(0, 0, frontStage);
+        bullet.loadAnimationFromSheet(tomato, 1, 1, 0.1f, false);
+        bullet.centerAtActor(this);
+        bullet.moveBy(-250, 110);
+        bullet.setSpeed(900);
+        bullet.setMotionAngle(180);
+
+
+        bullet = new BossBullet(0, 0, frontStage);
+        bullet.loadAnimationFromSheet(tomato, 1, 1, 0.1f, false);
+        bullet.centerAtActor(this);
+        bullet.moveBy(250, 0);
+        bullet.setSpeed(900);
+        bullet.setMotionAngle(0);
+
+        bullet = new BossBullet(0, 0, frontStage);
+        bullet.loadAnimationFromSheet(tomato, 1, 1, 0.1f, false);
+        bullet.centerAtActor(this);
+        bullet.moveBy(-250, 0);
+        bullet.setSpeed(900);
+        bullet.setMotionAngle(180);
+
+
+        bullet = new BossBullet(0, 0, frontStage);
+        bullet.loadAnimationFromSheet(tomato, 1, 1, 0.1f, false);
+        bullet.centerAtActor(this);
+        bullet.moveBy(250, -110);
+        bullet.setSpeed(900);
+        bullet.setMotionAngle(0);
+
+        bullet = new BossBullet(0, 0, frontStage);
+        bullet.loadAnimationFromSheet(tomato, 1, 1, 0.1f, false);
+        bullet.centerAtActor(this);
+        bullet.moveBy(-250, -110);
+        bullet.setSpeed(900);
+        bullet.setMotionAngle(180);
+
+
+        bullet = new BossBullet(0, 0, frontStage);
+        bullet.loadAnimationFromSheet(tomato, 1, 1, 0.1f, false);
+        bullet.centerAtActor(this);
+        bullet.moveBy(250, -220);
+        bullet.setSpeed(900);
+        bullet.setMotionAngle(0);
+
+        bullet = new BossBullet(0, 0, frontStage);
+        bullet.loadAnimationFromSheet(tomato, 1, 1, 0.1f, false);
+        bullet.centerAtActor(this);
+        bullet.moveBy(-250, -220);
+        bullet.setSpeed(900);
+        bullet.setMotionAngle(180);
+
 
     }
 }

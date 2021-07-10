@@ -440,7 +440,7 @@ public class LevelScreen extends BaseScreen {
                             bulletActor.remove();
 
                     }
-                    for (BaseActor bulletActor : BaseActor.getList(backgrondStage, "weapon.EnemyBullet")) {
+                    for (BaseActor bulletActor : BaseActor.getList(frontStage, "weapon.EnemyBullet")) {
                         if (bulletActor.overlaps(doorActor))
                             bulletActor.remove();
 
