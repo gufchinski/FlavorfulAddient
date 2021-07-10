@@ -24,11 +24,11 @@ public class Slime extends Enemy {
         setMaxSpeed(500);
         setDeceleration(0);
         random=new Random();
-        loadAnimationFromSheet("enemy/Sprite-0003.png",1,15,0.15f,true);
+        loadAnimationFromSheet("enemy/slime/slimeRun.png",1,15,0.15f,true);
 
         setBoundaryRectangle();
 
-        textureDeath=new Texture("enemy/slimeDeath.png");
+        textureDeath=new Texture("enemy/slime/slimeDeath.png");
         countDeath=6;
         setDmg(15f);
 

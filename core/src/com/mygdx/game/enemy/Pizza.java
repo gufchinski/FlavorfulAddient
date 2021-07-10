@@ -36,11 +36,11 @@ public class Pizza extends Enemy {
         setMaxSpeed(350);
         setDeceleration(0);
         random = new Random();
-        loadAnimationFromSheet("enemy/pizzaRun.png", 1, 7, 0.10f, true);
+        loadAnimationFromSheet("enemy/pizza/pizzaRun.png", 1, 7, 0.10f, true);
 
         setBoundaryRectangle();
-        textureStay = new Texture("enemy/donutIdle.png");
-        textureDeath = new Texture("enemy/pizzaDeath.png");
+        textureStay = new Texture("enemy/pizza/donutIdle.png");
+        textureDeath = new Texture("enemy/pizza/pizzaDeath.png");
         countDeath = 26;
         setDmg(10f);
         scale = 0.9f;
@@ -91,7 +91,7 @@ public class Pizza extends Enemy {
             isRight = true;
         if (pipertime >= pipertime1) {
             spawn = true;
-            loadAnimationFromSheet("enemy/pizzaSpawnAttack.png", 1, 13, 0.10f, false);
+            loadAnimationFromSheet("enemy/pizza/pizzaSpawnAttack.png", 1, 13, 0.10f, false);
             setScale(0.9f);
             if(isRight)
                 moveBy(-48,0);
@@ -105,7 +105,7 @@ public class Pizza extends Enemy {
         }
         if (spawn && isAnimationFinished()) {
             spawn = false;
-            loadAnimationFromSheet("enemy/pizzaRun.png", 1, 7, 0.10f, true);
+            loadAnimationFromSheet("enemy/pizza/pizzaRun.png", 1, 7, 0.10f, true);
             setScale(0.9f);
             if(isRight)
                 moveBy(48,0);

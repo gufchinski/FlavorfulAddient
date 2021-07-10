@@ -26,11 +26,11 @@ public class Donut extends Enemy {
         setMaxSpeed(350);
         setDeceleration(0);
         random=new Random();
-        loadAnimationFromSheet("enemy/donutRun.png",1,4,0.10f,true);
+        loadAnimationFromSheet("enemy/donut/donutRun.png",1,4,0.10f,true);
 
         setBoundaryRectangle();
-        textureStay =new Texture("enemy/donutIdle.png");
-        textureDeath=new Texture("enemy/donutDeath.png");
+        textureStay =new Texture("enemy/donut/donutIdle.png");
+        textureDeath=new Texture("enemy/donut/donutDeath.png");
         countDeath=9;
         setDmg(0f);
         scale=1.2f;
@@ -69,11 +69,11 @@ public class Donut extends Enemy {
             isRight=true;
         if(stoy==false&&stay1!=stoy)
         {
-            loadAnimationFromSheet("enemy/donutRun.png", 1, 4, 0.10f, true);
+            loadAnimationFromSheet("enemy/donut/donutRun.png", 1, 4, 0.10f, true);
             setScale(1.2f);
         }
         else if(stoy==true&&stay1!=stoy){
-            loadAnimationFromSheet("enemy/donutIdle.png", 1, 12, 0.10f, true);
+            loadAnimationFromSheet("enemy/donut/donutIdle.png", 1, 12, 0.10f, true);
             setScale(1.2f);
         }
         stay1=stoy;

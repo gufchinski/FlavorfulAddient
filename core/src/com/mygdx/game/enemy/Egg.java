@@ -25,12 +25,12 @@ public class Egg extends Enemy {
         setMaxSpeed(500);
         setDeceleration(0);
         scale = 3f;
-        loadAnimationFromSheet("enemy/eggRun.png", 1, 4, 0.05f, true);
+        loadAnimationFromSheet("enemy/egg/eggRun.png", 1, 4, 0.05f, true);
         setScale(scale);
         setOrigin(getWidth() / 2, getHeight() / 2);
         setBoundaryRectangle();
         polygon=getBoundaryPolygon();
-        textureDeath=new Texture("enemy/eggDeath.png");
+        textureDeath=new Texture("enemy/egg/eggDeath.png");
         countDeath=7;
         setDmg(0);
         name=Name.BOOM;
@@ -58,7 +58,7 @@ public class Egg extends Enemy {
             person.isImmortal = true;
             person.timeImmortal = 0;
             isImmortal=true;
-            loadAnimationFromSheet("enemy/eggExplodet.png", 1, 14, 0.05f, false);
+            loadAnimationFromSheet("enemy/egg/eggExplodet.png", 1, 14, 0.05f, false);
             setScale(scale);
             setBoundaryRectangle(polygon);
             boom = true;
