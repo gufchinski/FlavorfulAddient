@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.Person;
+import com.mygdx.game.enemy.Donut;
 import com.mygdx.game.enemy.Pizza;
 import com.mygdx.game.engine.BaseScreen;
 import com.mygdx.game.engine.RepeatActor;
@@ -490,16 +491,16 @@ public class MapCreator {
     /**
      * Прорисовывает миникарту на основе двумерного массива Map
      *
-     * @param y            Координата комнаты по оси Y в двумерном массиве Map
-     * @param x            Координата комнаты по оси X в двумерном массиве Map
+     * @param y Координата комнаты по оси Y в двумерном массиве Map
+     * @param x Координата комнаты по оси X в двумерном массиве Map
      * @param miniRoomType Закрытый или открытый тип комнаты
      */
 
-    public void miniRoomsAdder(int y, int x, int miniRoomType) {
-        if (miniRoomType == 1) {
+    public void miniRoomsAdder(int y, int x, MiniRoomType miniRoomType) {
+        if (miniRoomType == MiniRoomType.CLOSED) {
             Map.get(y).get(x).firstRoomCreate(y, x, miniRoomSize, miniRoomDistance, width, height, ui, mapSize, miniRoomType);
         }
-        if (miniRoomType == 2) {
+        if (miniRoomType == MiniRoomType.OPENED) {
             Map.get(y).get(x).firstRoomCreate(y, x, miniRoomSize, miniRoomDistance, width, height, ui, mapSize, miniRoomType);
 
             firstAppear(Map.get(y).get(x));
@@ -508,25 +509,25 @@ public class MapCreator {
                 miniPass = new com.mygdx.game.engine.BaseActor(x * miniRoomDistance + miniRoomSize / 3 + width, (mapSize - y - 1) * miniRoomDistance + miniRoomSize + height, ui);
                 miniPass.loadTexture("map/openedRoom.png");
                 miniPass.setSize(miniRoomSize / 3, miniRoomDistance - miniRoomSize);
-                miniRoomsAdder(y - 1, x, 1);
+                miniRoomsAdder(y - 1, x, MiniRoomType.CLOSED);
             }
             if (y != (mapSize - 1) && Map.get(y + 1).get(x).getRoomType() != RoomType.ABSENT && !Map.get(y + 1).get(x).getIsDrawedCleared()) {  /// нижний проход
                 miniPass = new com.mygdx.game.engine.BaseActor(x * miniRoomDistance + miniRoomSize / 3 + width, (mapSize - y - 1) * miniRoomDistance + miniRoomSize - miniRoomDistance + height, ui);
                 miniPass.loadTexture("map/openedRoom.png");
                 miniPass.setSize(miniRoomSize / 3, miniRoomDistance - miniRoomSize);
-                miniRoomsAdder(y + 1, x, 1);
+                miniRoomsAdder(y + 1, x, MiniRoomType.CLOSED);
             }
             if (x != 0 && Map.get(y).get(x - 1).getRoomType() != RoomType.ABSENT && !Map.get(y).get(x - 1).getIsDrawedCleared()) {  ///левый проход
                 miniPass = new com.mygdx.game.engine.BaseActor(x * miniRoomDistance + miniRoomSize - miniRoomDistance + width, (mapSize - y - 1) * miniRoomDistance + miniRoomSize / 3 + height, ui);
                 miniPass.loadTexture("map/openedRoom.png");
                 miniPass.setSize(miniRoomDistance - miniRoomSize, miniRoomSize / 3);
-                miniRoomsAdder(y, x - 1, 1);
+                miniRoomsAdder(y, x - 1, MiniRoomType.CLOSED);
             }
             if (x != (mapSize - 1) && Map.get(y).get(x + 1).getRoomType() != RoomType.ABSENT && !Map.get(y).get(x + 1).getIsDrawedCleared()) {  ///правый проход
                 miniPass = new com.mygdx.game.engine.BaseActor(x * miniRoomDistance + miniRoomSize + width, (mapSize - y - 1) * miniRoomDistance + miniRoomSize / 3 + height, ui);
                 miniPass.loadTexture("map/openedRoom.png");
                 miniPass.setSize(miniRoomDistance - miniRoomSize, miniRoomSize / 3);
-                miniRoomsAdder(y, x + 1, 1);
+                miniRoomsAdder(y, x + 1, MiniRoomType.CLOSED);
             }
         }
     }
@@ -552,18 +553,18 @@ public class MapCreator {
                 MapProperties props = obj.getProperties();
 
                 if (props.containsKey("name") && props.get("name").equals("enemy")) {
-//                    if (props.get("enemy").equals("slime")) {
-//                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
-//                        room.enemyList.add(eps);
-//                    }
-//                    if (props.get("enemy").equals("wizard")) {
-//                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
-//                        room.enemyList.add(eps);
-//                    }
-//                    if (props.get("enemy").equals("egg")) {
-//                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
-//                        room.enemyList.add(eps);
-//                    }
+                    if (props.get("enemy").equals("slime")) {
+                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
+                        room.enemyList.add(eps);
+                    }
+                    if (props.get("enemy").equals("wizard")) {
+                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
+                        room.enemyList.add(eps);
+                    }
+                    if (props.get("enemy").equals("egg")) {
+                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
+                        room.enemyList.add(eps);
+                    }
                     if (props.get("enemy").equals("pizza")) {
                         Pizza eps = new Pizza(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
                         room.enemyList.add(eps);

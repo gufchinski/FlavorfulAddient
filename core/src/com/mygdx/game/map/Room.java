@@ -61,14 +61,6 @@ public class Room {
         isDrawedCleared = true;
     }
 
-    public boolean getIsDrawedUncleared() {
-        return isDrawedUncleared;
-    }
-
-    public void setIsDrawedUncleared() {
-        isDrawedUncleared = true;
-    }
-
     /**
      * Первый раз создаёт миникомнату на миникарте, если игрок в этой комнате - то миникомната прорисовывается как открытая, иначе как закрытая
      * @param y Координата комнаты по оси Y в двумерном массиве Map
@@ -82,15 +74,30 @@ public class Room {
      * @param miniRoomType Закрытый или открытый тип комнаты
      */
 
-    public void firstRoomCreate(int y, int x, int miniRoomSize, int miniRoomDistance, int width, int height, Stage ui, int mapSize, int miniRoomType) {
+    public void firstRoomCreate(int y, int x, int miniRoomSize, int miniRoomDistance, int width, int height, Stage ui, int mapSize, MiniRoomType miniRoomType) {
         miniRoom = new com.mygdx.game.engine.BaseActor(x * miniRoomDistance + width, (mapSize - y - 1) * miniRoomDistance + height, ui);
-        if (miniRoomType == 1) {
-            miniRoom.loadTexture("map/closedRoom.png");
+        if (miniRoomType == MiniRoomType.CLOSED) {
+            if (roomType == RoomType.ENEMY || roomType == RoomType.START) {
+                miniRoom.loadTexture("map/closedRoom.png");
+            }
+            if (roomType == RoomType.CHEST) {
+                miniRoom.loadTexture("map/closedChestRoom.png");
+            }
+            if (roomType == RoomType.BOSS) {
+                miniRoom.loadTexture("map/closedBossRoom.png");
+            }
             miniRoom.setSize(miniRoomSize, miniRoomSize);
-            setIsDrawedUncleared();
         }
-        else {
-            miniRoom.loadTexture("map/openedRoom.png");
+        if (miniRoomType == MiniRoomType.OPENED) {
+            if (roomType == RoomType.ENEMY || roomType == RoomType.START) {
+                miniRoom.loadTexture("map/openedRoom.png");
+            }
+            if (roomType == RoomType.CHEST) {
+                miniRoom.loadTexture("map/openedChestRoom.png");
+            }
+            if (roomType == RoomType.BOSS) {
+                miniRoom.loadTexture("map/openedBossRoom.png");
+            }
             miniRoom.setSize(miniRoomSize, miniRoomSize);
             setIsDrawedCleared();
         }
@@ -104,7 +111,18 @@ public class Room {
      */
 
     public void setOpenedRoom(int y, int x, int miniRoomSize) {
-        miniRoom.loadTexture("map/openedRoom.png");
+        if (roomType == RoomType.ENEMY || roomType == RoomType.START) {
+            miniRoom.loadTexture("map/openedRoom.png");
+        }
+        if (roomType == RoomType.CHEST) {
+            miniRoom.loadTexture("map/openedChestRoom.png");
+        }
+        if (roomType == RoomType.BOSS) {
+            miniRoom.loadTexture("map/openedBossRoom.png");
+        }
+        if (roomType == RoomType.EXIT) {
+            miniRoom.loadTexture("map/openedExitRoom.png");
+        }
         miniRoom.setSize(miniRoomSize, miniRoomSize);
     }
 
@@ -116,9 +134,22 @@ public class Room {
      */
 
     public void setInRoom(int y, int x, int miniRoomSize) {
-        miniRoom.loadTexture("map/inMiniRoom.png");
+        if (roomType == RoomType.ENEMY || roomType == RoomType.START) {
+            miniRoom.loadTexture("map/inMiniRoom.png");
+        }
+        if (roomType == RoomType.CHEST) {
+            miniRoom.loadTexture("map/inMiniChestRoom.png");
+        }
+        if (roomType == RoomType.BOSS) {
+            miniRoom.loadTexture("map/inMiniBossRoom.png");
+        }
+        if (roomType == RoomType.EXIT) {
+            miniRoom.loadTexture("map/inMiniExitRoom.png");
+        }
         miniRoom.setSize(miniRoomSize, miniRoomSize);
     }
+
+    // я не знаю, зачем в двух верхних методах int x и int y, ведь они нигде не используются, но без них ничего не работает ¯\_(ツ)_/¯
 
     /**
      * Проверяет, если актёр находится в комнате, используется если нельзя передать BaseActor как параметр

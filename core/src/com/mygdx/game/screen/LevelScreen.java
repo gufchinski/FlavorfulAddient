@@ -27,6 +27,7 @@ import com.mygdx.game.engine.Name;
 import com.mygdx.game.item.Item;
 import com.mygdx.game.map.MapCreator;
 import com.mygdx.game.Person;
+import com.mygdx.game.map.MiniRoomType;
 import com.mygdx.game.map.Portal;
 import com.mygdx.game.map.Room;
 import com.mygdx.game.engine.BaseScreen;
@@ -93,7 +94,7 @@ public class LevelScreen extends BaseScreen {
         map.mapGenerator();
         y = map.mapSize / 2;
         x = map.mapSize / 2;
-        map.miniRoomsAdder(y, x, 2);
+        map.miniRoomsAdder(y, x, MiniRoomType.OPENED);
         map.Map.get(y).get(x).setInRoom(y, x, map.miniRoomSize);
 
         weapon = new Weap(0, 0, mainStage, weaponJoystick, wepJoy);
@@ -290,7 +291,7 @@ public class LevelScreen extends BaseScreen {
                     y--;
 
                     if (!map.Map.get(y).get(x).getIsDrawedCleared()) {
-                        map.miniRoomsAdder(y, x, 2);
+                        map.miniRoomsAdder(y, x, MiniRoomType.OPENED);
                     }
 
                     map.Map.get(y).get(x).setInRoom(y, x, map.miniRoomSize);
@@ -300,7 +301,7 @@ public class LevelScreen extends BaseScreen {
                     x--;
 
                     if (!map.Map.get(y).get(x).getIsDrawedCleared()) {
-                        map.miniRoomsAdder(y, x, 2);
+                        map.miniRoomsAdder(y, x, MiniRoomType.OPENED);
                     }
 
                     map.Map.get(y).get(x).setInRoom(y, x, map.miniRoomSize);
@@ -310,7 +311,7 @@ public class LevelScreen extends BaseScreen {
                     y++;
 
                     if (!map.Map.get(y).get(x).getIsDrawedCleared()) {
-                        map.miniRoomsAdder(y, x, 2);
+                        map.miniRoomsAdder(y, x, MiniRoomType.OPENED);
                     }
 
                     map.Map.get(y).get(x).setInRoom(y, x, map.miniRoomSize);
@@ -320,7 +321,7 @@ public class LevelScreen extends BaseScreen {
                     x++;
 
                     if (!map.Map.get(y).get(x).getIsDrawedCleared()) {
-                        map.miniRoomsAdder(y, x, 2);
+                        map.miniRoomsAdder(y, x, MiniRoomType.OPENED);
                     }
 
                     map.Map.get(y).get(x).setInRoom(y, x, map.miniRoomSize);
@@ -466,6 +467,8 @@ public class LevelScreen extends BaseScreen {
                     room.isFight = false;
                     map.roomsLeft--;
                     if (map.roomsLeft == 0) {
+                        room.setRoomType(RoomType.EXIT);
+                        room.setInRoom(y, x, map.miniRoomSize);
                         portal = new Portal(room.x0 + map.roomWidth / 2, room.y0 + map.roomHeight / 2, backgrondStage);
                         portal.moveBy(-portal.getWidth() / 2, -portal.getHeight() / 2);
                     }

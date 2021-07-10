@@ -6,4 +6,5 @@ public enum RoomType {
     ENEMY,
     CHEST,
     BOSS,
+    EXIT,
 }
