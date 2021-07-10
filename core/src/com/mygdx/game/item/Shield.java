@@ -14,8 +14,9 @@ public class Shield extends Item {
     public Shield(float x, float y, Stage s) {
         super(x, y, s, 3);
         loadTexture("Item/shield.png");
-
         textureName = "Item/shield.png";
+        nameItem = "Shield prototype";
+        descriptionItem = "Creates a temporary barrier";
     }
 
     @Override

@@ -7,7 +7,8 @@ public class Cyberimplant extends Item {
         super(x, y, s,1);
         loadTexture("Item/cyberimplant.png");
         textureName="Item/cyberimplant.png";
-
+        nameItem = "Cyberimplant";
+        descriptionItem = "Increases maximum HP";
     }
     @Override
     public  void use()

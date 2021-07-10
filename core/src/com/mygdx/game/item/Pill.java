@@ -11,6 +11,8 @@ public class Pill extends Item {
         loadTexture("Item/pill.png");
         setScale(0.5f);
         textureName="Item/pill.png";
+        nameItem = "500";
+        descriptionItem = "Fully restores HP";
     }
     @Override
     public  void use()

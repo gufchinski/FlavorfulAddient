@@ -11,7 +11,8 @@ public class EnergyDrink extends Item {
         loadTexture("Item/energyDrink.png");
         setScale(0.5f);
         textureName="Item/energyDrink.png";
-
+        nameItem = "Energy Drink";
+        descriptionItem = "Increases character speed ";
     }
     @Override
     public  void use()

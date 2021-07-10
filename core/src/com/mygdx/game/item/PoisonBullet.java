@@ -9,15 +9,16 @@ import com.mygdx.game.effect.Poison;
  */
 public class PoisonBullet extends Item {
     Effect effect;
+
     public PoisonBullet(float x, float y, Stage s) {
         super(x, y, s, 1);
-        effect=new Poison();
-        nameItem="Poison";
-        descriptionItem="Create poison bullet";
+        effect = new Poison();
+        nameItem = "Poison bullets";
+        descriptionItem = "Every bullet poisons enemies";
     }
+
     @Override
-    public  void use()
-    {
+    public void use() {
         screen.bulletEffect = effect;
     }
 }

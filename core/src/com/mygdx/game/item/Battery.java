@@ -8,6 +8,8 @@ public class Battery extends Item {
         loadTexture("Item/battery.png");
         textureName="Item/battery.png";
         setScale(0.3f);
+        nameItem = "Super Battery";
+        descriptionItem = "Increases rate of fire";
     }
     @Override
     public  void use()
