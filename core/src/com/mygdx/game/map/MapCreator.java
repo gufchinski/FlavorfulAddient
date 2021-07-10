@@ -256,7 +256,7 @@ public class MapCreator {
             Map.get(y - 1).get(x).setWalls(wall); //добавление этой части стены для верхней комнаты
 
             //левый угол верхнего прохода
-            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + xCoordinate1 - lrBarrierSize, (mapSize - y - 1) * roomCoordinates + roomHeight + tdBarrierSize - lrBarrierSize, stage, lrBarrierSize, lrBarrierSize, "map/passCLU.png");
+            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + xCoordinate1 - lrBarrierSize, (mapSize - y - 1) * roomCoordinates + roomHeight + tdBarrierSize - lrBarrierSize, front, lrBarrierSize, lrBarrierSize, "map/passCLU.png");
             Map.get(y).get(x).setWalls(wall);
 
             Map.get(y - 1).get(x).setWalls(wall); //добавление этого угла для верхней комнаты
@@ -270,7 +270,7 @@ public class MapCreator {
             Map.get(y - 1).get(x).setWalls(wall); //добавление этой части стены для верхней комнаты
 
             //правый угол верхнего прохода
-            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + xCoordinate2, (mapSize - y - 1) * roomCoordinates + roomHeight + tdBarrierSize - lrBarrierSize, stage, lrBarrierSize, lrBarrierSize, "map/passCRU.png");
+            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + xCoordinate2, (mapSize - y - 1) * roomCoordinates + roomHeight + tdBarrierSize - lrBarrierSize, front, lrBarrierSize, lrBarrierSize, "map/passCRU.png");
             Map.get(y).get(x).setWalls(wall);
 
             Map.get(y - 1).get(x).setWalls(wall); //добавление этого угла для верхней комнаты
@@ -402,6 +402,8 @@ public class MapCreator {
 
             Map.get(y).get(x - 1).setWalls(wall); //добавление этого угла для левой комнаты
 
+            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates - lrBarrierSize, (mapSize - y - 1) * roomCoordinates + yCoordinate2 + tdBarrierSize - lrBarrierSize, front, lrBarrierSize, lrBarrierSize, "map/passCLU.png");
+
             //дверь левого прохода
             door = new Door(x * roomCoordinates - lrBarrierSize, (mapSize - y - 1) * roomCoordinates + yCoordinate1, stage, lrBarrierSize, passSize, DoorType.LEFT);
             vertices = new float[]{0 - lrBarrierSize, 0, door.getWidth(), 0, door.getWidth(), door.getHeight() + tdBarrierSize, 0 - lrBarrierSize, door.getHeight() + tdBarrierSize};
@@ -461,6 +463,8 @@ public class MapCreator {
             Map.get(y).get(x).setWalls(wall);
 
             Map.get(y).get(x + 1).setWalls(wall); //добавление этого угла для правой комнаты
+
+            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + roomWidth, (mapSize - y - 1) * roomCoordinates + yCoordinate2 + tdBarrierSize - lrBarrierSize, front, lrBarrierSize, tdBarrierSize, "map/passCRU.png");
 
             //дверь правого прохода
             door = new Door(x * roomCoordinates + roomWidth, (mapSize - y - 1) * roomCoordinates + yCoordinate1, stage, lrBarrierSize, passSize, DoorType.RIGHT);
