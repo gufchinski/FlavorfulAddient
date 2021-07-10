@@ -128,12 +128,10 @@ public class Room {
 
     /**
      * Меняет текстуру миникомнаты на миникомнату, в которой находится персонаж
-     * @param y Координата комнаты по оси Y в двумерном массиве Map
-     * @param x Координата комнаты по оси X в двумерном массиве Map
      * @param miniRoomSize Размер миникомнаты на миникарте в пикселях
      */
 
-    public void setInRoom(int y, int x, int miniRoomSize) {
+    public void setInRoom(int miniRoomSize) {
         if (roomType == RoomType.ENEMY || roomType == RoomType.START) {
             miniRoom.loadTexture("map/inMiniRoom.png");
         }

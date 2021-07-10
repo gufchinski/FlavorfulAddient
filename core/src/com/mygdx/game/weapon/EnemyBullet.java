@@ -23,9 +23,7 @@ public class EnemyBullet extends BaseActor
     public void act(float dt)
     {
         super.act(dt);
-        addAction( Actions.delay(1) );
-        addAction( Actions.after( Actions.fadeOut(0.5f) ) );
-        addAction( Actions.after( Actions.removeActor() ) );
+
     }
      
 
