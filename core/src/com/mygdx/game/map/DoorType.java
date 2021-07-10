@@ -1,6 +1,6 @@
 package com.mygdx.game.map;
 
-enum Doortype {
+enum DoorType {
     TOP,
     BOTTOM,
     LEFT,

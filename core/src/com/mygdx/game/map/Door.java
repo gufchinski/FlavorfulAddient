@@ -9,9 +9,9 @@ import com.mygdx.game.engine.BaseActor;
 
 public class Door extends BaseActor {
     float width, height;
-    Doortype doorType;
+    DoorType doorType;
 
-    public Door(float x, float y, Stage s,float width, float height, Doortype doorType) {
+    public Door(float x, float y, Stage s,float width, float height, DoorType doorType) {
         super(x, y, s);
         this.width = width;
         this.height = height;

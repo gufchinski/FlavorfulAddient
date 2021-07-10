@@ -7,16 +7,11 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.Person;
-import com.mygdx.game.enemy.Donut;
 import com.mygdx.game.enemy.Pizza;
-import com.mygdx.game.enemy.Slime;
-import com.mygdx.game.enemy.Egg;
-import com.mygdx.game.enemy.Wizard;
 import com.mygdx.game.engine.BaseScreen;
 import com.mygdx.game.engine.RepeatActor;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -280,7 +275,7 @@ public class MapCreator {
             Map.get(y - 1).get(x).setWalls(wall); //добавление этого угла для верхней комнаты
 
             //дверь верхнего прохода
-            door = new Door(x * roomCoordinates + xCoordinate1, (mapSize - y - 1) * roomCoordinates + roomHeight, back, passSize, tdBarrierSize, Doortype.TOP);
+            door = new Door(x * roomCoordinates + xCoordinate1, (mapSize - y - 1) * roomCoordinates + roomHeight, back, passSize, tdBarrierSize, DoorType.TOP);
             vertices = new float[]{0, offsetPolygonTop, door.getWidth(), offsetPolygonTop, door.getWidth(), door.getHeight(), 0, door.getHeight()};
             door.setBoundaryRectangle(vertices);
             door.loadTexture("map/doorCloseUp.png");
@@ -339,12 +334,12 @@ public class MapCreator {
             Map.get(y + 1).get(x).setWalls(wall); //добавление этого угла для нижней комнаты
 
             //дверь нижнего прохода
-            door = new Door(x * roomCoordinates + xCoordinate1, (mapSize - y - 1) * roomCoordinates - tdBarrierSize, stage, passSize, tdBarrierSize, Doortype.BOTTOM);
+            door = new Door(x * roomCoordinates + xCoordinate1, (mapSize - y - 1) * roomCoordinates - tdBarrierSize, stage, passSize, tdBarrierSize, DoorType.BOTTOM);
             vertices = new float[]{0, 0, door.getWidth(), 0, door.getWidth(), door.getHeight() - offsetPolygonBot, 0, door.getHeight() - offsetPolygonBot};
             door.setBoundaryRectangle(vertices);
             door.loadTexture("map/doorCloseDown.png");
             Map.get(y).get(x).setDoor(door);
-            door = new Door(x * roomCoordinates + xCoordinate1, (mapSize - y - 1) * roomCoordinates - tdBarrierSize, front, passSize, lrBarrierSize, Doortype.SUPPORT);
+            door = new Door(x * roomCoordinates + xCoordinate1, (mapSize - y - 1) * roomCoordinates - tdBarrierSize, front, passSize, lrBarrierSize, DoorType.SUPPORT);
             door.setVisible(false);
             door.loadTexture("map/doorDown.png");
             Map.get(y).get(x).setDoor(door);
@@ -407,12 +402,12 @@ public class MapCreator {
             Map.get(y).get(x - 1).setWalls(wall); //добавление этого угла для левой комнаты
 
             //дверь левого прохода
-            door = new Door(x * roomCoordinates - lrBarrierSize, (mapSize - y - 1) * roomCoordinates + yCoordinate1, stage, lrBarrierSize, passSize, Doortype.LEFT);
+            door = new Door(x * roomCoordinates - lrBarrierSize, (mapSize - y - 1) * roomCoordinates + yCoordinate1, stage, lrBarrierSize, passSize, DoorType.LEFT);
             vertices = new float[]{0 - lrBarrierSize, 0, door.getWidth(), 0, door.getWidth(), door.getHeight() + tdBarrierSize, 0 - lrBarrierSize, door.getHeight() + tdBarrierSize};
             door.setBoundaryRectangle(vertices);
             door.loadTexture("map/doorCloseLeft.png");
             Map.get(y).get(x).setDoor(door);
-            door = new Door(x * roomCoordinates - lrBarrierSize, (mapSize - y - 1) * roomCoordinates + yCoordinate1, front, lrBarrierSize, passSize, Doortype.SUPPORT);
+            door = new Door(x * roomCoordinates - lrBarrierSize, (mapSize - y - 1) * roomCoordinates + yCoordinate1, front, lrBarrierSize, passSize, DoorType.SUPPORT);
             door.setVisible(false);
             door.loadTexture("map/doorLR.png");
             Map.get(y).get(x).setDoor(door);
@@ -467,12 +462,12 @@ public class MapCreator {
             Map.get(y).get(x + 1).setWalls(wall); //добавление этого угла для правой комнаты
 
             //дверь правого прохода
-            door = new Door(x * roomCoordinates + roomWidth, (mapSize - y - 1) * roomCoordinates + yCoordinate1, stage, lrBarrierSize, passSize, Doortype.RIGHT);
+            door = new Door(x * roomCoordinates + roomWidth, (mapSize - y - 1) * roomCoordinates + yCoordinate1, stage, lrBarrierSize, passSize, DoorType.RIGHT);
             vertices = new float[]{0, 0, door.getWidth() + lrBarrierSize, 0, door.getWidth() + lrBarrierSize, door.getHeight() + tdBarrierSize, 0, door.getHeight() + tdBarrierSize};
             door.setBoundaryRectangle(vertices);
             door.loadTexture("map/doorCloseRight.png");
             Map.get(y).get(x).setDoor(door);
-            door = new Door(x * roomCoordinates + roomWidth, (mapSize - y - 1) * roomCoordinates + yCoordinate1, front, lrBarrierSize, passSize, Doortype.SUPPORT);
+            door = new Door(x * roomCoordinates + roomWidth, (mapSize - y - 1) * roomCoordinates + yCoordinate1, front, lrBarrierSize, passSize, DoorType.SUPPORT);
             door.setVisible(false);
             door.loadTexture("map/doorLR.png");
             Map.get(y).get(x).setDoor(door);
