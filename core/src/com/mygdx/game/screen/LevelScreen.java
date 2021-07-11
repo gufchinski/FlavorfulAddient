@@ -84,11 +84,8 @@ public class LevelScreen extends BaseScreen {
         Table deadTable = new Table();
         deadTable.setFillParent(true);
         bulletEffect = null;
-        music = Gdx.audio.newMusic(Gdx.files.internal("sound/pi.m4a"));
-        float audioVolume = 1.00f;
-        music.setLooping(false);
-        music.setVolume(audioVolume);
-        music.play();
+
+
 
         //генерация карты
         map = new MapCreator(mainStage, uiStage, backgrondStage, frontStage, "mapgen2.tmx",backBackgrondStage);
