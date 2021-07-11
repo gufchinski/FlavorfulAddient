@@ -162,7 +162,7 @@ public class MapCreator {
             potentialRoom.remove(addNumber);
         }
         //Генерация комнаты с боссом
-        if(BaseScreen.level==2) {
+        if (BaseScreen.level == 2) {
             Collections.sort(potentialRoom, Coordinates.countComparator);
             y = potentialRoom.get(0).y;
             x = potentialRoom.get(0).x;
@@ -555,10 +555,10 @@ public class MapCreator {
             room.isFight = true;
             room.setDoorTexture(false);
             String pat = "pattern-";
-            if(BaseScreen.level==0)
-                pat += String.valueOf(random.nextInt(10)+1);
+            if (BaseScreen.level == 0)
+                pat += String.valueOf(random.nextInt(10) + 1);
             else
-                pat += String.valueOf(random.nextInt(15)+1);
+                pat += String.valueOf(random.nextInt(15) + 1);
             MapLayer layer = tiledMap.getLayers().get(pat);
             for (MapObject obj : layer.getObjects()) {
 
@@ -578,7 +578,7 @@ public class MapCreator {
                         room.enemyList.add(eps);
                     }
                     if (props.get("enemy").equals("donut")) {
-                        Donut eps = new  Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
+                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
                         room.enemyList.add(eps);
                     }
 
@@ -614,7 +614,7 @@ public class MapCreator {
                 MapProperties props = obj.getProperties();
                 if (props.containsKey("name") && props.get("name").equals("enemy")) {
                     if (props.get("enemy").equals("pizza")) {
-                       Pizza eps = new Pizza(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
+                        Pizza eps = new Pizza(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
                         room.enemyList.add(eps);
                     }
                 }

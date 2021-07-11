@@ -57,7 +57,7 @@ public class LevelScreen extends BaseScreen {
     Image itemIcon;
     ActionButton actBtn;
     int typeAct = 0;
-    Item itemAct, itemActive;
+    public static Item itemAct, itemActive;
     BaseActor deadTextureScreen, deadTexturePlay, deadTextureExit;
     public Effect bulletEffect;
     Music music;
@@ -164,7 +164,7 @@ public class LevelScreen extends BaseScreen {
         joysticTable.row();
 
 
-        actBtn = new ActionButton("ui/joy_background.png", (Gdx.graphics.getWidth() - (Gdx.graphics.getHeight() / 3f)), 50 + Gdx.graphics.getHeight() / 2.5f + 50, Gdx.graphics.getHeight() / 5f, Gdx.graphics.getHeight() / 5f);
+        actBtn = new ActionButton("ui/emptyButton.png", (Gdx.graphics.getWidth() - (Gdx.graphics.getHeight() / 3f)), 50 + Gdx.graphics.getHeight() / 2.5f + 50, Gdx.graphics.getHeight() / 5f, Gdx.graphics.getHeight() / 5f);
         actBtn.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
@@ -535,12 +535,22 @@ public class LevelScreen extends BaseScreen {
             weapon.shoot();
         healthBar.setValue(person.hp);
         healthBar.setRange(healthBar.getMinValue(), person.maxHp);
+        if(itemActive!=null&&itemActive.type==3) {
+            if(isReload)
+            actBtn.setDrawable(actBtn.textActNotReady);
+            else
+                actBtn.setDrawable(actBtn.textActReady);
+        }
+        else if(itemActive!=null&&itemActive.type==0)
+            actBtn.setDrawable(actBtn.textActReady);
+        else
+            actBtn.setDrawable(actBtn.textnotUse);
         if (portal != null) {
             boolean boolportal = person.isWithinDistance(3, portal);
             actBtn.isUse = boolportal;
             if (boolportal) {
                 typeAct = 2;
-                actBtn.setDrawable(actBtn.textUse);
+                actBtn.setDrawable(actBtn.textExit);
             } else {
                 actBtn.setDrawable(actBtn.textnotUse);
             }
@@ -552,7 +562,7 @@ public class LevelScreen extends BaseScreen {
             if (boolitem) {
                 typeAct = item.type;
                 itemAct = item;
-                actBtn.setDrawable(actBtn.textUse);
+                actBtn.setDrawable(actBtn.textPickUp);
             } else {
                 actBtn.setDrawable(actBtn.textnotUse);
             }
