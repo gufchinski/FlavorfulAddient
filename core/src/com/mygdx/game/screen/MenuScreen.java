@@ -1,6 +1,7 @@
 package com.mygdx.game.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
@@ -41,6 +42,7 @@ public class MenuScreen extends BaseScreen {
 
         Label.LabelStyle lb = new Label.LabelStyle();
         BitmapFont mainfont = new BitmapFont(Gdx.files.internal("font/da.fnt"));
+
         mainfont.getData().setScale(5);
         lb.font = mainfont;
 
@@ -86,13 +88,22 @@ public class MenuScreen extends BaseScreen {
 
         uiStage.addActor(btnExit);
 
-
+        Label playlabel = new Label("Play", BaseScreen.bosslb);
+        playlabel.setFontScale(2);
+        playlabel.setColor(Color.BLACK);
+        uiStage.addActor(playlabel);
+        Label exitlabel = new Label("Exit", BaseScreen.bosslb);
+        exitlabel.setColor(Color.BLACK);
+        exitlabel.setFontScale(2);
+        uiStage.addActor(exitlabel);
         uiTable.pad(30);
         uiTable.padBottom(155);
 
         uiTable.add(btnp).padTop(160).expandX();
         //uiTable.add(btnPlay);
-        uiTable.add(btnExit).expandX().padTop(60);
+        uiTable.add(btnExit).expandX().padTop(60).row();
+        uiTable.add(playlabel);
+        uiTable.add(exitlabel).padRight(70);
         uiTable.left().bottom();
         //uiStage.setDebugAll(true);
     }
