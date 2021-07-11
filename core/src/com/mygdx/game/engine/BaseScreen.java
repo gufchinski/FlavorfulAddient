@@ -24,7 +24,7 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     public static  Stage mainStage;
     public static Stage uiStage;
     protected Stage loadStage;
-    protected Stage backgrondStage;
+    public static Stage backgrondStage;
     public static Stage backBackgrondStage;
     public static Stage frontStage;
     protected Stage epsStage;
@@ -41,6 +41,7 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     public InputMultiplexer im;
     public boolean gameOver = false;
     public static boolean isSave = false;
+    public static  int level=0;
 
     public BaseScreen() {
         Preferences prefs = Gdx.app.getPreferences("Preferences");

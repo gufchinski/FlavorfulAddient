@@ -13,13 +13,13 @@ public class DialogBox extends BaseActor {
 
     public DialogBox(float x, float y, Stage s) {
         super(x, y, s);
-        loadTexture("dialog-translucent.png");
+        loadTexture("dialog-translucent2.png");
 
-        dialogLabel = new Label(" ", BaseScreen.lb);
+        dialogLabel = new Label(" ", BaseScreen.bosslb);
         dialogLabel.setWrap(true);
         dialogLabel.setAlignment(Align.topLeft);
         dialogLabel.setPosition(padding, padding);
-        dialogLabel2 = new Label(" ", BaseScreen.lb);
+        dialogLabel2 = new Label(" ", BaseScreen.bosslb);
         dialogLabel2.setWrap(true);
         dialogLabel2.setAlignment(Align.topLeft);
         dialogLabel2.setPosition(padding, secondpadding);

@@ -63,7 +63,7 @@ public class Pizza extends Enemy {
         isdelayattack1 = false;
         spawn1 = false;
 
-        setHp(700);
+        setHp(3000);
         setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
         setSpeed(250);
         setMaxSpeed(250);
@@ -74,7 +74,7 @@ public class Pizza extends Enemy {
         attackIsFinished = true;
         setBoundaryRectangle();
         textureDeath = new Texture("enemy/pizza/pizzaDeath.png");
-        countDeath = 26;
+        countDeath = 25;
         setDmg(10f);
         scale = 0.9f;
         setScale(0.9f);
