@@ -14,7 +14,7 @@ public class Cyberimplant extends Item {
     @Override
     public void use() {
         person.hp += person.maxHp / 2;
-        person.maxHp = person.maxHp * 1.75f;
+        person.maxHp = person.maxHp * 1.5f;
 
     }
 
