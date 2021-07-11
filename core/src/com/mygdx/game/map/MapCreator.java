@@ -57,16 +57,18 @@ public class MapCreator {
 
     public com.mygdx.game.map.Barrier wall;
     public Door door;
+    Stage backBackgrondStage;
 
     private TiledMap tiledMap;
 
-    public MapCreator(Stage stage, Stage ui, Stage backStage, Stage frontStage, String Tilemapfilename) {
+    public MapCreator(Stage stage, Stage ui, Stage backStage, Stage frontStage, String Tilemapfilename,Stage backBackgrondStage) {
         random = new Random();
         this.stage = stage;
         this.ui = ui;
         back = backStage;
         front = frontStage;
         tiledMap = new TmxMapLoader().load(Tilemapfilename);
+        this.backBackgrondStage=backBackgrondStage;
 
     }
 
@@ -201,11 +203,11 @@ public class MapCreator {
             for (int x = 0; x < mapSize; x++) {
                 if (Map.get(y).get(x).getRoomType() != RoomType.ABSENT) {
 
-                    room = new RepeatActor(x * roomCoordinates, (mapSize - y - 1) * roomCoordinates, BaseScreen.backBackgrondStage, roomWidth, roomHeight, "map/floor.png");
+                    room = new RepeatActor(x * roomCoordinates, (mapSize - y - 1) * roomCoordinates, backBackgrondStage, roomWidth, roomHeight, "map/floor.png");
 
                     /// создание проходов
                     if (y != 0 && Map.get(y - 1).get(x).getRoomType() != RoomType.ABSENT) {  ///проход для комнаты сверху
-                        pass = new RepeatActor(x * roomCoordinates + xCoordinate1, (mapSize - y - 1) * roomCoordinates + roomHeight, BaseScreen.backBackgrondStage, passSize, roomCoordinates - roomHeight - tdBarrierSize, "map/floor.png");  ///создание прохода
+                        pass = new RepeatActor(x * roomCoordinates + xCoordinate1, (mapSize - y - 1) * roomCoordinates + roomHeight, backBackgrondStage, passSize, roomCoordinates - roomHeight - tdBarrierSize, "map/floor.png");  ///создание прохода
 
                         wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + xCoordinate1 - lrBarrierSize, (mapSize - y - 1) * roomCoordinates + roomHeight + tdBarrierSize, front, lrBarrierSize, roomCoordinates - roomHeight - tdBarrierSize - lrBarrierSize, "map/wallSide.png"); ///создание левой стены прохода
                         vertices = new float[]{0, 0, wall.getWidth(), 0, wall.getWidth(), wall.getHeight() - (offsetPolygonBot - lrBarrierSize), 0, wall.getHeight() - (offsetPolygonBot - lrBarrierSize)};
@@ -254,7 +256,7 @@ public class MapCreator {
         if (y != 0 && Map.get(y - 1).get(x).getRoomType() != RoomType.ABSENT) {  /// если есть комната сверху
 
             //левая половина верхней стены
-            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates, (mapSize - y - 1) * roomCoordinates + roomHeight, BaseScreen.backBackgrondStage, xCoordinate1, tdBarrierSize, "map/wallUp.png");
+            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates, (mapSize - y - 1) * roomCoordinates + roomHeight, backBackgrondStage, xCoordinate1, tdBarrierSize, "map/wallUp.png");
             vertices = new float[]{0, offsetPolygonTop, wall.getWidth(), offsetPolygonTop, wall.getWidth(), wall.getHeight(), 0, wall.getHeight()};
             wall.setBoundaryRectangle(vertices);
             Map.get(y).get(x).setWalls(wall);
@@ -268,7 +270,7 @@ public class MapCreator {
             Map.get(y - 1).get(x).setWalls(wall); //добавление этого угла для верхней комнаты
 
             //правая половина верхней стены
-            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + xCoordinate2, (mapSize - y - 1) * roomCoordinates + roomHeight, BaseScreen.backBackgrondStage, xCoordinate1, tdBarrierSize, "map/wallUp.png");
+            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates + xCoordinate2, (mapSize - y - 1) * roomCoordinates + roomHeight, backBackgrondStage, xCoordinate1, tdBarrierSize, "map/wallUp.png");
             vertices = new float[]{0, offsetPolygonTop, wall.getWidth(), offsetPolygonTop, wall.getWidth(), wall.getHeight(), 0, wall.getHeight()};
             wall.setBoundaryRectangle(vertices);
             Map.get(y).get(x).setWalls(wall);
@@ -282,14 +284,14 @@ public class MapCreator {
             Map.get(y - 1).get(x).setWalls(wall); //добавление этого угла для верхней комнаты
 
             //дверь верхнего прохода
-            door = new Door(x * roomCoordinates + xCoordinate1, (mapSize - y - 1) * roomCoordinates + roomHeight, BaseScreen.backBackgrondStage, passSize, tdBarrierSize, DoorType.TOP);
+            door = new Door(x * roomCoordinates + xCoordinate1, (mapSize - y - 1) * roomCoordinates + roomHeight, backBackgrondStage, passSize, tdBarrierSize, DoorType.TOP);
             vertices = new float[]{0, offsetPolygonTop, door.getWidth(), offsetPolygonTop, door.getWidth(), door.getHeight(), 0, door.getHeight()};
             door.setBoundaryRectangle(vertices);
             door.loadTexture("map/doorCloseUp.png");
             Map.get(y).get(x).setDoor(door);
         } else { // если комнаты сверху нет
             //сплошная верхняя стена
-            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates, (mapSize - y - 1) * roomCoordinates + roomHeight, BaseScreen.backBackgrondStage, roomWidth, tdBarrierSize, "map/wallUp.png");
+            wall = new com.mygdx.game.map.Barrier(x * roomCoordinates, (mapSize - y - 1) * roomCoordinates + roomHeight, backBackgrondStage, roomWidth, tdBarrierSize, "map/wallUp.png");
             vertices = new float[]{0, offsetPolygonTop, wall.getWidth(), offsetPolygonTop, wall.getWidth(), wall.getHeight(), 0, wall.getHeight()};
             wall.setBoundaryRectangle(vertices);
             Map.get(y).get(x).setWalls(wall);
@@ -578,7 +580,7 @@ public class MapCreator {
                         room.enemyList.add(eps);
                     }
                     if (props.get("enemy").equals("donut")) {
-                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
+                        Donut eps = new Donut(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back,backBackgrondStage);
                         room.enemyList.add(eps);
                     }
 
@@ -599,7 +601,7 @@ public class MapCreator {
 
                 MapProperties props = obj.getProperties();
                 if (props.get("name").equals("chest")) {
-                    Chest eps = new Chest(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back, room);
+                    Chest eps = new Chest(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back, room,front);
                     room.chest = eps;
                 }
             }
@@ -614,7 +616,7 @@ public class MapCreator {
                 MapProperties props = obj.getProperties();
                 if (props.containsKey("name") && props.get("name").equals("enemy")) {
                     if (props.get("enemy").equals("pizza")) {
-                        Pizza eps = new Pizza(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back);
+                        Pizza eps = new Pizza(room.x0 + (float) props.get("x"), room.y0 + (float) props.get("y"), back,ui,backBackgrondStage);
                         room.enemyList.add(eps);
                     }
                 }
