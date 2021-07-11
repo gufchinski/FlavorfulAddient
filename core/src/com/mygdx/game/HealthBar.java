@@ -14,12 +14,12 @@ import com.badlogic.gdx.utils.compression.lzma.Base;
 import com.mygdx.game.engine.BaseScreen;
 
 
-
 public class HealthBar extends ProgressBar {
 
     /**
      * Полоска жизни
-     * @param width of the health bar
+     *
+     * @param width  of the health bar
      * @param height of the health bar
      */
     public HealthBar(int width, int height) {
@@ -37,6 +37,7 @@ public class HealthBar extends ProgressBar {
         setAnimateDuration(0.25f);
 
     }
+
     public Drawable getColoredDrawable(int width, int height, Color color) {
         Pixmap pixmap = new Pixmap(width, height, Pixmap.Format.RGBA8888);
         pixmap.setColor(color);

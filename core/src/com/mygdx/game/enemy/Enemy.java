@@ -69,7 +69,7 @@ public abstract class Enemy extends BaseActor {
     @Override
     public void death() {
         loadAnimationFromSheet(textureDeath, 1, countDeath, durationDeath, false);
-        if(this.name== Name.BOSS) {
+        if (this.name == Name.BOSS) {
             moveBy(-64, -54);
         }
         setScale(scale);

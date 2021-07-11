@@ -11,11 +11,11 @@ public class DonutJam extends BaseActor {
 
         loadTexture("enemy/donut/donutJam.png");
         //setScale(2);
-        moveBy(-getWidth()/2,0);
-        addAction( Actions.delay(2) );
-        addAction( Actions.after( Actions.fadeOut(1.5f) ) );
-        addAction( Actions.after( Actions.removeActor() ) );
-        dmg=30;
+        moveBy(-getWidth() / 2, 0);
+        addAction(Actions.delay(2));
+        addAction(Actions.after(Actions.fadeOut(1.5f)));
+        addAction(Actions.after(Actions.removeActor()));
+        dmg = 30;
 
     }
 }

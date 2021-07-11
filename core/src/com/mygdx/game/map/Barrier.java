@@ -10,9 +10,9 @@ import com.mygdx.game.engine.RepeatActor;
 
 public class Barrier extends RepeatActor {
 
-    public Barrier(float x, float y, Stage s, float width, float height, String texture){
-        super(x,y,s,width,height,texture);
-        setSize(width,height);
+    public Barrier(float x, float y, Stage s, float width, float height, String texture) {
+        super(x, y, s, width, height, texture);
+        setSize(width, height);
         setBoundaryRectangle();
     }
 

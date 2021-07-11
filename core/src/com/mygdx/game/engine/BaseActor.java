@@ -29,7 +29,7 @@ import java.util.ArrayList;
  * Класс отвечает за любой обЪект в игре: Анимация, физика, коллизия.
  */
 public class BaseActor extends Group {
-    public Effect effect=null;
+    public Effect effect = null;
     private Animation<TextureRegion> animation;
     private float elapsedTime;
     private boolean animationPaused;
@@ -41,8 +41,8 @@ public class BaseActor extends Group {
     private float acceleration;
     private float maxSpeed;
     private float deceleration;
-    private float timerEffect=0f,timerEffect2=0f;
-    public boolean isImmortal=false;
+    private float timerEffect = 0f, timerEffect2 = 0f;
+    public boolean isImmortal = false;
 
     public static Person person;
     public static Weap weap;
@@ -52,7 +52,7 @@ public class BaseActor extends Group {
     private Polygon boundaryPolygon;
 
     private static Rectangle worldBounds;
-    public static  LevelScreen screen;
+    public static LevelScreen screen;
 
     public BaseActor(float x, float y, Stage s) {
         super();
@@ -73,7 +73,7 @@ public class BaseActor extends Group {
         deceleration = 0;
 
         boundaryPolygon = null;
-        name=Name.DEFAULT;
+        name = Name.DEFAULT;
     }
 
     public BaseActor(float x, float y) {
@@ -95,14 +95,14 @@ public class BaseActor extends Group {
     public static void setPerson(Person person) {
         BaseActor.person = person;
     }
-    public static void  setScreen(LevelScreen screen) {
+
+    public static void setScreen(LevelScreen screen) {
         BaseActor.screen = screen;
     }
 
     public static void setRoom(Room room) {
         BaseActor.room = room;
     }
-
 
 
     public void centerAtPosition
@@ -179,6 +179,7 @@ public class BaseActor extends Group {
 
         return anim;
     }
+
     public Animation<TextureRegion> loadAnimationFromSheet(Texture texture, int rows, int cols, float frameDuration, boolean loop) {
 
         texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
@@ -206,11 +207,11 @@ public class BaseActor extends Group {
 
         return anim;
     }
-    public void setEffect(Effect ef)
-    {
-        this.effect=ef;
-        timerEffect=0f;
-        timerEffect2=ef.timeDelay;
+
+    public void setEffect(Effect ef) {
+        this.effect = ef;
+        timerEffect = 0f;
+        timerEffect2 = ef.timeDelay;
     }
 
     public void setAnimationPaused(boolean pause) {
@@ -246,7 +247,6 @@ public class BaseActor extends Group {
         fileNames[0] = fileName;
         return loadAnimationFromFiles(fileNames, 1, true);
     }
-
 
 
     public void setAcceleration(float acc) {
@@ -296,6 +296,7 @@ public class BaseActor extends Group {
 
     /**
      * Проводить физичиские вычисления со скоростью и ускорением
+     *
      * @param dt
      */
     public void applyPhysics(float dt) {
@@ -325,23 +326,21 @@ public class BaseActor extends Group {
         super.act(dt);
         if (!animationPaused)
             elapsedTime += dt;
-        if(effect!=null)
-        {
+        if (effect != null) {
 
-            timerEffect+=dt;
-            timerEffect2+=dt;
-            if(timerEffect2>=effect.timeDelay) {
+            timerEffect += dt;
+            timerEffect2 += dt;
+            if (timerEffect2 >= effect.timeDelay) {
                 effect.play(this);
-                timerEffect2=0;
+                timerEffect2 = 0;
             }
-            if(timerEffect>=effect.timePlay)
-            {
+            if (timerEffect >= effect.timePlay) {
 
-                timerEffect=0;
-                timerEffect2=0;
+                timerEffect = 0;
+                timerEffect2 = 0;
                 effect.effectFinish();
                 setColor(Color.WHITE);
-                effect=null;
+                effect = null;
             }
         }
     }
@@ -357,6 +356,7 @@ public class BaseActor extends Group {
     public void setBoundaryRectangle(float[] vertices) {
         boundaryPolygon = new Polygon(vertices);
     }
+
     public void setBoundaryRectangle(Polygon pol) {
         boundaryPolygon = pol;
     }
@@ -371,6 +371,7 @@ public class BaseActor extends Group {
 
     /**
      * Провера на коллизию полигонов
+     *
      * @param other другой актер
      */
     public boolean overlaps(BaseActor other) {
@@ -386,6 +387,7 @@ public class BaseActor extends Group {
 
     /**
      * заставляет обЪекты быть твердыми
+     *
      * @param other
      */
     public Vector2 preventOverlap(BaseActor other) {
@@ -440,9 +442,9 @@ public class BaseActor extends Group {
     }
 
 
-/**
- * перемещение камеры за акктером
- */
+    /**
+     * перемещение камеры за акктером
+     */
     public void alignCamera() {
         Camera cam = this.getStage().getCamera();
         Viewport v = this.getStage().getViewport();
@@ -457,6 +459,7 @@ public class BaseActor extends Group {
 
     /**
      * Отрисовка актеров
+     *
      * @param batch
      * @param parentAlpha
      */
@@ -480,8 +483,9 @@ public class BaseActor extends Group {
 
     /**
      * Проверка входит ли полигон в задданый радиус
+     *
      * @param distance дистанция до обЪекта
-     * @param other другой обЪект
+     * @param other    другой обЪект
      * @return
      */
     public boolean isWithinDistance(float distance, BaseActor other) {
@@ -509,7 +513,7 @@ public class BaseActor extends Group {
     }
 
 
-
-    public void death(){}
+    public void death() {
+    }
 
 }

@@ -11,6 +11,7 @@ import java.util.Random;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
+
 /**
  * Враг коробка с хлопьями
  */
@@ -22,8 +23,8 @@ public class Wizard extends Enemy {
     float x, y;
     float speed = 300;
     boolean boom = false, boom1 = false;
-    Texture glavnoe, izchezn, poiavleny,ye,bl,red;
-    float bulletSpeed=900;
+    Texture glavnoe, izchezn, poiavleny, ye, bl, red;
+    float bulletSpeed = 900;
 
     public Wizard(float x, float y, Stage s) {
         super(x, y, s);
@@ -34,14 +35,14 @@ public class Wizard extends Enemy {
         setMaxSpeed(speed);
         setDeceleration(0);
         random = new Random();
-        ye=new Texture("enemy/cereal/yellowCerealAppear.png");
-        bl=new Texture("enemy/cereal/blueCerealAppear.png");
-        red=new Texture("enemy/cereal/redCerealAppear.png");
+        ye = new Texture("enemy/cereal/yellowCerealAppear.png");
+        bl = new Texture("enemy/cereal/blueCerealAppear.png");
+        red = new Texture("enemy/cereal/redCerealAppear.png");
         glavnoe = new Texture("enemy/cereal/cerealMage.png");
         izchezn = new Texture("enemy/cereal/cerealDissapear.png");
         poiavleny = new Texture("enemy/cereal/cerealAppear.png");
-        textureDeath=new Texture("enemy/cereal/cerealDeath.png");
-        countDeath=7;
+        textureDeath = new Texture("enemy/cereal/cerealDeath.png");
+        countDeath = 7;
         loadAnimationFromSheet(glavnoe, 1, 12, 0.1f, true);
         setBoundaryRectangle();
         setDmg(0);
@@ -55,7 +56,7 @@ public class Wizard extends Enemy {
     @Override
     public void behavior(float dt) {
         time += dt;
-        if (time >= 2&&!boom&&!boom1) {
+        if (time >= 2 && !boom && !boom1) {
             loadAnimationFromSheet(izchezn, 1, 9, 0.1f, false);
             boom = true;
 
@@ -66,7 +67,7 @@ public class Wizard extends Enemy {
             float rand = random.nextInt(360);
             x = person.getX() + person.getWidth() / 2 - getWidth() / 2 + rastm * (float) cos(rand);
             y = person.getY() + person.getHeight() / 2 - getHeight() / 2 + rastm * (float) sin(rand);
-            if (room.roomCheck(y, x,getWidth(),getHeight())) {
+            if (room.roomCheck(y, x, getWidth(), getHeight())) {
                 setPosition(x, y);
             }
             loadAnimationFromSheet(poiavleny, 1, 9, 0.1f, false);
@@ -77,28 +78,28 @@ public class Wizard extends Enemy {
             loadAnimationFromSheet(glavnoe, 1, 12, 0.1f, true);
             attack();
             time = 0;
-            boom1=false;
+            boom1 = false;
         }
         if (person.getX() < getX())
             isRight = false;
         else {
-            isRight =true ;
+            isRight = true;
         }
     }
 
     public void attack() {
         EnemyBullet bullet = new WizardBullet(0, 0, this.getStage());
-        bullet.loadAnimationFromSheet( ye,1,9,0.1f,false);
+        bullet.loadAnimationFromSheet(ye, 1, 9, 0.1f, false);
         bullet.centerAtActor(this);
         bullet.moveBy(150, 0);
         bullet.setSpeed(bulletSpeed);
         bullet = new WizardBullet(0, 0, this.getStage());
-        bullet.loadAnimationFromSheet( red,1,9,0.1f,false);
+        bullet.loadAnimationFromSheet(red, 1, 9, 0.1f, false);
         bullet.centerAtActor(this);
         bullet.moveBy(-150, 0);
         bullet.setSpeed(bulletSpeed);
         bullet = new WizardBullet(0, 0, this.getStage());
-        bullet.loadAnimationFromSheet( bl,1,9,0.1f,false);
+        bullet.loadAnimationFromSheet(bl, 1, 9, 0.1f, false);
         bullet.centerAtActor(this);
         bullet.moveBy(0, 150);
         bullet.setSpeed(bulletSpeed);

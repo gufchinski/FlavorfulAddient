@@ -16,24 +16,21 @@ import java.util.List;
 /**
  * Пули от персонажа
  */
-public class Bullet extends BaseActor
-{
+public class Bullet extends BaseActor {
 
-   int type;
+    int type;
 
-    public Bullet(float x, float y, Stage s, String textureBullet, float damage)
-    {
-        super(x,y,s);
+    public Bullet(float x, float y, Stage s, String textureBullet, float damage) {
+        super(x, y, s);
 
 
-
-        dmg=damage;
+        dmg = damage;
 
         loadTexture(textureBullet);
 
-        addAction( Actions.delay(1) );
-        addAction( Actions.after( Actions.fadeOut(0.5f) ) );
-        addAction( Actions.after( Actions.removeActor() ) );
+        addAction(Actions.delay(1));
+        addAction(Actions.after(Actions.fadeOut(0.5f)));
+        addAction(Actions.after(Actions.removeActor()));
         setScale(2);
         setSpeed(400);
         setMaxSpeed(400);
@@ -41,9 +38,7 @@ public class Bullet extends BaseActor
     }
 
 
-
-    public void act(float dt)
-    {
+    public void act(float dt) {
         super.act(dt);
         applyPhysics(dt);
     }

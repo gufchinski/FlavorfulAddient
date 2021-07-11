@@ -3,6 +3,7 @@ package com.mygdx.game.engine;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+
 /**
  * Создает джостик для управления персонажем и оружием
  */
@@ -19,16 +20,17 @@ public class JoyStick {
         touchpad = new Touchpad(Radius, touchpadStyle);
     }
 
-    public JoyStick(float Radius, String BackgroundImg, String knobImg,int posX,int posY,float width,float height) {
-        this(Radius,BackgroundImg,knobImg);
-        setPosSize(posX,posY,width,height);
+    public JoyStick(float Radius, String BackgroundImg, String knobImg, int posX, int posY, float width, float height) {
+        this(Radius, BackgroundImg, knobImg);
+        setPosSize(posX, posY, width, height);
 
     }
 
-    public Float getKnobx(){
+    public Float getKnobx() {
         return touchpad.getKnobPercentX();
     }
-    public Float getKnoby(){
+
+    public Float getKnoby() {
         return touchpad.getKnobPercentY();
     }
 
@@ -45,10 +47,10 @@ public class JoyStick {
     }
 
     public Touchpad getTouchpad() {
-          return touchpad;
+        return touchpad;
     }
 
-    public void setPosSize(int PosX,int posY,float width, float height) {
+    public void setPosSize(int PosX, int posY, float width, float height) {
         touchpad.setBounds(PosX, posY, width, height);
     }
 }

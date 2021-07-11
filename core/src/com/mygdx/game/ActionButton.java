@@ -16,18 +16,20 @@ import com.mygdx.game.screen.LevelScreen;
 public class ActionButton extends Image {
     public boolean isUse = false;
     public String nameAction;
-    public SpriteDrawable textPickUp, textnotUse,textExit,textActReady,textActNotReady;
+
+    public SpriteDrawable textPickUp, textnotUse, textExit, textActReady, textActNotReady;
+
 
     public ActionButton(String textureName, float x, float y, float width, float height) {
         super(new Texture(textureName));
         setPosition(x, y);
         setSize(width, height);
+
         textnotUse = new SpriteDrawable(new Sprite(new Texture("ui/emptyButton.png")));
         textPickUp = new SpriteDrawable(new Sprite(new Texture("ui/pickUpButton.png")));
         textExit = new SpriteDrawable(new Sprite(new Texture("ui/ExitActButton.png")));
         textActReady = new SpriteDrawable(new Sprite(new Texture("ui/itemFullButton.png")));
         textActNotReady = new SpriteDrawable(new Sprite(new Texture("ui/itemEmptyButton.png")));
-
     }
 
 
@@ -36,10 +38,7 @@ public class ActionButton extends Image {
         super.act(delta);
 
     }
-    public void setDefautTex()
-    {
 
-
-    }
+   
 
 }

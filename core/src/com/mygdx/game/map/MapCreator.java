@@ -192,7 +192,7 @@ public class MapCreator {
      */
 
     public void mapGenerator() {
-        roomCount = random.nextInt(4) + 4+BaseScreen.level;
+        roomCount = random.nextInt(4) + 4 + BaseScreen.level;
 
         roomsLeft = roomCount;
         roomsGenerator();

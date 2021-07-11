@@ -15,15 +15,15 @@ public class Person extends BaseActor {
     public Person(float x, float y, Stage s) {
         super(x, y, s);
 
-        setSpeed(5f);
+        setSpeed(4.5f);
 
         loadAnimationFromSheet("person.png", 1, 8, 0.1f, true);
         setScale(1.5f);
         //float[] vertices = {50, 0, getWidth(), 0,getWidth(),getHeight(), 50,getHeight()};
         // setBoundaryRectangle(vertices);
-        legs = new BaseActor(getX()+20, getY(), getStage());
+        legs = new BaseActor(getX() + 20, getY(), getStage());
         legs.loadTexture("map/passUp.png");
-        legs.setSize(getWidth()/2,9);
+        legs.setSize(getWidth() / 2, 9);
         legs.setBoundaryRectangle();
         legs.setVisible(false);
 
@@ -34,7 +34,7 @@ public class Person extends BaseActor {
 
     public void act(float dt) {
         super.act(dt);
-        legs.setPosition(getX()+20,getY());
+        legs.setPosition(getX() + 20, getY());
     }
 
 
