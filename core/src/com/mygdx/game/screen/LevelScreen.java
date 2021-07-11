@@ -90,7 +90,7 @@ public class LevelScreen extends BaseScreen {
         music.play();
 
         //генерация карты
-        map = new MapCreator(mainStage, uiStage, backgrondStage, frontStage, "mapgen2.tmx");
+        map = new MapCreator(mainStage, uiStage, backgrondStage, frontStage, "mapgen2.tmx",backBackgrondStage);
         map.mapGenerator();
         y = map.mapSize / 2;
         x = map.mapSize / 2;
@@ -221,6 +221,7 @@ public class LevelScreen extends BaseScreen {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
                 setActiveScreen(new LevelScreen());
                 im.removeProcessor(deadStage);
                 im.addProcessor(uiStage);
@@ -241,6 +242,7 @@ public class LevelScreen extends BaseScreen {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
                 setActiveScreen(new MenuScreen());
                 im.removeProcessor(deadStage);
                 im.addProcessor(uiStage);

@@ -16,9 +16,9 @@ public class Donut extends Enemy {
     float time1 = 0.15f;
     float k;
     Texture textureStay;
+    Stage backbackgroundstage;
 
-
-    public Donut(float x, float y, Stage s) {
+    public Donut(float x, float y, Stage s,  Stage backbackgroundstage) {
         super(x, y, s);
         setHp(700);
         setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
@@ -35,6 +35,7 @@ public class Donut extends Enemy {
         setDmg(0f);
         scale = 1.2f;
         setScale(1.2f);
+        this.backbackgroundstage=backbackgroundstage;
 
     }
 
@@ -78,7 +79,7 @@ public class Donut extends Enemy {
     }
 
     private void jamAdd() {
-        DonutJam dj = new DonutJam(getX() + getWidth() / 2, getY(), getStage());
+        DonutJam dj = new DonutJam(getX() + getWidth() / 2, getY(), backbackgroundstage);
     }
 
 

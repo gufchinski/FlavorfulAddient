@@ -24,10 +24,10 @@ public class Chest extends BaseActor {
     ItemList itemList;
     int num;
 
-    public Chest(float x, float y, Stage s, Room room) {
+    public Chest(float x, float y, Stage s, Room room,Stage frontStage) {
         super(x, y, s);
         loadTexture("map/table1.png");
-        BaseActor eps = new BaseActor(getX(), getY(), BaseScreen.frontStage);
+        BaseActor eps = new BaseActor(getX(), getY(), frontStage);
         eps.loadTexture("map/tableLamp.png");
         eps.setScale(1.2f);
 

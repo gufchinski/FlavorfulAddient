@@ -7,7 +7,7 @@ import com.mygdx.game.engine.BaseScreen;
 
 public class DonutJam extends BaseActor {
     public DonutJam(float x, float y, Stage s) {
-        super(x, y, BaseScreen.backBackgrondStage);
+        super(x, y, s);
 
         loadTexture("enemy/donut/donutJam.png");
         //setScale(2);

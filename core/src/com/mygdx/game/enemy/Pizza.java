@@ -17,9 +17,6 @@ import com.mygdx.game.weapon.WizardBullet;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.mygdx.game.engine.BaseScreen.backBackgrondStage;
-import static com.mygdx.game.engine.BaseScreen.frontStage;
-import static com.mygdx.game.engine.BaseScreen.uiStage;
 
 public class Pizza extends Enemy {
 
@@ -45,8 +42,9 @@ public class Pizza extends Enemy {
     boolean isCountFinish, isdelayattack1, isdelayattack2, sup, sup2;
     Texture cucumber;
     boolean spawn1;
+    Stage backBackgrondStage,uiStage;
 
-    public Pizza(float x, float y, Stage s) {
+    public Pizza(float x, float y, Stage s,Stage ui,Stage backback) {
         super(x, y, s);
         sup = true;
         sup2 = true;
@@ -57,7 +55,8 @@ public class Pizza extends Enemy {
         supdelayattack1 = 2;
         isdelayattack1 = false;
         spawn1 = false;
-
+        uiStage=ui;
+        backBackgrondStage=backback;
         setHp(5000);
         setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
         setSpeed(250);
