@@ -666,22 +666,26 @@ public class LevelScreen extends BaseScreen {
     }
      void disp()
     {
-        mainStage.dispose();
+
         mainStage.clear();
-        backgrondStage.dispose();
+        mainStage.dispose();
+
         backgrondStage.clear();
-        uiStage.dispose();
+        backgrondStage.dispose();
+
         uiStage.clear();
-        backBackgrondStage.dispose();
+        uiStage.dispose();
+
         backBackgrondStage.clear();
-        epsStage.dispose();
+        backBackgrondStage.dispose();
         epsStage.clear();
-        frontStage.dispose();
+        epsStage.dispose();
         frontStage.clear();
-        deadStage.dispose();
+        frontStage.dispose();
         deadStage.clear();
-        loadStage.dispose();
+        deadStage.dispose();
         loadStage.clear();
+        loadStage.dispose();
         this.dispose();
     }
 
