@@ -1,6 +1,7 @@
 package com.mygdx.game.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
@@ -222,7 +223,7 @@ public class LevelScreen extends BaseScreen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 
-                setActiveScreen(new LevelScreen());
+                setlevelsc();
                 im.removeProcessor(deadStage);
                 im.addProcessor(uiStage);
                 im.addProcessor(mainStage);
@@ -625,7 +626,7 @@ public class LevelScreen extends BaseScreen {
                 BaseScreen.complexity += 0.1f;
                 BaseScreen.level++;
                 save();
-                setActiveScreen(new LevelScreen());
+                setlevelsc();
                 break;
         }
     }
@@ -662,6 +663,10 @@ public class LevelScreen extends BaseScreen {
         eps.position.set(mainStage.getCamera().position.x, mainStage.getCamera().position.y, 0);
         eps.update();
     }
-
+     void setlevelsc()
+    {
+        this.dispose();
+        setActiveScreen(new LevelScreen());
+    }
 
 }
