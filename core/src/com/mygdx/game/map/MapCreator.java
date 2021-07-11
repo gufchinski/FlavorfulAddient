@@ -559,8 +559,11 @@ public class MapCreator {
             String pat = "pattern-";
             if (BaseScreen.level == 0)
                 pat += String.valueOf(random.nextInt(10) + 1);
-            else
+
+            else if(BaseScreen.level == 1)
                 pat += String.valueOf(random.nextInt(15) + 1);
+            else
+                pat += String.valueOf(random.nextInt(20) + 1);
             MapLayer layer = tiledMap.getLayers().get(pat);
             for (MapObject obj : layer.getObjects()) {
 

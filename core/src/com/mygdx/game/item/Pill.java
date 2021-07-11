@@ -11,7 +11,7 @@ public class Pill extends Item {
         loadTexture("Item/pill.png");
         setScale(0.5f);
         textureName = "Item/pill.png";
-        nameItem = "500";
+        nameItem = "Omega pill";
         descriptionItem = "Fully restores HP";
     }
 

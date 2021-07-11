@@ -21,7 +21,7 @@ public class Shield extends Item {
 
     @Override
     public void use() {
-        ActiveShield activeShield = new ActiveShield(person.getX(), person.getY(), mainStage);
+        ActiveShield activeShield = new ActiveShield(person.getX(), person.getY(), BaseScreen.mainStage);
     }
 
 

@@ -88,7 +88,7 @@ public class LevelScreen extends BaseScreen {
 
 
         //генерация карты
-        map = new MapCreator(mainStage, uiStage, backgrondStage, frontStage, "mapgen2.tmx",backBackgrondStage);
+        map = new MapCreator(mainStage, uiStage, backgrondStage, frontStage, "mapgen3.tmx",backBackgrondStage);
         map.mapGenerator();
         y = map.mapSize / 2;
         x = map.mapSize / 2;
@@ -220,6 +220,7 @@ public class LevelScreen extends BaseScreen {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 disp();
+                isSave =false;
                 setActiveScreen(new LevelScreen());
                 im.removeProcessor(deadStage);
                 im.addProcessor(uiStage);

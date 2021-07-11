@@ -21,7 +21,7 @@ import com.mygdx.game.item.Item;
  * рассширает класс экрана
  */
 public abstract class BaseScreen implements Screen, InputProcessor {
-    public  Stage mainStage;
+    public static Stage mainStage;
     public  Stage uiStage;
     protected Stage loadStage;
     public  Stage backgrondStage;

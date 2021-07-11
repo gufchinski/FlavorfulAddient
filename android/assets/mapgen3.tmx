@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="8" height="8" tilewidth="256" tileheight="256" infinite="0" nextlayerid="24" nextobjectid="179">
+ <tileset firstgid="1" name="enemy/allenemy.png" tilewidth="192" tileheight="192" tilecount="9" columns="3">
+  <image source="enemy/allenemy.png" width="576" height="576"/>
+ </tileset>
+ <objectgroup id="2" name="pattern-1" visible="0">
+  <object id="40" gid="3" x="932" y="1124" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="47" gid="2" x="688" y="868" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="52" gid="2" x="1172" y="856" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="53" gid="2" x="1180" y="1364" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="54" gid="2" x="668" y="1388" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="3" name="pattern-2" visible="0">
+  <object id="55" gid="3" x="580" y="1372" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="58" gid="3" x="1160" y="1372" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="59" gid="3" x="876" y="852" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="pattern-3" visible="0">
+  <object id="60" gid="3" x="616" y="868" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="61" gid="3" x="1216" y="884" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="62" gid="1" x="908" y="1148" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="pattern-4" visible="0">
+  <object id="63" gid="1" x="672" y="1112" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="64" gid="1" x="1196" y="1128" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="65" gid="3" x="928" y="1128" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="6" name="pattern-5" visible="0">
+  <object id="66" gid="1" x="1196" y="1132" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="67" gid="1" x="652" y="1120" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="68" gid="1" x="936" y="1400" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="69" gid="1" x="936" y="804" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="70" gid="2" x="928" y="1120" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="7" name="pattern-6" visible="0">
+  <object id="72" gid="3" x="848" y="856" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="73" gid="3" x="1085.09" y="1057.82" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="85" gid="3" x="726.788" y="1124.48" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="8" name="pattern-7" visible="0">
+  <object id="89" gid="1" x="664" y="1360" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="91" gid="1" x="1192" y="1388" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="94" gid="2" x="724" y="960" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="95" gid="2" x="1132" y="952" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="9" name="pattern-8" visible="0">
+  <object id="96" gid="2" x="700" y="1420" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="97" gid="2" x="1176" y="1396" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="98" gid="2" x="1180" y="860" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="99" gid="2" x="680" y="864" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="100" gid="1" x="924" y="1116" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="10" name="pattern-9" visible="0">
+  <object id="101" gid="1" x="1180" y="1364" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="102" gid="1" x="656" y="1372" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="103" gid="2" x="948" y="1076" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="11" name="pattern-10" visible="0">
+  <object id="104" gid="2" x="708" y="1348" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="105" gid="2" x="1156" y="1360" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="106" gid="1" x="920" y="1116" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="107" gid="3" x="664" y="860" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="108" gid="3" x="1160" y="844" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="14" name="pattern-11" visible="0">
+  <object id="114" gid="2" x="1192" y="1078" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="115" gid="1" x="666" y="1056" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="15" name="pattern-12" visible="0">
+  <object id="118" gid="3" x="712.97" y="937.697" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="119" gid="3" x="1158.42" y="938.545" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="120" gid="1" x="908" y="1148" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="138" gid="3" x="916.121" y="1434.3" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="16" name="pattern-13" visible="0">
+  <object id="122" gid="3" x="928" y="1124" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="123" gid="1" x="688" y="1128" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="124" gid="1" x="1156" y="1136" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="137" gid="1" x="931.273" y="879.758" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="17" name="pattern-14" visible="0">
+  <object id="126" gid="1" x="664" y="1360" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="128" gid="1" x="1204" y="1358" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="129" gid="2" x="724" y="960" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="130" gid="2" x="1132" y="952" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="18" name="pattern-15" visible="0">
+  <object id="131" gid="1" x="742.788" y="1332.73" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="134" gid="2" x="1098.67" y="836.848" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="143" gid="1" x="1052.48" y="1349.45" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="144" gid="1" x="1313.09" y="1094.91" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="145" gid="1" x="576.727" y="1116.12" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="148" gid="2" x="700.97" y="831.273" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="19" name="pattern-16" visible="0">
+  <object id="139" gid="1" x="664" y="1360" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="140" gid="2" x="989.576" y="985.333" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="141" gid="1" x="1003.39" y="1360" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="142" gid="2" x="659.273" y="964.121" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="20" name="pattern-17" visible="0">
+  <object id="149" gid="1" x="412.485" y="1120.61" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="151" gid="1" x="936.723" y="1332.73" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="152" gid="2" x="910.788" y="1658.06" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="161" gid="2" x="894.909" y="564.606" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="162" gid="1" x="1416.12" y="1119.15" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="163" gid="1" x="928.242" y="879.758" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="21" name="pattern-18" visible="0">
+  <object id="153" gid="1" x="679.152" y="1335.76" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="156" gid="2" x="835.031" y="1112.61" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="165" gid="1" x="555.515" y="1085.82" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="166" gid="1" x="810.061" y="822.182" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="167" gid="1" x="1122.18" y="1088.85" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="168" gid="1" x="1055.52" y="1337.33" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="22" name="pattern-19" visible="0">
+  <object id="160" gid="2" x="650.182" y="952" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="169" gid="2" x="1046.42" y="970.667" width="192" height="192">
+   <properties>
+    <property name="enemy" value="wizard"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="170" gid="2" x="846.424" y="782.788" width="192" height="192">
+   <properties>
+    <property name="enemy" value="slime"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="171" gid="2" x="825.212" y="1249.45" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="23" name="pattern-20">
+  <object id="172" gid="2" x="689.576" y="842.909" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="173" gid="2" x="1176.73" y="846.424" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="175" gid="2" x="937.333" y="846.424" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="176" gid="2" x="675.574" y="1371.94" width="192" height="192">
+   <properties>
+    <property name="enemy" value="donut"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="177" gid="2" x="1162.73" y="1375.45" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+  <object id="178" gid="2" x="923.332" y="1375.45" width="192" height="192">
+   <properties>
+    <property name="enemy" value="egg"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="12" name="chest" visible="0">
+  <object id="109" x="944" y="956" width="156" height="140">
+   <properties>
+    <property name="name" value="chest"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="13" name="boss" visible="0">
+  <object id="112" x="944" y="956" width="156" height="140" visible="0">
+   <properties>
+    <property name="enemy" value="pizza"/>
+    <property name="name" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

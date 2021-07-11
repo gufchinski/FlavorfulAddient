@@ -9,13 +9,13 @@ public class Battery extends Item {
         textureName = "Item/battery.png";
         setScale(0.3f);
         nameItem = "Super Battery";
-        descriptionItem = "Increases rate of fire";
+        descriptionItem = "Increases rate of fire but lowers fire rate";
     }
 
     @Override
     public void use() {
         weap.rate -= 0.2f;
-        weap.dmg -= 50f;
+        weap.dmg -= 30f;
     }
 
     @Override
