@@ -433,7 +433,7 @@ public class LevelScreen extends BaseScreen {
                         if (bulletActor.overlaps(wallActor))
                             bulletActor.remove();
                     }
-                    for (BaseActor shieldActor : BaseActor.getList(mainStage, "item.ActiveShield")) {
+                    for (BaseActor shieldActor : BaseActor.getList(backgrondStage, "item.ActiveShield")) {
                         bulletActor.preventOverlap(shieldActor);
                     }
                 }
@@ -595,6 +595,12 @@ public class LevelScreen extends BaseScreen {
         if (timeReloadSup >= timeReload && isReload) {
             isReload = false;
             timeReloadSup = 0;
+        }
+        for (BaseActor item : BaseActor.getList(backBackgrondStage, "item.PizzaIteam")) {
+                if(person.overlaps(item))
+                {
+                    setActiveScreen(new FinalScreen());
+                }
         }
 
     }

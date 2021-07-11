@@ -6,8 +6,11 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.mygdx.game.HealthBar;
+import com.mygdx.game.engine.BaseActor;
 import com.mygdx.game.engine.BaseScreen;
 import com.mygdx.game.engine.Name;
+import com.mygdx.game.item.Item;
+import com.mygdx.game.item.PizzaIteam;
 import com.mygdx.game.weapon.AutoBullet;
 import com.mygdx.game.weapon.TomataBullet;
 import com.mygdx.game.weapon.EnemyBullet;
@@ -102,6 +105,9 @@ public class Pizza extends Enemy {
         if (death && !deadTorch) {
             deadTorch = true;
             pizzaTable.remove();
+
+            PizzaIteam pizzaIteam=new PizzaIteam(getX(),getY(),backBackgrondStage);
+            pizzaIteam.centerAtActor(this);
         }
     }
 
