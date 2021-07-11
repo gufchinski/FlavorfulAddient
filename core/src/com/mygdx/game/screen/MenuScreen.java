@@ -103,7 +103,7 @@ public class MenuScreen extends BaseScreen {
         //uiTable.add(btnPlay);
         uiTable.add(btnExit).expandX().padTop(60).row();
         uiTable.add(playlabel);
-        uiTable.add(exitlabel).padRight(70);
+        uiTable.add(exitlabel).padRight(90);
         uiTable.left().bottom();
         //uiStage.setDebugAll(true);
     }

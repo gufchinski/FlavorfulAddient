@@ -39,6 +39,7 @@ public abstract class BaseGame extends Game {
      * Method is static to simplify usage.
      */
     public static void setActiveScreen(BaseScreen s) {
+        s.dispose();
         game.setScreen(s);
     }
 }

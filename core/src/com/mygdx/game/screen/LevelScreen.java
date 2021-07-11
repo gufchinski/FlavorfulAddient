@@ -204,6 +204,7 @@ public class LevelScreen extends BaseScreen {
         deadTextureScreen = new BaseActor(100, 0, epsStage);
         deadTextureScreen.loadTexture("ui/deadScreen.png");
         deadTextureScreen.setSize(1920, 1080);
+        deadTextureScreen.moveBy(-50,0);
         deadTextureScreen.setVisible(false);
 
         deadStage.addActor(deadTable);

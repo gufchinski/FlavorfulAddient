@@ -16,8 +16,7 @@ public class Poison extends Effect {
     @Override
     public void play(BaseActor baseActor) {
         baseActor.addAction(Actions.color(Color.GREEN));
-        baseActor.addAction(Actions.delay(1.5f));
-        baseActor.addAction(Actions.after(Actions.color(Color.WHITE)));
+
 
 
         baseActor.hp *= 0.9;
