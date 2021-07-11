@@ -566,6 +566,7 @@ public class LevelScreen extends BaseScreen {
             im.addProcessor(deadStage);
             im.removeProcessor(uiStage);
             im.removeProcessor(mainStage);
+            isSave=false;
         }
         if (dialogBox.isVisible()) {
             dialogtime += dt;
