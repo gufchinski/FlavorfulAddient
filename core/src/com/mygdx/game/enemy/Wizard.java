@@ -24,7 +24,7 @@ public class Wizard extends Enemy {
     float speed = 300;
     boolean boom = false, boom1 = false;
     Texture glavnoe, izchezn, poiavleny, ye, bl, red;
-    float bulletSpeed = 900;
+    float bulletSpeed = 1500;
 
     public Wizard(float x, float y, Stage s) {
         super(x, y, s);

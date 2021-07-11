@@ -178,7 +178,7 @@ public class Room {
      */
 
     public boolean roomCheck(BaseActor eps) {
-        if (eps.getX() >= x0 - 5 && eps.getX() + eps.getWidth() <= x1 + 5 && eps.getY() >= y0 - 5 && eps.getY() + eps.getHeight() <= y1 + 5) {
+        if (eps.getX() >= x0 - 10 && eps.getX() + eps.getWidth() <= x1 + 10 && eps.getY() >= y0 - 10 && eps.getY() + eps.getHeight() <= y1 + 10) {
             return true;
         } else {
             return false;
