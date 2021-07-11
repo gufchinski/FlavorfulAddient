@@ -28,8 +28,8 @@ public class Weap extends BaseActor {
         joystick = weaponJoystick;
         vecJoy = weapJoy;
 
-        dmg = 1000f;
-        rate = 0.1f;
+        dmg = 150f;
+        rate = 0.4f;
         speed = 1000;
     }
 /**

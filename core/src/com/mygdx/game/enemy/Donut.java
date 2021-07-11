@@ -62,11 +62,11 @@ public class Donut extends Enemy {
             time=0;
             jamAdd();
         }
-        if(getMotionAngle()>90&&getMotionAngle()<=270) {
+        if (person.getX() < getX())
+            isRight = true;
+        else {
             isRight = false;
         }
-        else
-            isRight=true;
         if(stoy==false&&stay1!=stoy)
         {
             loadAnimationFromSheet("enemy/donut/donutRun.png", 1, 4, 0.10f, true);

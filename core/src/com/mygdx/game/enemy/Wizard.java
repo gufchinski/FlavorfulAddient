@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.weapon.EnemyBullet;
 import com.mygdx.game.Person;
+import com.mygdx.game.weapon.WizardBullet;
 
 import java.util.Random;
 
@@ -86,17 +87,17 @@ public class Wizard extends Enemy {
     }
 
     public void attack() {
-        EnemyBullet bullet = new EnemyBullet(0, 0, this.getStage());
+        EnemyBullet bullet = new WizardBullet(0, 0, this.getStage());
         bullet.loadAnimationFromSheet( ye,1,9,0.1f,false);
         bullet.centerAtActor(this);
         bullet.moveBy(150, 0);
         bullet.setSpeed(bulletSpeed);
-        bullet = new EnemyBullet(0, 0, this.getStage());
+        bullet = new WizardBullet(0, 0, this.getStage());
         bullet.loadAnimationFromSheet( red,1,9,0.1f,false);
         bullet.centerAtActor(this);
         bullet.moveBy(-150, 0);
         bullet.setSpeed(bulletSpeed);
-        bullet = new EnemyBullet(0, 0, this.getStage());
+        bullet = new WizardBullet(0, 0, this.getStage());
         bullet.loadAnimationFromSheet( bl,1,9,0.1f,false);
         bullet.centerAtActor(this);
         bullet.moveBy(0, 150);

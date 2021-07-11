@@ -90,7 +90,7 @@ public class LevelScreen extends BaseScreen {
         music.play();
 
         //генерация карты
-        map = new MapCreator(mainStage, uiStage, backgrondStage, frontStage, "mapgentest.tmx");
+        map = new MapCreator(mainStage, uiStage, backgrondStage, frontStage, "mapgen2.tmx");
         map.mapGenerator();
         y = map.mapSize / 2;
         x = map.mapSize / 2;
@@ -148,7 +148,7 @@ public class LevelScreen extends BaseScreen {
 
         dialogBox = new DialogBox(0, 0, uiStage);
         dialogBox.setBackgroundColor(Color.TAN);
-        dialogBox.setFontColor(Color.BROWN);
+        dialogBox.setFontColor(Color.WHITE);
         dialogBox.setDialogSize(600, 300);
         dialogBox.setFontScale(0.80f);
         dialogBox.alignCenter();
@@ -456,7 +456,7 @@ public class LevelScreen extends BaseScreen {
 
                 }
                 for (BaseActor jamActor : BaseActor.getList(backBackgrondStage, "enemy.DonutJam")) {
-                    if (person.overlaps(jamActor)) {
+                    if (person.legs.overlaps(jamActor)) {
 
                         if (!person.isImmortal) {
                             person.hp -= jamActor.dmg;
@@ -473,7 +473,7 @@ public class LevelScreen extends BaseScreen {
                 if (room.getEnemyList().isEmpty()) {
                     room.isFight = false;
                     map.roomsLeft--;
-                    if (map.roomsLeft == 0) {
+                    if (map.roomsLeft == 0&&BaseScreen.level<2) {
                         room.setRoomType(RoomType.EXIT);
                         room.setInRoom(map.miniRoomSize);
                         portal = new Portal(room.x0 + map.roomWidth / 2, room.y0 + map.roomHeight / 2, backgrondStage);
@@ -558,15 +558,15 @@ public class LevelScreen extends BaseScreen {
             }
         }
 
-//        if (person.hp <= 0) {
-//            deadTextureScreen.setVisible(true);
-//            deadTextureExit.setVisible(true);
-//            deadTexturePlay.setVisible(true);
-//            gameOver = true;
-//            im.addProcessor(deadStage);
-//            im.removeProcessor(uiStage);
-//            im.removeProcessor(mainStage);
-//        }
+        if (person.hp <= 0) {
+            deadTextureScreen.setVisible(true);
+            deadTextureExit.setVisible(true);
+            deadTexturePlay.setVisible(true);
+            gameOver = true;
+            im.addProcessor(deadStage);
+            im.removeProcessor(uiStage);
+            im.removeProcessor(mainStage);
+        }
         if (dialogBox.isVisible()) {
             dialogtime += dt;
             if (dialogtime >= 3) {
@@ -609,6 +609,7 @@ public class LevelScreen extends BaseScreen {
                 break;
             case 2:
                 BaseScreen.complexity += 0.1f;
+                BaseScreen.level++;
                 save();
                 setActiveScreen(new LevelScreen());
                 break;

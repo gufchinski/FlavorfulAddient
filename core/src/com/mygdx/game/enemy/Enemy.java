@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.engine.BaseActor;
 import com.mygdx.game.Person;
 import com.mygdx.game.engine.BaseScreen;
+import com.mygdx.game.engine.Name;
 
 /**
  * Абстрактный класс врагов
@@ -68,6 +69,9 @@ public abstract class Enemy extends BaseActor {
     @Override
     public void death() {
         loadAnimationFromSheet(textureDeath, 1, countDeath, durationDeath, false);
+        if(this.name== Name.BOSS) {
+            moveBy(-64, -54);
+        }
         setScale(scale);
         room.enemyList.remove(this);
         death = true;

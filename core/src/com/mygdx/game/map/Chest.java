@@ -3,6 +3,7 @@ package com.mygdx.game.map;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.engine.BaseActor;
 import com.mygdx.game.engine.BaseGame;
+import com.mygdx.game.engine.BaseScreen;
 import com.mygdx.game.item.Battery;
 import com.mygdx.game.item.Cyberimplant;
 import com.mygdx.game.item.ItemList;
@@ -25,7 +26,10 @@ public class Chest extends BaseActor {
 
     public Chest(float x, float y, Stage s, Room room) {
         super(x, y, s);
-        loadTexture("map/table.png");
+        loadTexture("map/table1.png");
+        BaseActor eps=new BaseActor(getX(),getY(), BaseScreen.frontStage);
+        eps.loadTexture("map/tableLamp.png");
+        eps.setScale(1.2f);
 
         Random rand = new Random();
         setScale(1.2f);
