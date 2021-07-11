@@ -22,8 +22,8 @@ public class Slime extends Enemy {
         super(x, y, s);
         setHp(600f);
         setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
-        setSpeed(800);
-        setMaxSpeed(800);
+        setSpeed(650);
+        setMaxSpeed(650);
         setDeceleration(0);
         random = new Random();
         loadAnimationFromSheet("enemy/slime/slimeRun.png", 1, 15, 0.15f, true);
