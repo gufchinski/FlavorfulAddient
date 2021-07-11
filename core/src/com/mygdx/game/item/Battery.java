@@ -15,7 +15,7 @@ public class Battery extends Item {
     @Override
     public void use() {
         weap.rate -= 0.2f;
-        weap.dmg -= 30f;
+        weap.dmg -= 50f;
     }
 
     @Override
