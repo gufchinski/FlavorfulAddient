@@ -64,7 +64,7 @@ public class LevelScreen extends BaseScreen {
     DialogBox dialogBox;
     Portal portal = null;
     public boolean isReload;
-    public  float timeReload, timeReloadSup;
+    public float timeReload, timeReloadSup;
 
 
     public void initialize() {
@@ -95,13 +95,13 @@ public class LevelScreen extends BaseScreen {
         y = map.mapSize / 2;
         x = map.mapSize / 2;
         map.miniRoomsAdder(y, x, MiniRoomType.OPENED);
-        map.Map.get(y).get(x).setInRoom(y, x, map.miniRoomSize);
+        map.Map.get(y).get(x).setInRoom(map.miniRoomSize);
 
         weapon = new Weap(0, 0, mainStage, weaponJoystick, wepJoy);
         person = new Person((map.mapSize / 2) * map.roomCoordinates + 100, (map.mapSize / 2) * map.roomCoordinates + 100, mainStage);
 
         BaseActor.setPerson(person);
-        BaseActor.weap=weapon;
+        BaseActor.weap = weapon;
         BaseActor.setRoom(map.Map.get(y).get(x));
         BaseActor.setScreen(this);
 
@@ -294,7 +294,7 @@ public class LevelScreen extends BaseScreen {
                         map.miniRoomsAdder(y, x, MiniRoomType.OPENED);
                     }
 
-                    map.Map.get(y).get(x).setInRoom(y, x, map.miniRoomSize);
+                    map.Map.get(y).get(x).setInRoom(map.miniRoomSize);
 
                 } else if (x != 0 && map.Map.get(y).get(x - 1).roomCheck(person)) {
                     map.Map.get(y).get(x).setOpenedRoom(y, x, map.miniRoomSize);
@@ -304,7 +304,7 @@ public class LevelScreen extends BaseScreen {
                         map.miniRoomsAdder(y, x, MiniRoomType.OPENED);
                     }
 
-                    map.Map.get(y).get(x).setInRoom(y, x, map.miniRoomSize);
+                    map.Map.get(y).get(x).setInRoom(map.miniRoomSize);
 
                 } else if (y != (map.mapSize - 1) && map.Map.get(y + 1).get(x).roomCheck(person)) {
                     map.Map.get(y).get(x).setOpenedRoom(y, x, map.miniRoomSize);
@@ -314,7 +314,7 @@ public class LevelScreen extends BaseScreen {
                         map.miniRoomsAdder(y, x, MiniRoomType.OPENED);
                     }
 
-                    map.Map.get(y).get(x).setInRoom(y, x, map.miniRoomSize);
+                    map.Map.get(y).get(x).setInRoom(map.miniRoomSize);
 
                 } else if (x != (map.mapSize - 1) && map.Map.get(y).get(x + 1).roomCheck(person)) {
                     map.Map.get(y).get(x).setOpenedRoom(y, x, map.miniRoomSize);
@@ -324,7 +324,7 @@ public class LevelScreen extends BaseScreen {
                         map.miniRoomsAdder(y, x, MiniRoomType.OPENED);
                     }
 
-                    map.Map.get(y).get(x).setInRoom(y, x, map.miniRoomSize);
+                    map.Map.get(y).get(x).setInRoom(map.miniRoomSize);
                 }
 
                 xS = Integer.toString(x);
@@ -357,7 +357,7 @@ public class LevelScreen extends BaseScreen {
         }
 
 
-        if (room.getRoomType() == RoomType.ENEMY||room.getRoomType() == RoomType.BOSS) {
+        if (room.getRoomType() == RoomType.ENEMY || room.getRoomType() == RoomType.BOSS) {
             if (room.isFight) {
                 Iterator<Enemy> enemyIterator = room.getEnemyList().iterator();
                 met:
@@ -366,7 +366,7 @@ public class LevelScreen extends BaseScreen {
                     Iterator<Enemy> enemyIterator1 = room.getEnemyList().iterator();
                     while (enemyIterator1.hasNext()) {
                         BaseActor enemyActor1 = enemyIterator1.next();
-                        if (enemyActor != enemyActor1&&enemyActor.name!=Name.BOSS)
+                        if (enemyActor != enemyActor1 && enemyActor.name != Name.BOSS)
                             enemyActor.preventOverlap(enemyActor1);
                     }
 
@@ -389,23 +389,31 @@ public class LevelScreen extends BaseScreen {
                         person.isImmortal = true;
                         person.timeImmortal = 0;
                     }
-                    if (joystick.isTouch()&&enemyActor.name!=Name.BOSS)
+                    if (joystick.isTouch() && enemyActor.name != Name.BOSS)
                         enemyActor.preventOverlap(person);
 
                     person.preventOverlap(enemyActor);
 
                     for (BaseActor wallActor : room.getWalls()) {
+                        if (enemyActor.name == Name.BOSS && enemyActor.overlaps(wallActor)) {
+                            enemyActor.setMotionAngle(enemyActor.getMotionAngle() - 180);
+                            if (enemyActor.isRight)
+                                enemyActor.isRight = false;
+                            else
+                                enemyActor.isRight = true;
+                        }
                         enemyActor.preventOverlap(wallActor);
+
                     }
-                    for (BaseActor shieldActor:BaseActor.getList(mainStage,"item.ActiveShield"))
-                    {
-                        enemyActor.preventOverlap(shieldActor);
+                    for (BaseActor shieldActor : BaseActor.getList(mainStage, "item.ActiveShield")) {
+                        if (enemyActor.name != Name.BOSS)
+                            enemyActor.preventOverlap(shieldActor);
                     }
 
 
                 }
 
-                for (BaseActor bulletActor : BaseActor.getList(frontStage, "weapon.EnemyBullet")) {
+                for (BaseActor bulletActor : BaseActor.getList(backgrondStage, "weapon.EnemyBullet")) {
                     if (person.overlaps(bulletActor)) {
 
                         if (!person.isImmortal) {
@@ -418,10 +426,10 @@ public class LevelScreen extends BaseScreen {
                         bulletActor.remove();
                     }
                     for (BaseActor wallActor : room.getWalls()) {
-                        bulletActor.preventOverlap(wallActor);
+                        if (bulletActor.overlaps(wallActor))
+                            bulletActor.remove();
                     }
-                    for (BaseActor shieldActor:BaseActor.getList(mainStage,"item.ActiveShield"))
-                    {
+                    for (BaseActor shieldActor : BaseActor.getList(mainStage, "item.ActiveShield")) {
                         bulletActor.preventOverlap(shieldActor);
                     }
                 }
@@ -440,15 +448,14 @@ public class LevelScreen extends BaseScreen {
                             bulletActor.remove();
 
                     }
-                    for (BaseActor bulletActor : BaseActor.getList(frontStage, "weapon.EnemyBullet")) {
+                    for (BaseActor bulletActor : BaseActor.getList(backgrondStage, "weapon.EnemyBullet")) {
                         if (bulletActor.overlaps(doorActor))
                             bulletActor.remove();
 
                     }
 
                 }
-                for (BaseActor jamActor : BaseActor.getList(backBackgrondStage, "enemy.DonutJam"))
-                {
+                for (BaseActor jamActor : BaseActor.getList(backBackgrondStage, "enemy.DonutJam")) {
                     if (person.overlaps(jamActor)) {
 
                         if (!person.isImmortal) {
@@ -468,7 +475,7 @@ public class LevelScreen extends BaseScreen {
                     map.roomsLeft--;
                     if (map.roomsLeft == 0) {
                         room.setRoomType(RoomType.EXIT);
-                        room.setInRoom(y, x, map.miniRoomSize);
+                        room.setInRoom(map.miniRoomSize);
                         portal = new Portal(room.x0 + map.roomWidth / 2, room.y0 + map.roomHeight / 2, backgrondStage);
                         portal.moveBy(-portal.getWidth() / 2, -portal.getHeight() / 2);
                     }
@@ -570,7 +577,7 @@ public class LevelScreen extends BaseScreen {
         if (isReload) {
             timeReloadSup += dt;
         }
-        if (timeReloadSup >= timeReload&&isReload) {
+        if (timeReloadSup >= timeReload && isReload) {
             isReload = false;
             timeReloadSup = 0;
         }
@@ -618,7 +625,7 @@ public class LevelScreen extends BaseScreen {
         person.maxHp = maxHP;
         if (itemActive != null)
             itemIcon.setDrawable(draw);
-        weapon.rate=rat;
+        weapon.rate = rat;
     }
 
     public void save() {

@@ -247,6 +247,8 @@ public class BaseActor extends Group {
         return loadAnimationFromFiles(fileNames, 1, true);
     }
 
+
+
     public void setAcceleration(float acc) {
         acceleration = acc;
     }

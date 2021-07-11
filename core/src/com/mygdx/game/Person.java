@@ -14,7 +14,7 @@ public class Person extends BaseActor {
     public Person(float x, float y, Stage s) {
         super(x, y, s);
 
-        setSpeed(3.5f);
+        setSpeed(10f);
 
         loadAnimationFromSheet("person.png",1,8,0.1f,true);
         setScale(1.5f);
