@@ -16,9 +16,7 @@ import com.mygdx.game.screen.LevelScreen;
 public class ActionButton extends Image {
     public boolean isUse = false;
     public String nameAction;
-
     public SpriteDrawable textPickUp, textnotUse, textExit, textActReady, textActNotReady;
-
 
     public ActionButton(String textureName, float x, float y, float width, float height) {
         super(new Texture(textureName));
@@ -32,13 +30,10 @@ public class ActionButton extends Image {
         textActNotReady = new SpriteDrawable(new Sprite(new Texture("ui/itemEmptyButton.png")));
     }
 
-
     @Override
     public void act(float delta) {
         super.act(delta);
 
     }
-
-   
 
 }
