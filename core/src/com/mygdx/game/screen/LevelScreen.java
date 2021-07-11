@@ -222,8 +222,8 @@ public class LevelScreen extends BaseScreen {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
-                setlevelsc();
+                disp();
+                setActiveScreen(new LevelScreen());
                 im.removeProcessor(deadStage);
                 im.addProcessor(uiStage);
                 im.addProcessor(mainStage);
@@ -243,7 +243,7 @@ public class LevelScreen extends BaseScreen {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-
+                disp();
                 setActiveScreen(new MenuScreen());
                 im.removeProcessor(deadStage);
                 im.addProcessor(uiStage);
@@ -626,7 +626,8 @@ public class LevelScreen extends BaseScreen {
                 BaseScreen.complexity += 0.1f;
                 BaseScreen.level++;
                 save();
-                setlevelsc();
+                disp();
+                setActiveScreen(new LevelScreen());
                 break;
         }
     }
@@ -663,10 +664,18 @@ public class LevelScreen extends BaseScreen {
         eps.position.set(mainStage.getCamera().position.x, mainStage.getCamera().position.y, 0);
         eps.update();
     }
-     void setlevelsc()
+     void disp()
     {
+        mainStage.dispose();
+        backgrondStage.dispose();
+        uiStage.dispose();
+        backBackgrondStage.dispose();
+        epsStage.dispose();
+        frontStage.dispose();
+        deadStage.dispose();
+        loadStage.dispose();
         this.dispose();
-        setActiveScreen(new LevelScreen());
+
     }
 
 }
