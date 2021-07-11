@@ -26,24 +26,19 @@ public class Pizza extends Enemy {
     Random random;
     boolean spawn = false;
     boolean tommatoat1;
-    boolean stoy = false, stay1 = false;
+    boolean stoy = false;
     boolean attackIsFinished;
     float time = 0;
-    float pipertime = 0, pipertime1 = 15;
-    float tomatotime = 0, tomatotime1 = 2;
-    float secondtomatotime = 0, secondtomatotime1 = 5, secondtomatotimedelay = 0, secondtomatotimedelay1 = 1;
-    boolean secondelay = false;
-    int tomatocount = 0, tomatocount1 = 5;
-    float time1 = 0.15f;
-    float tomatotimedelay = 0, tomatimedelay1 = 2.0f, tomatotimeattack = 0.5f;
-    float k, generatedtime = 0;
+    float tomatotime = 0;
+    float secondtomatotime = 0;
+    float tomatotimedelay = 0, tomatimedelay1 = 2.0f;
+    float generatedtime = 0;
     Texture textureStay;
     HealthBar pizzaHB;
     Table pizzaTable;
     boolean deadTorch = false;
     Texture tomato;
     float rast;
-    boolean rigg;
     int ran;
     ArrayList<EnemyBullet> bul;
     float generatedFloat, delayattack1, supdelayattack1, delayattack2, supdelayattack2;
@@ -63,7 +58,7 @@ public class Pizza extends Enemy {
         isdelayattack1 = false;
         spawn1 = false;
 
-        setHp(3000);
+        setHp(5000);
         setOrigin(getX() + getWidth() / 2, getY() + getHeight() / 2);
         setSpeed(250);
         setMaxSpeed(250);
@@ -198,7 +193,7 @@ public class Pizza extends Enemy {
             moveBy(48, 0);
             setScale(0.9f);
             spawn = false;
-            spawn1=false;
+            spawn1 = false;
             attackIsFinished = true;
         }
     }
@@ -286,10 +281,6 @@ public class Pizza extends Enemy {
         }
     }
 
-    private void tomatoAttack() {
-        //firsttomatoAttck();
-    }
-
     private void firstTomatoAttck(boolean rig, float delay) {
         EnemyBullet bullet = new TomataBulletDelay(0, 0, getStage(), delay);
         bullet.loadAnimationFromSheet(tomato, 1, 9, 0.1f, false);
@@ -311,7 +302,7 @@ public class Pizza extends Enemy {
         bullet.setSpeed(1200);
         bullet.setMotionAngle(0);
 
-        bullet = new TomataBullet(0, 0,getStage());
+        bullet = new TomataBullet(0, 0, getStage());
         bullet.loadAnimationFromSheet(tomato, 1, 9, 0.1f, false);
         bullet.centerAtActor(this);
         bullet.moveBy(-250, 260);
@@ -319,7 +310,7 @@ public class Pizza extends Enemy {
         bullet.setMotionAngle(180);
 
 
-        bullet = new TomataBullet(0, 0,getStage());
+        bullet = new TomataBullet(0, 0, getStage());
         bullet.loadAnimationFromSheet(tomato, 1, 9, 0.1f, false);
         bullet.centerAtActor(this);
         bullet.moveBy(250, 130);
@@ -398,14 +389,14 @@ public class Pizza extends Enemy {
         bullet.setMotionAngle(270);
 
 
-        bullet = new TomataBullet(0, 0,getStage());
+        bullet = new TomataBullet(0, 0, getStage());
         bullet.loadAnimationFromSheet(tomato, 1, 9, 0.1f, false);
         bullet.centerAtActor(this);
         bullet.moveBy(130, 250);
         bullet.setSpeed(1200);
         bullet.setMotionAngle(90);
 
-        bullet = new TomataBullet(0, 0,getStage());
+        bullet = new TomataBullet(0, 0, getStage());
         bullet.loadAnimationFromSheet(tomato, 1, 9, 0.1f, false);
         bullet.centerAtActor(this);
         bullet.moveBy(130, -250);
@@ -469,7 +460,7 @@ public class Pizza extends Enemy {
         bullet.setSpeed(1);
         bullet.setMotionAngle(0);
 
-        bullet = new AutoBullet(0, 0,getStage());
+        bullet = new AutoBullet(0, 0, getStage());
         bullet.loadAnimationFromSheet(cucumber, 1, 9, 0.1f, false);
         bullet.centerAtActor(this);
         bullet.moveBy(0, -250);
@@ -491,7 +482,7 @@ public class Pizza extends Enemy {
         bullet.setMotionAngle(0);
 
 
-        bullet = new AutoBullet(0, 0,getStage());
+        bullet = new AutoBullet(0, 0, getStage());
         bullet.loadAnimationFromSheet(cucumber, 1, 9, 0.1f, false);
         bullet.centerAtActor(this);
         bullet.moveBy(-176, -176);

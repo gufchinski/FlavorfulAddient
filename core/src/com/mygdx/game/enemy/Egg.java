@@ -19,7 +19,7 @@ public class Egg extends Enemy {
 
     public Egg(float x, float y, Stage s) {
         super(x, y, s);
-       setHp(400f);
+        setHp(400f);
         random = new Random();
         setSpeed(500);
         setMaxSpeed(500);
@@ -29,17 +29,17 @@ public class Egg extends Enemy {
         setScale(scale);
         setOrigin(getWidth() / 2, getHeight() / 2);
         setBoundaryRectangle();
-        polygon=getBoundaryPolygon();
-        textureDeath=new Texture("enemy/egg/eggDeath.png");
-        countDeath=7;
+        polygon = getBoundaryPolygon();
+        textureDeath = new Texture("enemy/egg/eggDeath.png");
+        countDeath = 7;
         setDmg(0);
-        name=Name.BOOM;
+        name = Name.BOOM;
     }
 
     public void act(float dt) {
         super.act(dt);
-        if(!death)
-        applyPhysics(dt);
+        if (!death)
+            applyPhysics(dt);
 
     }
 
@@ -54,10 +54,10 @@ public class Egg extends Enemy {
             isRight = false;
         }
         if (isWithinDistance(10, person) && !boom) {
-            person.hp-= 25f;
+            person.hp -= 25f;
             person.isImmortal = true;
             person.timeImmortal = 0;
-            isImmortal=true;
+            isImmortal = true;
             loadAnimationFromSheet("enemy/egg/eggExplodet.png", 1, 14, 0.05f, false);
             setScale(scale);
             setBoundaryRectangle(polygon);

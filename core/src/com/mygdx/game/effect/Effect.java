@@ -10,6 +10,7 @@ public abstract class Effect {
 
     /**
      * Основное поведение эффекта
+     *
      * @param baseActor
      */
     public abstract void play(BaseActor baseActor);

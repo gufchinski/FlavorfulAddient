@@ -28,7 +28,6 @@ public abstract class Item extends BaseActor {
     public abstract void use();
 
 
-
     public void move() {
 
     }

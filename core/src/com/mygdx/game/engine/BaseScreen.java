@@ -21,7 +21,7 @@ import com.mygdx.game.item.Item;
  * рассширает класс экрана
  */
 public abstract class BaseScreen implements Screen, InputProcessor {
-    public static  Stage mainStage;
+    public static Stage mainStage;
     public static Stage uiStage;
     protected Stage loadStage;
     public static Stage backgrondStage;
@@ -30,7 +30,7 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     protected Stage epsStage;
     protected Table uiTable;
     protected Stage deadStage;
-    public static float personHp, damg, personSpeed,maxHP,rat;
+    public static float personHp, damg, personSpeed, maxHP, rat;
     public static Item items;
     public static Effect bulletEff;
     public static Drawable draw;
@@ -41,16 +41,16 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     public InputMultiplexer im;
     public boolean gameOver = false;
     public static boolean isSave = false;
-    public static  int level=0;
+    public static int level = 0;
 
     public BaseScreen() {
         Preferences prefs = Gdx.app.getPreferences("Preferences");
 
         bf = new BitmapFont(Gdx.files.internal("font/cooper.fnt"));
         lb = new LabelStyle();
-        bosslb=new LabelStyle();
-        BitmapFont bf1=new BitmapFont(Gdx.files.internal("font/boos.fnt"));
-        bosslb.font=bf1;
+        bosslb = new LabelStyle();
+        BitmapFont bf1 = new BitmapFont(Gdx.files.internal("font/boos.fnt"));
+        bosslb.font = bf1;
         lb.font = bf;
         epsStage = new Stage(new StretchViewport(1920, 1080));
         frontStage = new Stage(new ExtendViewport(1920, 1080));
@@ -145,15 +145,15 @@ public abstract class BaseScreen implements Screen, InputProcessor {
 
     }
 
-    public void setSetting(float personHp, float dmg, float personSpeed, Effect bulletEffect, Item items, Drawable draw,float maxHP,float rat) {
+    public void setSetting(float personHp, float dmg, float personSpeed, Effect bulletEffect, Item items, Drawable draw, float maxHP, float rat) {
         this.personHp = personHp;
         this.damg = dmg;
         this.personSpeed = personSpeed;
         this.bulletEff = bulletEffect;
         this.items = items;
         this.draw = draw;
-        this.maxHP=maxHP;
-        this.rat=rat;
+        this.maxHP = maxHP;
+        this.rat = rat;
     }
 
 

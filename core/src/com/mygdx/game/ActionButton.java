@@ -12,16 +12,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
  * Кнопка для использование предметов
  */
 public class ActionButton extends Image {
-    public boolean isUse=false;
+    public boolean isUse = false;
     public String nameAction;
-    public SpriteDrawable  textnotUse,textUse;
-    public ActionButton(String textureName, float x, float y, float width, float height)
-    {
+    public SpriteDrawable textnotUse, textUse;
+
+    public ActionButton(String textureName, float x, float y, float width, float height) {
         super(new Texture(textureName));
-        setPosition( x , y);
-        setSize(width,height);
-        textnotUse= new SpriteDrawable(new Sprite(new Texture("ui/joy_background.png")));
-        textUse= new SpriteDrawable(new Sprite(new Texture("ui/itemPickButton.png")));
+        setPosition(x, y);
+        setSize(width, height);
+        textnotUse = new SpriteDrawable(new Sprite(new Texture("ui/joy_background.png")));
+        textUse = new SpriteDrawable(new Sprite(new Texture("ui/itemPickButton.png")));
 
     }
 

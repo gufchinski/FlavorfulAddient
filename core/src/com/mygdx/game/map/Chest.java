@@ -27,7 +27,7 @@ public class Chest extends BaseActor {
     public Chest(float x, float y, Stage s, Room room) {
         super(x, y, s);
         loadTexture("map/table1.png");
-        BaseActor eps=new BaseActor(getX(),getY(), BaseScreen.frontStage);
+        BaseActor eps = new BaseActor(getX(), getY(), BaseScreen.frontStage);
         eps.loadTexture("map/tableLamp.png");
         eps.setScale(1.2f);
 
@@ -36,8 +36,8 @@ public class Chest extends BaseActor {
         float[] vertices = {0, 194, 298, 194, 298, 240, 0, 240};
         setBoundaryRectangle(vertices);
         room.walls.add(this);
-        if(BaseGame.itemPool.size()>0)
-        num= rand.nextInt(BaseGame.itemPool.size());
+        if (BaseGame.itemPool.size() > 0)
+            num = rand.nextInt(BaseGame.itemPool.size());
         itemList = BaseGame.itemPool.get(num);
         BaseGame.itemPool.remove(num);
         switch (itemList) {

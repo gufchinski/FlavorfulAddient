@@ -4,8 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
+
 /**
- *Создает диалоговые окна
+ * Создает диалоговые окна
  */
 public class DialogBox extends BaseActor {
     private Label dialogLabel, dialogLabel2;
@@ -65,8 +66,8 @@ public class DialogBox extends BaseActor {
 
     public void alignCenter() {
         dialogLabel.setAlignment(Align.center);
-        dialogLabel.moveBy(0,30);
+        dialogLabel.moveBy(0, 30);
         dialogLabel2.setAlignment(Align.center);
-        dialogLabel2.moveBy(0,-secondpadding);
+        dialogLabel2.moveBy(0, -secondpadding);
     }
 }

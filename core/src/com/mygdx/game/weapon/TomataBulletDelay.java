@@ -15,8 +15,8 @@ public class TomataBulletDelay extends WizardBullet {
     @Override
     public void act(float dt) {
         super.act(dt);
-        if(isAnimationFinished())
-        timer += dt;
+        if (isAnimationFinished())
+            timer += dt;
         if (timer >= delay) {
             bomb1 = true;
         }

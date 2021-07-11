@@ -11,7 +11,7 @@ public class ActiveShield extends BaseActor {
         loadAnimationFromSheet("Item/actShield.png", 1, 20, 0.05f, true);
         setScale(2);
 
-        addAction(Actions.delay(5));
+        addAction(Actions.delay(2.5f));
         addAction(Actions.after(Actions.fadeOut(0.5f)));
         addAction(Actions.after(Actions.removeActor()));
 

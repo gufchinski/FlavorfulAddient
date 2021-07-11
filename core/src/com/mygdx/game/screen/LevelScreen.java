@@ -135,7 +135,7 @@ public class LevelScreen extends BaseScreen {
         BaseActor healthIcon = new BaseActor(0, 0, uiStage);
         healthIcon.loadTexture("ui/heart.png");
 
-        timeReload = 10;
+        timeReload = 25;
         timeReloadSup = 0;
 
         uiTable.pad(20);
@@ -473,7 +473,7 @@ public class LevelScreen extends BaseScreen {
                 if (room.getEnemyList().isEmpty()) {
                     room.isFight = false;
                     map.roomsLeft--;
-                    if (map.roomsLeft == 0&&BaseScreen.level<2) {
+                    if (map.roomsLeft == 0 && BaseScreen.level < 2) {
                         room.setRoomType(RoomType.EXIT);
                         room.setInRoom(map.miniRoomSize);
                         portal = new Portal(room.x0 + map.roomWidth / 2, room.y0 + map.roomHeight / 2, backgrondStage);
@@ -566,7 +566,7 @@ public class LevelScreen extends BaseScreen {
             im.addProcessor(deadStage);
             im.removeProcessor(uiStage);
             im.removeProcessor(mainStage);
-            isSave=false;
+            isSave = false;
         }
         if (dialogBox.isVisible()) {
             dialogtime += dt;

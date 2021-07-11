@@ -7,16 +7,16 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  */
 public class Pill extends Item {
     public Pill(float x, float y, Stage s) {
-        super(x, y, s,0);
+        super(x, y, s, 0);
         loadTexture("Item/pill.png");
         setScale(0.5f);
-        textureName="Item/pill.png";
+        textureName = "Item/pill.png";
         nameItem = "500";
         descriptionItem = "Fully restores HP";
     }
+
     @Override
-    public  void use()
-    {
-        person.hp=person.maxHp;
+    public void use() {
+        person.hp = person.maxHp;
     }
 }

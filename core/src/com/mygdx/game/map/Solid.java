@@ -9,8 +9,8 @@ import com.mygdx.game.engine.BaseActor;
  */
 
 public class Solid extends BaseActor {
-    public Solid(float x, float y, Stage s,String textureNAme){
-        super(x,y,s);
+    public Solid(float x, float y, Stage s, String textureNAme) {
+        super(x, y, s);
         loadTexture(textureNAme);
         setBoundaryRectangle();
     }

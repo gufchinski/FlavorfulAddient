@@ -18,30 +18,31 @@ import com.mygdx.game.engine.BaseActor;
 import com.mygdx.game.engine.BaseScreen;
 
 import static com.mygdx.game.engine.BaseGame.setActiveScreen;
+
 /**
  * Экран меню
  */
 public class MenuScreen extends BaseScreen {
     TextButton btnPlay;
 
-    Image btnp,btnExit;
+    Image btnp, btnExit;
     BaseActor backgroundTexture;
 
 
     @Override
     public void initialize() {
-        Table tax=new Table();
+        Table tax = new Table();
         Skin mySkin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
-        backgroundTexture=new BaseActor(0,0,epsStage);
+        backgroundTexture = new BaseActor(0, 0, epsStage);
         backgroundTexture.loadTexture("ui/mainMenuScreen.png");
-        backgroundTexture.setSize(1920,1080);
+        backgroundTexture.setSize(1920, 1080);
 
-        btnp=new Image(new Texture("ui/playButton.png"));
+        btnp = new Image(new Texture("ui/playButton.png"));
 
-        Label.LabelStyle lb=new Label.LabelStyle();
-        BitmapFont mainfont=new BitmapFont( Gdx.files.internal("font/da.fnt"));
+        Label.LabelStyle lb = new Label.LabelStyle();
+        BitmapFont mainfont = new BitmapFont(Gdx.files.internal("font/da.fnt"));
         mainfont.getData().setScale(5);
-            lb.font=mainfont;
+        lb.font = mainfont;
 
         btnp.addListener(new InputListener() {
             @Override
@@ -60,31 +61,28 @@ public class MenuScreen extends BaseScreen {
         TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
 
 
-
-
-
         bf.getData().setScale(3);
-        textButtonStyle.font  =bf;
+        textButtonStyle.font = bf;
 
 
-        btnExit =new Image(new Texture("ui/exitButton.png"));
+        btnExit = new Image(new Texture("ui/exitButton.png"));
         btnExit.setScale(0.7f);
         btnExit.addListener(
 
-                    new EventListener() {
-                        @Override
-                        public boolean handle(Event e) {
-                            if (!(e instanceof InputEvent))
-                                return false;
+                new EventListener() {
+                    @Override
+                    public boolean handle(Event e) {
+                        if (!(e instanceof InputEvent))
+                            return false;
 
-                            if (!((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
-                                return false;
+                        if (!((InputEvent) e).getType().equals(InputEvent.Type.touchDown))
+                            return false;
 
-                            Gdx.app.exit();
-                            return true;
-                        }
+                        Gdx.app.exit();
+                        return true;
                     }
-            );
+                }
+        );
 
         uiStage.addActor(btnExit);
 
@@ -94,7 +92,7 @@ public class MenuScreen extends BaseScreen {
 
         uiTable.add(btnp).padTop(160).expandX();
         //uiTable.add(btnPlay);
-        uiTable.add( btnExit).expandX().padTop(60);
+        uiTable.add(btnExit).expandX().padTop(60);
         uiTable.left().bottom();
         //uiStage.setDebugAll(true);
     }

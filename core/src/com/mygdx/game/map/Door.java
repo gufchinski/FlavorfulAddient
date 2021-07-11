@@ -11,16 +11,16 @@ public class Door extends BaseActor {
     float width, height;
     DoorType doorType;
 
-    public Door(float x, float y, Stage s,float width, float height, DoorType doorType) {
+    public Door(float x, float y, Stage s, float width, float height, DoorType doorType) {
         super(x, y, s);
         this.width = width;
         this.height = height;
         setBoundaryRectangle();
         setSize(width, height);
-        this.doorType=doorType;
+        this.doorType = doorType;
     }
-    public void setPreventSize()
-    {
-        setSize(width,height);
+
+    public void setPreventSize() {
+        setSize(width, height);
     }
 }

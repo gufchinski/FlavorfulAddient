@@ -16,11 +16,11 @@ public class Poison extends Effect {
     @Override
     public void play(BaseActor baseActor) {
         baseActor.addAction(Actions.color(Color.GREEN));
-        baseActor.addAction( Actions.delay(1.5f) );
-        baseActor.addAction( Actions.after( Actions.color(Color.WHITE)) );
+        baseActor.addAction(Actions.delay(1.5f));
+        baseActor.addAction(Actions.after(Actions.color(Color.WHITE)));
 
 
-        baseActor.hp = baseActor.hp - 3;
+        baseActor.hp *= 0.9;
         timeDelay = 1.5f;
         this.baseActor = baseActor;
         sitch = 1 - sitch;

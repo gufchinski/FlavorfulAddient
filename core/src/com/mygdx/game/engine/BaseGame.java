@@ -10,13 +10,12 @@ import java.util.ArrayList;
 
 
 /**
- *  Created when program is launched;
- *  manages the screens that appear during the game.
+ * Created when program is launched;
+ * manages the screens that appear during the game.
  */
-public abstract class BaseGame extends Game
-{
+public abstract class BaseGame extends Game {
     /**
-     *  Stores reference to game; used when calling setActiveScreen method.
+     * Stores reference to game; used when calling setActiveScreen method.
      */
     private static BaseGame game;
     public static Label.LabelStyle labelStyle;
@@ -24,24 +23,22 @@ public abstract class BaseGame extends Game
     public static ArrayList<ItemList> itemPool = new ArrayList<>();
 
     /**
-     *  Called when game is initialized; stores global reference to game object.
+     * Called when game is initialized; stores global reference to game object.
      */
-    public BaseGame()
-    {
+    public BaseGame() {
         game = this;
     }
-    public void create()
-    {
+
+    public void create() {
         // prepare for multiple classes/stages/actors to receive discrete input
 
     }
 
     /**
-     *  Used to switch screens while game is running.
-     *  Method is static to simplify usage.
+     * Used to switch screens while game is running.
+     * Method is static to simplify usage.
      */
-    public static void setActiveScreen(BaseScreen s)
-    {
+    public static void setActiveScreen(BaseScreen s) {
         game.setScreen(s);
     }
 }

@@ -17,7 +17,7 @@ public class Peperonka extends Enemy {
 
     public Peperonka(float x, float y, Stage s) {
         super(x, y, s);
-        setHp(400f);
+        setHp(600f);
         random = new Random();
         setSpeed(500);
         setMaxSpeed(500);
@@ -36,7 +36,7 @@ public class Peperonka extends Enemy {
 
     public void act(float dt) {
         super.act(dt);
-        if (!death&&pov)
+        if (!death && pov)
             applyPhysics(dt);
 
     }
@@ -44,11 +44,10 @@ public class Peperonka extends Enemy {
     @Override
     public void behavior(float dt) {
 
-        if(!pov&&isAnimationFinished())
-        {
+        if (!pov && isAnimationFinished()) {
             loadAnimationFromSheet("enemy/pizza/peperonkaRun.png", 1, 4, 0.05f, true);
             setScale(1.5f);
-            pov=true;
+            pov = true;
         }
         setMotionAngle((float) Math.toDegrees(Math.atan2((person.getY() + person.getHeight() / 2) - (getY() + getHeight() / 2), (person.getX() + person.getWidth() / 2) - (getX() + getWidth() / 2))));
 
